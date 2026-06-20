@@ -1,5 +1,7 @@
-# Admin route - REQUIRED for CMS to work
+@"
+# Admin route
 /admin/*  /admin/index.html  200
 
-# Fallback for SPA
+# Fallback
 /*  /index.html  200
+"@ | Out-File -FilePath _redirects -Encoding UTF8

@@ -14,7 +14,6 @@
             background: #f5f3f0;
         }
         
-        /* Header branding */
         .nc-appHeader {
             background: linear-gradient(135deg, #7B8C6B, #5A6B4A) !important;
         }
@@ -29,7 +28,6 @@
             content: '🌿 ';
         }
         
-        /* Gold accents */
         .nc-entryListing-item {
             border-left: 3px solid #C9A87C !important;
         }
@@ -38,7 +36,6 @@
             border-bottom: 2px solid #C9A87C !important;
         }
         
-        /* Buttons */
         .nc-button-primary {
             background: #7B8C6B !important;
             border-color: #7B8C6B !important;
@@ -51,7 +48,7 @@
     </style>
 </head>
 <body>
-    <!-- Load React and ReactDOM first -->
+    <!-- Load React and ReactDOM first (required for preview) -->
     <script crossorigin src="https://unpkg.com/react@^17/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@^17/umd/react-dom.production.min.js"></script>
     
@@ -63,7 +60,7 @@
         // DECAP CMS CONFIGURATION
         // ============================================
         
-        // Register custom preview template
+        // Register preview template
         CMS.registerPreviewTemplate('products', class extends React.Component {
             render() {
                 const entry = this.props.entry;
@@ -81,7 +78,7 @@
                         textAlign: 'center'
                     }
                 },
-                    // Product Image Placeholder
+                    // Product Image
                     React.createElement('div', {
                         style: {
                             width: '100%',
@@ -100,7 +97,7 @@
                             className: `fas ${data.icon || 'fa-flask'}`
                         })
                     ),
-                    // Product Name
+                    // Name
                     React.createElement('h3', {
                         style: {
                             fontFamily: 'Playfair Display, serif',
@@ -110,7 +107,7 @@
                             color: '#1E1E1E'
                         }
                     }, data.name || 'Product Name'),
-                    // Product Description
+                    // Description
                     React.createElement('p', {
                         style: {
                             fontSize: '0.9rem',
@@ -118,7 +115,7 @@
                             marginBottom: '12px'
                         }
                     }, data.description || 'Product description'),
-                    // Product Details
+                    // Details
                     React.createElement('div', {
                         style: {
                             display: 'flex',
@@ -138,7 +135,7 @@
                             }
                         }, data.price || 'R150 | R450')
                     ),
-                    // Order Button
+                    // WhatsApp Button
                     React.createElement('div', {
                         style: {
                             background: '#25D366',
@@ -156,184 +153,185 @@
             }
         });
         
-        // Initialize CMS with config
-        const config = {
-            backend: {
-                name: 'git-gateway',
-                branch: 'main',
-                commit_messages: {
-                    create: '✨ Add {{collection}} "{{slug}}"',
-                    update: '📝 Update {{collection}} "{{slug}}"',
-                    delete: '🗑️ Delete {{collection}} "{{slug}}"',
-                    uploadMedia: '📸 Upload "{{path}}"',
-                    deleteMedia: '🗑️ Delete "{{path}}"'
-                }
-            },
-            
-            media_folder: 'images/products',
-            public_folder: '/images/products',
-            
-            collections: [
-                {
-                    name: 'products',
-                    label: 'Products',
-                    label_singular: 'Product',
-                    folder: 'data/products',
-                    create: true,
-                    delete: true,
-                    slug: '{{slug}}',
-                    identifier_field: 'id',
-                    preview_path: '/',
-                    
-                    view_filters: [
-                        { label: 'All Products', field: 'category', pattern: '.*' },
-                        { label: '👨 Male', field: 'category', pattern: '^male$' },
-                        { label: '👩 Female', field: 'category', pattern: '^female$' },
-                        { label: '👤 Unisex', field: 'category', pattern: '^unisex$' }
-                    ],
-                    
-                    view_groups: [
-                        { label: 'Category', field: 'category' }
-                    ],
-                    
-                    sortable_fields: ['name', 'price', 'category', 'created_at'],
-                    
-                    fields: [
-                        {
-                            label: 'Product ID',
-                            name: 'id',
-                            widget: 'number',
-                            default: 1,
-                            value_type: 'int',
-                            min: 1
-                        },
-                        {
-                            label: 'Product Name',
-                            name: 'name',
-                            widget: 'string',
-                            required: true,
-                            hint: 'e.g., Most Wanted'
-                        },
-                        {
-                            label: 'Category',
-                            name: 'category',
-                            widget: 'select',
-                            required: true,
-                            options: [
-                                { label: '👨 Male', value: 'male' },
-                                { label: '👩 Female', value: 'female' },
-                                { label: '👤 Unisex', value: 'unisex' }
-                            ],
-                            default: 'male'
-                        },
-                        {
-                            label: 'Description',
-                            name: 'description',
-                            widget: 'text',
-                            required: true,
-                            hint: 'Short product description'
-                        },
-                        {
-                            label: 'Sizes Available',
-                            name: 'sizes',
-                            widget: 'string',
-                            required: true,
-                            default: '30ml | 100ml',
-                            hint: 'e.g., 30ml | 100ml'
-                        },
-                        {
-                            label: 'Price',
-                            name: 'price',
-                            widget: 'string',
-                            required: true,
-                            default: 'R150 | R450'
-                        },
-                        {
-                            label: 'Icon',
-                            name: 'icon',
-                            widget: 'string',
-                            required: true,
-                            default: 'fa-flask',
-                            hint: 'FontAwesome icon (e.g., fa-crown)',
-                            pattern: ['^fa-', 'Must start with fa-']
-                        },
-                        {
-                            label: 'Badge / Tag',
-                            name: 'badge',
-                            widget: 'select',
-                            required: false,
-                            options: [
-                                { label: 'None', value: '' },
-                                { label: '⭐ Bestseller', value: 'Bestseller' },
-                                { label: '✨ Premium', value: 'Premium' },
-                                { label: '🆕 New', value: 'New' },
-                                { label: '🔥 Sale', value: 'Sale' }
-                            ],
-                            default: ''
-                        },
-                        {
-                            label: 'Product Image',
-                            name: 'image',
-                            widget: 'image',
-                            required: false,
-                            media_library: {
-                                config: {
-                                    multiple: false,
-                                    accept: 'image/*'
-                                }
-                            }
-                        },
-                        {
-                            label: 'Featured Product',
-                            name: 'featured',
-                            widget: 'boolean',
-                            required: false,
-                            default: false
-                        },
-                        {
-                            label: 'In Stock',
-                            name: 'inStock',
-                            widget: 'boolean',
-                            required: false,
-                            default: true
-                        },
-                        {
-                            label: 'Display Order',
-                            name: 'order',
-                            widget: 'number',
-                            required: false,
-                            hint: 'Lower numbers show first',
-                            min: 0,
-                            default: 0
-                        },
-                        {
-                            label: 'Created At',
-                            name: 'created_at',
-                            widget: 'datetime',
-                            default: '',
-                            date_format: 'YYYY-MM-DD',
-                            time_format: 'HH:mm',
-                            picker_utc: false
-                        },
-                        {
-                            label: 'Updated At',
-                            name: 'updated_at',
-                            widget: 'datetime',
-                            default: '',
-                            date_format: 'YYYY-MM-DD',
-                            time_format: 'HH:mm',
-                            picker_utc: false
-                        }
-                    ]
-                }
-            ],
-            
-            site_url: 'https://sweet-scent00.netlify.app',
-            display_url: 'https://sweet-scent00.netlify.app'
-        };
-        
         // Initialize CMS
-        CMS.init({ config: config });
+        CMS.init({
+            config: {
+                backend: {
+                    name: 'git-gateway',
+                    branch: 'main',
+                    commit_messages: {
+                        create: '✨ Add {{collection}} "{{slug}}"',
+                        update: '📝 Update {{collection}} "{{slug}}"',
+                        delete: '🗑️ Delete {{collection}} "{{slug}}"',
+                        uploadMedia: '📸 Upload "{{path}}"',
+                        deleteMedia: '🗑️ Delete "{{path}}"'
+                    }
+                },
+                
+                media_folder: 'images/products',
+                public_folder: '/images/products',
+                
+                collections: [
+                    {
+                        name: 'products',
+                        label: 'Products',
+                        label_singular: 'Product',
+                        folder: 'data/products',
+                        create: true,
+                        delete: true,
+                        slug: '{{slug}}',
+                        identifier_field: 'id',
+                        preview_path: '/',
+                        
+                        view_filters: [
+                            { label: 'All Products', field: 'category', pattern: '.*' },
+                            { label: '👨 Male', field: 'category', pattern: '^male$' },
+                            { label: '👩 Female', field: 'category', pattern: '^female$' },
+                            { label: '👤 Unisex', field: 'category', pattern: '^unisex$' }
+                        ],
+                        
+                        view_groups: [
+                            { label: 'Category', field: 'category' }
+                        ],
+                        
+                        sortable_fields: ['name', 'price', 'category', 'created_at'],
+                        
+                        fields: [
+                            {
+                                label: 'Product ID',
+                                name: 'id',
+                                widget: 'number',
+                                default: 1,
+                                value_type: 'int',
+                                min: 1
+                            },
+                            {
+                                label: 'Product Name',
+                                name: 'name',
+                                widget: 'string',
+                                required: true,
+                                hint: 'e.g., Most Wanted'
+                            },
+                            {
+                                label: 'Category',
+                                name: 'category',
+                                widget: 'select',
+                                required: true,
+                                options: [
+                                    { label: '👨 Male', value: 'male' },
+                                    { label: '👩 Female', value: 'female' },
+                                    { label: '👤 Unisex', value: 'unisex' }
+                                ],
+                                default: 'male'
+                            },
+                            {
+                                label: 'Description',
+                                name: 'description',
+                                widget: 'text',
+                                required: true,
+                                hint: 'Short product description'
+                            },
+                            {
+                                label: 'Sizes Available',
+                                name: 'sizes',
+                                widget: 'string',
+                                required: true,
+                                default: '30ml | 100ml',
+                                hint: 'e.g., 30ml | 100ml'
+                            },
+                            {
+                                label: 'Price',
+                                name: 'price',
+                                widget: 'string',
+                                required: true,
+                                default: 'R150 | R450'
+                            },
+                            {
+                                label: 'Icon (FontAwesome)',
+                                name: 'icon',
+                                widget: 'string',
+                                required: true,
+                                default: 'fa-flask',
+                                hint: 'e.g., fa-crown, fa-flower',
+                                pattern: ['^fa-', 'Must start with fa-']
+                            },
+                            {
+                                label: 'Badge / Tag',
+                                name: 'badge',
+                                widget: 'select',
+                                required: false,
+                                options: [
+                                    { label: 'None', value: '' },
+                                    { label: '⭐ Bestseller', value: 'Bestseller' },
+                                    { label: '✨ Premium', value: 'Premium' },
+                                    { label: '🆕 New', value: 'New' },
+                                    { label: '🔥 Sale', value: 'Sale' },
+                                    { label: '🌟 Limited Edition', value: 'Limited Edition' }
+                                ],
+                                default: ''
+                            },
+                            {
+                                label: 'Product Image',
+                                name: 'image',
+                                widget: 'image',
+                                required: false,
+                                hint: 'Upload a product image (optional)',
+                                media_library: {
+                                    config: {
+                                        multiple: false,
+                                        accept: 'image/*'
+                                    }
+                                }
+                            },
+                            {
+                                label: 'Featured Product',
+                                name: 'featured',
+                                widget: 'boolean',
+                                required: false,
+                                default: false
+                            },
+                            {
+                                label: 'In Stock',
+                                name: 'inStock',
+                                widget: 'boolean',
+                                required: false,
+                                default: true
+                            },
+                            {
+                                label: 'Display Order',
+                                name: 'order',
+                                widget: 'number',
+                                required: false,
+                                hint: 'Lower numbers show first',
+                                min: 0,
+                                default: 0
+                            },
+                            {
+                                label: 'Created At',
+                                name: 'created_at',
+                                widget: 'datetime',
+                                default: '',
+                                date_format: 'YYYY-MM-DD',
+                                time_format: 'HH:mm',
+                                picker_utc: false
+                            },
+                            {
+                                label: 'Updated At',
+                                name: 'updated_at',
+                                widget: 'datetime',
+                                default: '',
+                                date_format: 'YYYY-MM-DD',
+                                time_format: 'HH:mm',
+                                picker_utc: false
+                            }
+                        ]
+                    }
+                ],
+                
+                site_url: 'https://sweet-scent00.netlify.app',
+                display_url: 'https://sweet-scent00.netlify.app'
+            }
+        });
         
         console.log('🌿 Sweet Scent Admin · Ready');
         console.log('📝 Manage your products here');
