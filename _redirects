@@ -1,7 +1,1 @@
-@"
-# Admin route
-/admin/*  /admin/index.html  200
-
-# Fallback
 /*  /index.html  200
-"@ | Out-File -FilePath _redirects -Encoding UTF8

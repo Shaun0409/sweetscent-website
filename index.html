@@ -4,62 +4,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sweet Scent · Luxury Fragrances</title>
-    
+
+    <!-- SEO Meta -->
+    <meta name="description" content="Sweet Scent - Premium quality, affordable fragrances crafted in South Africa. Wear the fragrance. Own the room.">
+    <meta name="keywords" content="Sweet Scent, fragrances, perfume, South African, affordable perfume, luxury scent">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- AOS Animation Library -->
+
+    <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- ===== HEADER / NAVIGATION ===== -->
+    <!-- HEADER -->
     <header class="header">
         <div class="container header-container">
-            <a href="#home" class="logo">Sweet Scent</a>
-            
+            <a href="#home" class="logo">
+                <img src="images/logo.jpeg" alt="Sweet Scent Logo" class="logo-img">
+                <span>Sweet Scent</span>
+            </a>
+
             <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
             </button>
-            
+
             <nav class="nav-menu" id="navMenu">
                 <ul class="nav-list">
                     <li><a href="#home" class="nav-link active">Home</a></li>
                     <li><a href="#catalogue" class="nav-link">Catalogue</a></li>
-                    <li><a href="#specials" class="nav-link">Specials</a></li>
-                    <li><a href="#custom" class="nav-link">Custom Orders</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
                     <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
             </nav>
+
+            <div class="header-cta">
+                <a href="https://wa.me/27622102873" target="_blank" class="btn-whatsapp">
+                    <i class="fab fa-whatsapp"></i> <span>Order Now</span>
+                </a>
+            </div>
         </div>
     </header>
 
-    <!-- ===== HOME / HERO SECTION ===== -->
+    <!-- HERO -->
     <section id="home" class="hero">
+        <svg class="hero-trail" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M390 20 C 320 80, 340 160, 270 200 S 160 260, 200 340 S 120 440, 40 480" />
+        </svg>
         <div class="container hero-container">
-            <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
-                <span class="hero-subtitle">NEW FRAGRANCE DROP</span>
-                <h1 class="hero-title">Wear the fragrance.<br>Gain the room.</h1>
-                <p class="hero-description">Unisex. Premium quality. Long lasting.<br>Inspired by iconic scents.</p>
-                <div class="hero-badges">
-                    <span class="badge"><i class="fas fa-tag"></i> SALE 20-30 JUNE</span>
-                    <span class="badge"><i class="fas fa-bolt"></i> Selling Fast</span>
+            <div class="hero-content" data-aos="fade-up" data-aos-duration="900">
+                <span class="eyebrow">Sweet Scent Fragrances</span>
+                <h1 class="hero-title">Wear the fragrance.<br><em>Own the room.</em></h1>
+                <p class="hero-description">Premium quality fragrances crafted with care. Inspired by iconic scents. Made for everyone.</p>
+                <div class="hero-buttons">
+                    <a href="#catalogue" class="btn-primary">
+                        <i class="fas fa-shopping-bag"></i> Shop Now
+                    </a>
+                    <a href="https://wa.me/27622102873" target="_blank" class="btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i> Order on WhatsApp
+                    </a>
                 </div>
-                <a href="#catalogue" class="btn-primary">
-                    <i class="fas fa-shopping-bag"></i> Explore Collection
-                </a>
+                <div class="hero-social">
+                    <span>Follow us</span>
+                    <a href="https://www.instagram.com/sweet_scent.co" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/27622102873" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
             </div>
-            <div class="hero-image" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
-                <div class="perfume-bottle-decoration">
+            <div class="hero-image" data-aos="fade-left" data-aos-duration="900" data-aos-delay="200">
+                <div class="perfume-plate">
                     <i class="fas fa-spray-can-sparkles"></i>
-                    <div class="floating-badge sale-badge">SALE</div>
+                    <span class="perfume-plate-label">Sweet Scent</span>
+                    <div class="floating-tag">Premium Quality</div>
                 </div>
             </div>
         </div>
@@ -69,197 +91,343 @@
         </div>
     </section>
 
-    <!-- ===== CATALOGUE / PRODUCTS ===== -->
+    <!-- WHY CHOOSE SWEET SCENT -->
+    <section class="why-choose">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="eyebrow">Why Choose Us</span>
+                <h2 class="section-title">The Sweet Scent Experience</h2>
+            </div>
+            <div class="why-grid">
+                <div class="why-card" data-aos="fade-up" data-aos-delay="0">
+                    <div class="why-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                    <h3>Mixed &amp; Crafted with Care</h3>
+                    <p>Every fragrance is crafted with passion and attention to detail.</p>
+                </div>
+                <div class="why-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="why-icon"><i class="fas fa-wallet"></i></div>
+                    <h3>Affordable Pricing</h3>
+                    <p>Premium quality fragrances at prices that won't break the bank.</p>
+                </div>
+                <div class="why-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="why-icon"><i class="fas fa-star"></i></div>
+                    <h3>Quality Fragrances</h3>
+                    <p>Long-lasting, inspired by iconic scents, made for everyone.</p>
+                </div>
+                <div class="why-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="why-icon"><i class="fas fa-headset"></i></div>
+                    <h3>Excellent Service</h3>
+                    <p>We're here to help you find your perfect scent.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CATALOGUE -->
     <section id="catalogue" class="catalogue">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
-                <span class="section-tag">Our Collection</span>
+                <span class="eyebrow">Our Collection</span>
                 <h2 class="section-title">Find Your Scent</h2>
-                <div class="section-divider"></div>
+                <p class="section-lede">Browse Male, Female and our Premium Unisex collection — every bottle crafted and mixed in-house.</p>
             </div>
-            
-            <!-- Category Tabs -->
+
             <div class="category-tabs" data-aos="fade-up" data-aos-delay="100">
-                <button class="tab-btn active" data-category="male">Male</button>
-                <button class="tab-btn" data-category="female">Female</button>
-                <button class="tab-btn" data-category="unisex">Unisex</button>
+                <button class="tab-btn active" data-category="male">👨 Male</button>
+                <button class="tab-btn" data-category="female">👩 Female</button>
+                <button class="tab-btn" data-category="unisex">✨ Premium Unisex</button>
             </div>
-            
-            <!-- Product Grid -->
+
             <div class="product-grid" id="productGrid">
                 <!-- Products rendered by JavaScript -->
             </div>
         </div>
     </section>
 
-    <!-- ===== UNISEX SPECIAL ===== -->
-    <section id="specials" class="specials">
+    <!-- ROOM DIFFUSERS COMING SOON -->
+    <section class="diffusers-section">
         <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-tag">Premium Unisex</span>
-                <h2 class="section-title">For Every Soul</h2>
-                <div class="section-divider"></div>
-            </div>
-            
-            <div class="special-offer" data-aos="fade-up" data-aos-delay="100">
-                <div class="offer-banner">
-                    <div class="offer-content">
-                        <span class="offer-tag"><i class="fas fa-gift"></i> MONTHLY SPECIAL</span>
-                        <h3>Get 2 for R320</h3>
-                        <p>Any 2 fragrances from our Signature Collection</p>
-                        <div class="offer-details">
-                            <span><i class="fas fa-calendar"></i> 20th to last day of every month</span>
-                            <span><i class="fas fa-percent"></i> 10% OFF all unisex fragrances</span>
-                        </div>
-                    </div>
-                    <div class="offer-image">
-                        <i class="fas fa-percent"></i>
-                    </div>
+            <div class="diffusers-content" data-aos="fade-up">
+                <div class="diffusers-icon">
+                    <i class="fas fa-wind"></i>
                 </div>
-            </div>
-
-            <!-- Unisex Products Grid -->
-            <div class="product-grid unisex-grid" id="unisexGrid" data-aos="fade-up" data-aos-delay="200">
-                <!-- Unisex products rendered by JavaScript -->
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== CUSTOM ORDERS ===== -->
-    <section id="custom" class="custom-orders">
-        <div class="container">
-            <div class="custom-content" data-aos="fade-up">
-                <div class="custom-icon">
-                    <i class="fas fa-magic"></i>
-                </div>
-                <span class="section-tag">Custom Orders</span>
-                <h2 class="section-title">Looking for a fragrance not in our catalogue?</h2>
-                <p class="custom-description">No problem. We now offer custom orders on selected fragrances available from our suppliers.</p>
-                <p class="custom-sub">Send the name of the fragrance you're looking for, and we'll check availability for you.</p>
-                <a href="https://wa.me/27622102873?text=Hi%20Sweet%20Scent!%20I'm%20looking%20for%20a%20custom%20fragrance%3A" target="_blank" class="btn-primary custom-btn">
-                    <i class="fab fa-whatsapp"></i> Request Custom Order
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== COMING SOON + DELIVERY ===== -->
-    <section class="info-section">
-        <div class="container info-grid">
-            <div class="info-card delivery" data-aos="fade-up" data-aos-delay="0">
-                <i class="fas fa-truck"></i>
-                <h3>Delivery Information</h3>
-                <p><i class="fas fa-check-circle" style="color:var(--olive);"></i> Orders processed within 24 hours</p>
-                <p><i class="fas fa-check-circle" style="color:var(--olive);"></i> Free delivery on orders over R500</p>
-                <p><i class="fas fa-check-circle" style="color:var(--olive);"></i> Nationwide delivery available</p>
-                <p><i class="fas fa-check-circle" style="color:var(--olive);"></i> Secure packaging</p>
-            </div>
-            
-            <div class="info-card coming-soon" data-aos="fade-up" data-aos-delay="100">
-                <i class="fas fa-wind"></i>
-                <h3>Premium Diffusers</h3>
-                <p class="coming-badge"><i class="fas fa-clock"></i> Coming Soon</p>
+                <span class="eyebrow">Coming Soon</span>
+                <h2 class="section-title">Room Diffusers</h2>
                 <p>Elevate your space with our upcoming premium diffusers collection.</p>
-                <div class="gold-accent"></div>
-                <div class="diffuser-preview">
+                <div class="diffusers-preview">
                     <span>🌿</span>
                     <span>🌸</span>
                     <span>🌺</span>
+                    <span>🌻</span>
+                </div>
+                <div class="coming-soon-badge">
+                    <i class="fas fa-clock"></i> Coming Soon
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== CONTACT ===== -->
-    <section id="contact" class="contact">
+    <!-- ABOUT US -->
+    <section id="about" class="about">
         <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-tag">Connect With Us</span>
-                <h2 class="section-title">Get In Touch</h2>
-                <div class="section-divider"></div>
+            <div class="about-header" data-aos="fade-up">
+                <span class="eyebrow">About Sweet Scent</span>
+                <h2 class="section-title">The Story Behind the Scent</h2>
+                <p class="about-founder-line">Founded by Ntokozo Manyike</p>
             </div>
-            
-            <div class="contact-grid">
-                <a href="https://wa.me/27622102873" target="_blank" class="contact-card whatsapp" data-aos="fade-up" data-aos-delay="0">
-                    <i class="fab fa-whatsapp"></i>
-                    <h3>WhatsApp</h3>
-                    <p>062 210 2873</p>
-                    <small>Chat with us instantly</small>
-                </a>
-                
-                <a href="tel:+27622102873" class="contact-card call" data-aos="fade-up" data-aos-delay="100">
-                    <i class="fas fa-phone"></i>
-                    <h3>Call Us</h3>
-                    <p>062 210 2873</p>
-                    <small>062 1890 920</small>
-                </a>
-                
-                <a href="mailto:info@sweetscent.co.za" class="contact-card email" data-aos="fade-up" data-aos-delay="200">
-                    <i class="fas fa-envelope"></i>
-                    <h3>Email</h3>
-                    <p>info@sweetscent.co.za</p>
-                </a>
-                
-                <a href="https://www.instagram.com/sweetscent.co" target="_blank" class="contact-card instagram" data-aos="fade-up" data-aos-delay="300">
-                    <i class="fab fa-instagram"></i>
-                    <h3>Instagram</h3>
-                    <p>@sweetscent.co</p>
-                    <small class="personal-ig">Follow us</small>
-                </a>
+
+            <!-- Story told as a fragrance unfolds: top, heart, base note -->
+            <div class="notes-timeline">
+                <div class="note-block" data-aos="fade-up" data-aos-delay="0">
+                    <div class="note-label">Top</div>
+                    <div class="note-tag">The First Impression</div>
+                    <h3>A passion from an early age</h3>
+                    <p>Sweet Scent was founded by <strong>Ntokozo Manyike</strong>, a young entrepreneur whose passion for fragrances began at a very early age.</p>
+                    <p>Growing up, Ntokozo admired his father's collection of perfumes and developed a deep appreciation for the confidence and presence a great fragrance could create. One day, his father gifted him a fragrance, and from that moment his love for scents grew even stronger.</p>
+                    <p>At school, he began receiving compliments almost every day. Classmates would ask what fragrance he was wearing and where they could get it. Some wanted to smell like him, while others simply loved the scent and wanted one for themselves.</p>
+                </div>
+
+                <div class="note-block" data-aos="fade-up" data-aos-delay="100">
+                    <div class="note-label">Heart</div>
+                    <div class="note-tag">The Founding</div>
+                    <h3>From a school-yard idea to a launch</h3>
+                    <p>Instead of simply sharing where the fragrance came from, Ntokozo saw an opportunity. What started as helping friends get fragrances slowly became the foundation of a business idea.</p>
+                    <p>Although the vision began during his school years, Sweet Scent officially launched on <strong>15 July 2023</strong> after he completed matric. Starting with only <strong>R350</strong> and seven bottles of perfume, he began building the business one customer at a time.</p>
+                    <p>The name <strong>Sweet Scent</strong> was inspired by a phrase people often used around him: <em>"Uthengisa ama swidi,"</em> meaning he sells nice things or treats. Combining the idea of "sweet" with fragrance led to the creation of the name Sweet Scent.</p>
+                </div>
+
+                <div class="note-block" data-aos="fade-up" data-aos-delay="200">
+                    <div class="note-label">Base</div>
+                    <div class="note-tag">The Lasting Impression</div>
+                    <h3>What Sweet Scent stands for today</h3>
+                    <p>Today, Sweet Scent creates and mixes its own fragrances from scratch. Every bottle is crafted with passion, care and attention to detail. Our goal is to help people feel confident, smell great and leave a lasting impression without breaking the bank.</p>
+                    <p>Sweet Scent is built on <strong>quality, affordability, consistency and community</strong>. We believe everyone deserves access to great fragrances at fair prices.</p>
+                </div>
+            </div>
+
+            <div class="about-container">
+                <div class="about-content" data-aos="fade-right">
+                    <div class="about-highlight">
+                        <div class="highlight-item">
+                            <span class="highlight-number">15 July 2023</span>
+                            <span class="highlight-label">Official Launch Date</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-number">R350</span>
+                            <span class="highlight-label">Starting Capital</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-number">7</span>
+                            <span class="highlight-label">First Bottles</span>
+                        </div>
+                    </div>
+
+                    <div class="about-values">
+                        <div class="value-card vision">
+                            <div class="value-icon"><i class="fas fa-eye"></i></div>
+                            <h4>Our Vision</h4>
+                            <p>To grow Sweet Scent into a trusted South African fragrance brand while creating opportunities that help other entrepreneurs grow their businesses through partnerships, support and collaboration.</p>
+                        </div>
+                        <div class="value-card mission">
+                            <div class="value-icon"><i class="fas fa-rocket"></i></div>
+                            <h4>Our Mission</h4>
+                            <p>To create quality, affordable fragrances that inspire confidence, celebrate individuality and make great scents accessible to everyone.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-sidebar" data-aos="fade-left">
+                    <div class="quick-facts">
+                        <h4>Quick Facts</h4>
+                        <ul>
+                            <li><i class="fas fa-calendar-check"></i> Founded: 15 July 2023</li>
+                            <li><i class="fas fa-map-pin"></i> South African Brand</li>
+                            <li><i class="fas fa-handshake"></i> Built One Customer at a Time</li>
+                            <li><i class="fas fa-star"></i> 100% Own Fragrance Blends</li>
+                            <li><i class="fas fa-heart"></i> Quality &amp; Affordability</li>
+                        </ul>
+                    </div>
+
+                    <div class="brand-values">
+                        <h4>Our Core Values</h4>
+                        <div class="value-tags">
+                            <span>Quality</span>
+                            <span>Affordability</span>
+                            <span>Consistency</span>
+                            <span>Community</span>
+                            <span>Integrity</span>
+                            <span>Passion</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== FOOTER ===== -->
+    <!-- CONTACT -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="eyebrow">Get In Touch</span>
+                <h2 class="section-title">Contact Us</h2>
+            </div>
+
+            <div class="contact-container">
+                <div class="contact-info" data-aos="fade-right">
+                    <a href="tel:+27621890920" class="contact-card-item">
+                        <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                        <div>
+                            <h4>Call Us</h4>
+                            <p>062 189 0920</p>
+                        </div>
+                    </a>
+                    <a href="https://wa.me/27622102873" target="_blank" class="contact-card-item">
+                        <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+                        <div>
+                            <h4>WhatsApp</h4>
+                            <p>062 210 2873</p>
+                        </div>
+                    </a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=1805+Fascine+Road%2C+Klipfontein+View+Ext+3" target="_blank" class="contact-card-item">
+                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div>
+                            <h4>Location</h4>
+                            <p>1805 Fascine Road</p>
+                            <p>Klipfontein View Ext 3</p>
+                        </div>
+                    </a>
+                    <div class="contact-card-item contact-card-item--static">
+                        <div class="contact-icon"><i class="fab fa-instagram"></i></div>
+                        <div>
+                            <h4>Instagram</h4>
+                            <p><a href="https://www.instagram.com/sweet_scent.co" target="_blank" class="contact-link">@sweet_scent.co</a></p>
+                            <p class="contact-alt"><a href="https://www.instagram.com/officiantoko" target="_blank" class="contact-link contact-link--alt">@officiantoko</a></p>
+                        </div>
+                    </div>
+
+                    <div class="contact-buttons">
+                        <a href="tel:+27621890920" class="btn-primary">
+                            <i class="fas fa-phone"></i> Call Now
+                        </a>
+                        <a href="https://wa.me/27622102873" target="_blank" class="btn-whatsapp">
+                            <i class="fab fa-whatsapp"></i> WhatsApp Us
+                        </a>
+                        <a href="https://www.instagram.com/sweet_scent.co" target="_blank" class="btn-outline">
+                            <i class="fab fa-instagram"></i> Follow on Instagram
+                        </a>
+                    </div>
+                </div>
+
+                <div class="contact-form" data-aos="fade-left">
+                    <h3>Send Us a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="contactName" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="contactPhone" placeholder="Contact Number" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="contactMessage" placeholder="Your Message" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary" style="width:100%; justify-content:center;">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DELIVERY INFORMATION -->
+    <section class="delivery-section">
+        <div class="container">
+            <div class="delivery-content" data-aos="fade-up">
+                <i class="fas fa-truck"></i>
+                <h2>Delivery Information</h2>
+                <div class="delivery-grid">
+                    <div class="delivery-item">
+                        <i class="fas fa-check-circle"></i>
+                        <p>Local delivery available</p>
+                    </div>
+                    <div class="delivery-item">
+                        <i class="fas fa-check-circle"></i>
+                        <p>Delivery fees may vary by location</p>
+                    </div>
+                    <div class="delivery-item">
+                        <i class="fas fa-check-circle"></i>
+                        <p>Customers updated throughout the process</p>
+                    </div>
+                    <div class="delivery-item">
+                        <i class="fas fa-check-circle"></i>
+                        <p>Fast and reliable service</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <h3>Sweet Scent</h3>
-                    <p>Wear the fragrance. Gain the room.</p>
+                    <a href="#home" class="logo">
+                        <img src="images/logo.jpeg" alt="Sweet Scent Logo" class="logo-img-footer">
+                        <span>Sweet Scent</span>
+                    </a>
+                    <p>Wear the Fragrance. Own the Room.</p>
                     <div class="footer-badges">
                         <span>✨ Premium Quality</span>
                         <span>🌟 Long Lasting</span>
                         <span>💎 Eau de Parfum</span>
                     </div>
-                </div>
-                
-                <div class="footer-social">
-                    <h4>Follow Us</h4>
-                    <div class="social-links">
-                        <a href="https://www.instagram.com/sweetscent.co" target="_blank" aria-label="Instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://wa.me/27622102873" target="_blank" aria-label="WhatsApp">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
-                        <a href="mailto:info@sweetscent.co.za" aria-label="Email">
-                            <i class="fas fa-envelope"></i>
-                        </a>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/sweet_scent.co" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/27622102873" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="mailto:ManyikeNtokozo@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
                     </div>
                 </div>
-                
+
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#catalogue">Catalogue</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+
                 <div class="footer-contact">
                     <h4>Contact</h4>
-                    <p><i class="fas fa-phone"></i> 062 210 2873</p>
-                    <p><i class="fas fa-phone"></i> 062 1890 920</p>
-                    <p><i class="fas fa-envelope"></i> info@sweetscent.co.za</p>
+                    <p><i class="fas fa-phone"></i> 062 189 0920</p>
+                    <p><i class="fab fa-whatsapp"></i> 062 210 2873</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 1805 Fascine Road</p>
+                    <p><i class="fas fa-map-pin"></i> Klipfontein View Ext 3</p>
+                    <p><i class="fab fa-instagram"></i> @sweet_scent.co</p>
+                </div>
+
+                <div class="footer-info">
+                    <h4>Business Info</h4>
+                    <p><strong>Founded:</strong> 15 July 2023</p>
+                    <p><strong>Founder:</strong> Ntokozo Manyike</p>
+                    <p class="coming-tag">🌿 Room Diffusers Coming Soon</p>
                 </div>
             </div>
-            
+
             <div class="footer-bottom">
-                <p>&copy; 2026 Sweet Scent. All rights reserved.</p>
+                <p>&copy; 2026 Sweet Scent. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- ===== FLOATING WHATSAPP BUTTON ===== -->
+    <!-- FLOATING WHATSAPP -->
     <a href="https://wa.me/27622102873" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
         <i class="fab fa-whatsapp"></i>
-        <span class="pulse-ring"></span>
+        <span class="tooltip">Chat with us!</span>
     </a>
 
-    <!-- ===== JAVASCRIPT ===== -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="js/script.js"></script>
 </body>
