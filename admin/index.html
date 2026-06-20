@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sweet Scent Admin · Manage Products</title>
+    <!-- Decap CMS CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.css" />
+    
+    <style>
+        /* Custom admin styling */
+        body {
+            background: #f5f3f0;
+        }
+        
+        /* Custom logo */
+        .nc-appHeader {
+            background: linear-gradient(135deg, #7B8C6B, #5A6B4A) !important;
+        }
+        
+        .nc-appHeader a {
+            font-family: 'Playfair Display', serif !important;
+            font-size: 1.5rem !important;
+            color: white !important;
+        }
+        
+        .nc-appHeader a::before {
+            content: '🌿 ';
+        }
+        
+        /* Custom button styles */
+        .nc-button-primary {
+            background: #7B8C6B !important;
+            border-color: #7B8C6B !important;
+        }
+        
+        .nc-button-primary:hover {
+            background: #5A6B4A !important;
+            border-color: #5A6B4A !important;
+        }
+        
+        /* Gold accents */
+        .nc-entryListing-item {
+            border-left: 3px solid #C9A87C !important;
+        }
+        
+        .nc-collectionPage-topBar {
+            border-bottom: 2px solid #C9A87C !important;
+        }
+        
+        /* Preview styling */
+        .nc-widgetPreview {
+            font-family: 'Inter', sans-serif !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Include the CMS script -->
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    
+    <script>
+        // Custom admin configuration
+        CMS.registerPreviewTemplate('products', class extends React.Component {
+            render() {
+                const entry = this.props.entry;
+                const data = entry.get('data').toJS();
+                
+                return React.createElement('div', {
+                    style: {
+                        padding: '20px',
+                        fontFamily: 'Inter, sans-serif',
+                        maxWidth: '400px',
+                        margin: '0 auto',
+                        background: 'white',
+                        borderRadius: '16px',
+                        boxShadow: '0 8px 30px rgba(0,0,0,0.08)'
+                    }
+                },
+                    React.createElement('div', {
+                        style: {
+                            width: '100%',
+                            height: '180px',
+                            background: 'linear-gradient(135deg, #E6EDE0, #f5f8f2)',
+                            borderRadius: '12px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            fontSize: '4rem',
+                            color: '#C9A87C',
+                            marginBottom: '15px'
+                        }
+                    },
+                        React.createElement('i', {
+                            className: `fas ${data.icon || 'fa-flask'}`
+                        })
+                    ),
+                    React.createElement('h3', {
+                        style: {
+                            fontFamily: 'Playfair Display, serif',
+                            fontSize: '1.3rem',
+                            fontWeight: '600',
+                            marginBottom: '5px',
+                            color: '#1E1E1E'
+                        }
+                    }, data.name || 'Product Name'),
+                    React.createElement('p', {
+                        style: {
+                            fontSize: '0.9rem',
+                            color: '#777',
+                            marginBottom: '12px'
+                        }
+                    }, data.description || 'Product description'),
+                    React.createElement('div', {
+                        style: {
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            marginBottom: '15px'
+                        }
+                    },
+                        React.createElement('span', {
+                            style: { color: '#666', fontSize: '0.9rem' }
+                        }, `🧴 ${data.sizes || '30ml | 100ml'}`),
+                        React.createElement('span', {
+                            style: {
+                                fontWeight: '700',
+                                color: '#5A6B4A',
+                                fontSize: '1.2rem'
+                            }
+                        }, data.price || 'R150 | R450')
+                    ),
+                    React.createElement('div', {
+                        style: {
+                            background: '#25D366',
+                            color: 'white',
+                            padding: '10px',
+                            borderRadius: '50px',
+                            textAlign: 'center',
+                            fontWeight: '600',
+                            fontSize: '0.9rem'
+                        }
+                    },
+                        '💬 Order via WhatsApp'
+                    )
+                );
+            }
+        });
+        
+        // Show loading state
+        console.log('Sweet Scent Admin · Loading...');
+    </script>
+</body>
+</html>

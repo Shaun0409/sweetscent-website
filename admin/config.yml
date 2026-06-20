@@ -1,0 +1,180 @@
+# ============================================
+# Sweet Scent - Decap CMS Configuration
+# ============================================
+
+backend:
+  name: git-gateway
+  branch: main
+  commit_messages:
+    create: '✨ Add {{collection}} "{{slug}}"'
+    update: '📝 Update {{collection}} "{{slug}}"'
+    delete: '🗑️ Delete {{collection}} "{{slug}}"'
+    uploadMedia: '📸 Upload "{{path}}"'
+    deleteMedia: '🗑️ Delete "{{path}}"'
+
+# Media settings
+media_folder: "images/products"
+public_folder: "/images/products"
+
+# Collections
+collections:
+  - name: "products"
+    label: "Products"
+    label_singular: "Product"
+    folder: "data/products"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    identifier_field: "id"
+    preview_path: "/"
+    
+    # Display settings
+    view_filters:
+      - label: "All Products"
+        field: "category"
+        pattern: ".*"
+      - label: "Male Fragrances"
+        field: "category"
+        pattern: "^male$"
+      - label: "Female Fragrances"
+        field: "category"
+        pattern: "^female$"
+      - label: "Unisex Fragrances"
+        field: "category"
+        pattern: "^unisex$"
+    
+    view_groups:
+      - label: "Category"
+        field: "category"
+    
+    # Sort options
+    sortable_fields:
+      - "name"
+      - "price"
+      - "category"
+      - "created_at"
+    
+    # Fields
+    fields:
+      - label: "Product ID"
+        name: "id"
+        widget: "number"
+        default: 1
+        value_type: "int"
+        min: 1
+        
+      - label: "Product Name"
+        name: "name"
+        widget: "string"
+        required: true
+        hint: "e.g., Most Wanted"
+        
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        required: true
+        options:
+          - { label: "👨 Male", value: "male" }
+          - { label: "👩 Female", value: "female" }
+          - { label: "👤 Unisex", value: "unisex" }
+        default: "male"
+        
+      - label: "Description"
+        name: "description"
+        widget: "text"
+        required: true
+        hint: "Short product description (e.g., Bold and charismatic)"
+        
+      - label: "Sizes Available"
+        name: "sizes"
+        widget: "string"
+        required: true
+        default: "30ml | 100ml"
+        hint: "e.g., 30ml | 100ml or 30ml"
+        
+      - label: "Price"
+        name: "price"
+        widget: "string"
+        required: true
+        default: "R150 | R450"
+        hint: "e.g., R150 | R450 or R180"
+        
+      - label: "Icon"
+        name: "icon"
+        widget: "string"
+        required: true
+        default: "fa-flask"
+        hint: "FontAwesome icon class (e.g., fa-crown, fa-flower)"
+        pattern: ['^fa-', 'Must start with fa-']
+        
+      - label: "Badge / Tag"
+        name: "badge"
+        widget: "select"
+        required: false
+        options:
+          - { label: "None", value: "" }
+          - { label: "⭐ Bestseller", value: "Bestseller" }
+          - { label: "✨ Premium", value: "Premium" }
+          - { label: "🆕 New", value: "New" }
+          - { label: "🔥 Sale", value: "Sale" }
+          - { label: "🌟 Limited Edition", value: "Limited Edition" }
+        default: ""
+        
+      - label: "Product Image"
+        name: "image"
+        widget: "image"
+        required: false
+        hint: "Upload a product image (optional)"
+        media_library:
+          config:
+            multiple: false
+            accept: "image/*"
+            
+      - label: "Featured Product"
+        name: "featured"
+        widget: "boolean"
+        required: false
+        default: false
+        hint: "Check to feature this product on the homepage"
+        
+      - label: "Stock Status"
+        name: "inStock"
+        widget: "boolean"
+        required: false
+        default: true
+        
+      - label: "Order"
+        name: "order"
+        widget: "number"
+        required: false
+        hint: "Display order (lower numbers show first)"
+        min: 0
+        default: 0
+        
+      - label: "SEO Title"
+        name: "seo_title"
+        widget: "string"
+        required: false
+        hint: "Custom title for SEO (optional)"
+        
+      - label: "SEO Description"
+        name: "seo_description"
+        widget: "text"
+        required: false
+        hint: "Custom description for SEO (optional)"
+        
+      - label: "Created At"
+        name: "created_at"
+        widget: "datetime"
+        default: ""
+        date_format: "YYYY-MM-DD"
+        time_format: "HH:mm"
+        picker_utc: false
+        
+      - label: "Updated At"
+        name: "updated_at"
+        widget: "datetime"
+        default: ""
+        date_format: "YYYY-MM-DD"
+        time_format: "HH:mm"
+        picker_utc: false

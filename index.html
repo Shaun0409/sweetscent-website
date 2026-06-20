@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweet Scent · Luxury Fragrances</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- ===== HEADER / NAVIGATION ===== -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="#home" class="logo">Sweet Scent</a>
+            
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav class="nav-menu" id="navMenu">
+                <ul class="nav-list">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#catalogue" class="nav-link">Catalogue</a></li>
+                    <li><a href="#specials" class="nav-link">Specials</a></li>
+                    <li><a href="#custom" class="nav-link">Custom Orders</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== HOME / HERO SECTION ===== -->
+    <section id="home" class="hero">
+        <div class="container hero-container">
+            <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
+                <span class="hero-subtitle">NEW FRAGRANCE DROP</span>
+                <h1 class="hero-title">Wear the fragrance.<br>Gain the room.</h1>
+                <p class="hero-description">Unisex. Premium quality. Long lasting.<br>Inspired by iconic scents.</p>
+                <div class="hero-badges">
+                    <span class="badge"><i class="fas fa-tag"></i> SALE 20-30 JUNE</span>
+                    <span class="badge"><i class="fas fa-bolt"></i> Selling Fast</span>
+                </div>
+                <a href="#catalogue" class="btn-primary">
+                    <i class="fas fa-shopping-bag"></i> Explore Collection
+                </a>
+            </div>
+            <div class="hero-image" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                <div class="perfume-bottle-decoration">
+                    <i class="fas fa-spray-can-sparkles"></i>
+                    <div class="floating-badge sale-badge">SALE</div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll to explore</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- ===== CATALOGUE / PRODUCTS ===== -->
+    <section id="catalogue" class="catalogue">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Our Collection</span>
+                <h2 class="section-title">Find Your Scent</h2>
+                <div class="section-divider"></div>
+            </div>
+            
+            <!-- Category Tabs -->
+            <div class="category-tabs" data-aos="fade-up" data-aos-delay="100">
+                <button class="tab-btn active" data-category="male">Male</button>
+                <button class="tab-btn" data-category="female">Female</button>
+                <button class="tab-btn" data-category="unisex">Unisex</button>
+            </div>
+            
+            <!-- Product Grid -->
+            <div class="product-grid" id="productGrid">
+                <!-- Products rendered by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== UNISEX SPECIAL ===== -->
+    <section id="specials" class="specials">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Premium Unisex</span>
+                <h2 class="section-title">For Every Soul</h2>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="special-offer" data-aos="fade-up" data-aos-delay="100">
+                <div class="offer-banner">
+                    <div class="offer-content">
+                        <span class="offer-tag"><i class="fas fa-gift"></i> MONTHLY SPECIAL</span>
+                        <h3>Get 2 for R320</h3>
+                        <p>Any 2 fragrances from our Signature Collection</p>
+                        <div class="offer-details">
+                            <span><i class="fas fa-calendar"></i> 20th to last day of every month</span>
+                            <span><i class="fas fa-percent"></i> 10% OFF all unisex fragrances</span>
+                        </div>
+                    </div>
+                    <div class="offer-image">
+                        <i class="fas fa-percent"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Unisex Products Grid -->
+            <div class="product-grid unisex-grid" id="unisexGrid" data-aos="fade-up" data-aos-delay="200">
+                <!-- Unisex products rendered by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CUSTOM ORDERS ===== -->
+    <section id="custom" class="custom-orders">
+        <div class="container">
+            <div class="custom-content" data-aos="fade-up">
+                <div class="custom-icon">
+                    <i class="fas fa-magic"></i>
+                </div>
+                <span class="section-tag">Custom Orders</span>
+                <h2 class="section-title">Looking for a fragrance not in our catalogue?</h2>
+                <p class="custom-description">No problem. We now offer custom orders on selected fragrances available from our suppliers.</p>
+                <p class="custom-sub">Send the name of the fragrance you're looking for, and we'll check availability for you.</p>
+                <a href="https://wa.me/27622102873?text=Hi%20Sweet%20Scent!%20I'm%20looking%20for%20a%20custom%20fragrance%3A" target="_blank" class="btn-primary custom-btn">
+                    <i class="fab fa-whatsapp"></i> Request Custom Order
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== COMING SOON + DELIVERY ===== -->
+    <section class="info-section">
+        <div class="container info-grid">
+            <div class="info-card delivery" data-aos="fade-up" data-aos-delay="0">
+                <i class="fas fa-truck"></i>
+                <h3>Delivery Information</h3>
+                <p><i class="fas fa-check-circle" style="color:var(--olive);"></i> Orders processed within 24 hours</p>
+                <p><i class="fas fa-check-circle" style="color:var(--olive);"></i> Free delivery on orders over R500</p>
+                <p><i class="fas fa-check-circle" style="color:var(--olive);"></i> Nationwide delivery available</p>
+                <p><i class="fas fa-check-circle" style="color:var(--olive);"></i> Secure packaging</p>
+            </div>
+            
+            <div class="info-card coming-soon" data-aos="fade-up" data-aos-delay="100">
+                <i class="fas fa-wind"></i>
+                <h3>Premium Diffusers</h3>
+                <p class="coming-badge"><i class="fas fa-clock"></i> Coming Soon</p>
+                <p>Elevate your space with our upcoming premium diffusers collection.</p>
+                <div class="gold-accent"></div>
+                <div class="diffuser-preview">
+                    <span>🌿</span>
+                    <span>🌸</span>
+                    <span>🌺</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Connect With Us</span>
+                <h2 class="section-title">Get In Touch</h2>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="contact-grid">
+                <a href="https://wa.me/27622102873" target="_blank" class="contact-card whatsapp" data-aos="fade-up" data-aos-delay="0">
+                    <i class="fab fa-whatsapp"></i>
+                    <h3>WhatsApp</h3>
+                    <p>062 210 2873</p>
+                    <small>Chat with us instantly</small>
+                </a>
+                
+                <a href="tel:+27622102873" class="contact-card call" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-phone"></i>
+                    <h3>Call Us</h3>
+                    <p>062 210 2873</p>
+                    <small>062 1890 920</small>
+                </a>
+                
+                <a href="mailto:info@sweetscent.co.za" class="contact-card email" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>info@sweetscent.co.za</p>
+                </a>
+                
+                <a href="https://www.instagram.com/sweetscent.co" target="_blank" class="contact-card instagram" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fab fa-instagram"></i>
+                    <h3>Instagram</h3>
+                    <p>@sweetscent.co</p>
+                    <small class="personal-ig">Follow us</small>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>Sweet Scent</h3>
+                    <p>Wear the fragrance. Gain the room.</p>
+                    <div class="footer-badges">
+                        <span>✨ Premium Quality</span>
+                        <span>🌟 Long Lasting</span>
+                        <span>💎 Eau de Parfum</span>
+                    </div>
+                </div>
+                
+                <div class="footer-social">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/sweetscent.co" target="_blank" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://wa.me/27622102873" target="_blank" aria-label="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="mailto:info@sweetscent.co.za" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-phone"></i> 062 210 2873</p>
+                    <p><i class="fas fa-phone"></i> 062 1890 920</p>
+                    <p><i class="fas fa-envelope"></i> info@sweetscent.co.za</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Sweet Scent. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== FLOATING WHATSAPP BUTTON ===== -->
+    <a href="https://wa.me/27622102873" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+        <span class="pulse-ring"></span>
+    </a>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
