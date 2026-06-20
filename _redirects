@@ -1,5 +1,5 @@
-# Netlify redirects for admin
+# Admin route - REQUIRED for CMS to work
 /admin/*  /admin/index.html  200
 
-# Force HTTPS
-https://sweetscent.co.za/* https://sweetscent.co.za/:splat 301!
+# Fallback for SPA
+/*  /index.html  200
