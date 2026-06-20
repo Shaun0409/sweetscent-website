@@ -48,16 +48,16 @@
     </style>
 </head>
 <body>
-    <!-- Load React and ReactDOM first (required for preview) -->
+    <!-- Load React -->
     <script crossorigin src="https://unpkg.com/react@^17/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@^17/umd/react-dom.production.min.js"></script>
     
-    <!-- Decap CMS Script -->
+    <!-- Decap CMS -->
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
     
     <script>
         // ============================================
-        // DECAP CMS CONFIGURATION
+        // SIMPLE DECAP CMS CONFIG
         // ============================================
         
         // Register preview template
@@ -78,7 +78,6 @@
                         textAlign: 'center'
                     }
                 },
-                    // Product Image
                     React.createElement('div', {
                         style: {
                             width: '100%',
@@ -97,7 +96,6 @@
                             className: `fas ${data.icon || 'fa-flask'}`
                         })
                     ),
-                    // Name
                     React.createElement('h3', {
                         style: {
                             fontFamily: 'Playfair Display, serif',
@@ -107,7 +105,6 @@
                             color: '#1E1E1E'
                         }
                     }, data.name || 'Product Name'),
-                    // Description
                     React.createElement('p', {
                         style: {
                             fontSize: '0.9rem',
@@ -115,7 +112,6 @@
                             marginBottom: '12px'
                         }
                     }, data.description || 'Product description'),
-                    // Details
                     React.createElement('div', {
                         style: {
                             display: 'flex',
@@ -135,7 +131,6 @@
                             }
                         }, data.price || 'R150 | R450')
                     ),
-                    // WhatsApp Button
                     React.createElement('div', {
                         style: {
                             background: '#25D366',
@@ -153,19 +148,12 @@
             }
         });
         
-        // Initialize CMS
+        // Initialize CMS with clean config
         CMS.init({
             config: {
                 backend: {
                     name: 'git-gateway',
-                    branch: 'main',
-                    commit_messages: {
-                        create: '✨ Add {{collection}} "{{slug}}"',
-                        update: '📝 Update {{collection}} "{{slug}}"',
-                        delete: '🗑️ Delete {{collection}} "{{slug}}"',
-                        uploadMedia: '📸 Upload "{{path}}"',
-                        deleteMedia: '🗑️ Delete "{{path}}"'
-                    }
+                    branch: 'main'
                 },
                 
                 media_folder: 'images/products',
@@ -183,34 +171,12 @@
                         identifier_field: 'id',
                         preview_path: '/',
                         
-                        view_filters: [
-                            { label: 'All Products', field: 'category', pattern: '.*' },
-                            { label: '👨 Male', field: 'category', pattern: '^male$' },
-                            { label: '👩 Female', field: 'category', pattern: '^female$' },
-                            { label: '👤 Unisex', field: 'category', pattern: '^unisex$' }
-                        ],
-                        
-                        view_groups: [
-                            { label: 'Category', field: 'category' }
-                        ],
-                        
-                        sortable_fields: ['name', 'price', 'category', 'created_at'],
-                        
                         fields: [
-                            {
-                                label: 'Product ID',
-                                name: 'id',
-                                widget: 'number',
-                                default: 1,
-                                value_type: 'int',
-                                min: 1
-                            },
                             {
                                 label: 'Product Name',
                                 name: 'name',
                                 widget: 'string',
-                                required: true,
-                                hint: 'e.g., Most Wanted'
+                                required: true
                             },
                             {
                                 label: 'Category',
@@ -228,16 +194,14 @@
                                 label: 'Description',
                                 name: 'description',
                                 widget: 'text',
-                                required: true,
-                                hint: 'Short product description'
+                                required: true
                             },
                             {
-                                label: 'Sizes Available',
+                                label: 'Sizes',
                                 name: 'sizes',
                                 widget: 'string',
                                 required: true,
-                                default: '30ml | 100ml',
-                                hint: 'e.g., 30ml | 100ml'
+                                default: '30ml | 100ml'
                             },
                             {
                                 label: 'Price',
@@ -247,16 +211,14 @@
                                 default: 'R150 | R450'
                             },
                             {
-                                label: 'Icon (FontAwesome)',
+                                label: 'Icon',
                                 name: 'icon',
                                 widget: 'string',
                                 required: true,
-                                default: 'fa-flask',
-                                hint: 'e.g., fa-crown, fa-flower',
-                                pattern: ['^fa-', 'Must start with fa-']
+                                default: 'fa-flask'
                             },
                             {
-                                label: 'Badge / Tag',
+                                label: 'Badge',
                                 name: 'badge',
                                 widget: 'select',
                                 required: false,
@@ -265,8 +227,7 @@
                                     { label: '⭐ Bestseller', value: 'Bestseller' },
                                     { label: '✨ Premium', value: 'Premium' },
                                     { label: '🆕 New', value: 'New' },
-                                    { label: '🔥 Sale', value: 'Sale' },
-                                    { label: '🌟 Limited Edition', value: 'Limited Edition' }
+                                    { label: '🔥 Sale', value: 'Sale' }
                                 ],
                                 default: ''
                             },
@@ -274,62 +235,25 @@
                                 label: 'Product Image',
                                 name: 'image',
                                 widget: 'image',
-                                required: false,
-                                hint: 'Upload a product image (optional)',
-                                media_library: {
-                                    config: {
-                                        multiple: false,
-                                        accept: 'image/*'
-                                    }
-                                }
+                                required: false
                             },
                             {
-                                label: 'Featured Product',
+                                label: 'Featured',
                                 name: 'featured',
                                 widget: 'boolean',
                                 required: false,
                                 default: false
                             },
                             {
-                                label: 'In Stock',
-                                name: 'inStock',
-                                widget: 'boolean',
-                                required: false,
-                                default: true
-                            },
-                            {
                                 label: 'Display Order',
                                 name: 'order',
                                 widget: 'number',
                                 required: false,
-                                hint: 'Lower numbers show first',
-                                min: 0,
                                 default: 0
-                            },
-                            {
-                                label: 'Created At',
-                                name: 'created_at',
-                                widget: 'datetime',
-                                default: '',
-                                date_format: 'YYYY-MM-DD',
-                                time_format: 'HH:mm',
-                                picker_utc: false
-                            },
-                            {
-                                label: 'Updated At',
-                                name: 'updated_at',
-                                widget: 'datetime',
-                                default: '',
-                                date_format: 'YYYY-MM-DD',
-                                time_format: 'HH:mm',
-                                picker_utc: false
                             }
                         ]
                     }
-                ],
-                
-                site_url: 'https://sweet-scent00.netlify.app',
-                display_url: 'https://sweet-scent00.netlify.app'
+                ]
             }
         });
         
