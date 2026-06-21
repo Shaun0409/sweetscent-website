@@ -44,7 +44,7 @@ img { max-width: 100%; display: block; }
 
 /* ===== TOKENS ===== */
 :root {
-    --sage: #A7AD89;
+    --sage: ##A7AD89;
     --moss: #8C916C;
     --forest: #697254;
     --cream: #DBD0C4;
