@@ -17,11 +17,45 @@ html {
 
 body {
     font-family: 'Arial', 'Helvetica', sans-serif;
-    background: var(--paper);
-    color: var(--ink);
-    line-height: 1.65;
-    overflow-x: hidden;
-    width: 100%;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Arial', 'Helvetica', sans-serif;
+}
+
+.eyebrow {
+    font-family: 'Arial', 'Helvetica', sans-serif;
+}
+
+.nav-link {
+    font-family: 'Arial', 'Helvetica', sans-serif;
+}
+
+.btn-primary, .btn-whatsapp, .btn-outline {
+    font-family: 'Arial', 'Helvetica', sans-serif;
+}
+
+.product-name {
+    font-family: 'Arial', 'Helvetica', sans-serif;
+}
+
+@font-face {
+    font-family: 'Brilliant Demo';
+    src: url('fonts/BrilliantDemo.woff2') format('woff2'),
+         url('fonts/BrilliantDemo.woff') format('woff');
+    font-weight: normal;
+    font-style:italic;
+    font-display: swap;
+}
+
+/* These elements will use Brilliant Demo */
+em, .accent-italic, .script-text, 
+.hero-title em, 
+.about-founder-line, 
+.note-label {
+    font-family: 'Brilliant Demo', cursive;
+    font-style: normal;
+    font-weight: normal;
 }
 
 .container {
@@ -38,27 +72,30 @@ button, input, textarea {
 img { max-width: 100%; display: block; }
 
 ::selection {
-    background: var(--sage);
+    background: #9CAF88;
     color: #fff;
 }
 
 /* ===== TOKENS ===== */
 :root {
-    --sage: ##A7AD89;
-    --moss: #8C916C;
-    --forest: #697254;
-    --cream: #DBD0C4;
-    --sand: #B69C85;
-    --earth: #92735C;
-    --ink: #241F1A;
-    --ink-soft: #5B544C;
-    --paper: #FBF8F4;
-    --paper-deep: #F3EEE6;
+    /* Business Card Colours */
+    --dark-olive: #3B401B;
+    --sage: #B9BF88;
+    --cream: #D9D0B4;
+    --black: #1A1A1A;
+    --pink: #F7C6D0; 
+    --dark-brown: #3C2F2F;
     --white: #FFFFFF;
-    --line: rgba(36, 31, 26, 0.1);
-    --shadow-sm: 0 2px 14px rgba(36, 31, 26, 0.05);
-    --shadow: 0 14px 40px rgba(36, 31, 26, 0.08);
-    --shadow-hover: 0 24px 60px rgba(36, 31, 26, 0.14);
+    
+    /* Support colours */
+    --ink: #1A1A1A;
+    --ink-soft: #3C2F2F;
+    --paper: #F5F3EF;
+    --paper-deep: #EBE7E0;
+    --line: rgba(26, 26, 26, 0.1);
+    --shadow-sm: 0 2px 14px rgba(26, 26, 26, 0.05);
+    --shadow: 0 14px 40px rgba(26, 26, 26, 0.08);
+    --shadow-hover: 0 24px 60px rgba(26, 26, 26, 0.14);
     --radius: 18px;
     --radius-sm: 10px;
     --ease: cubic-bezier(.22, .7, .2, 1);
@@ -94,7 +131,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
     font-size: 0.72rem;
     text-transform: uppercase;
     letter-spacing: 0.28em;
-    color: var(--moss);
+    color: #2F3E2F;
     font-weight: 600;
     font-family: 'Arial', 'Helvetica', sans-serif;
 }
@@ -103,7 +140,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
     content: '';
     width: 26px;
     height: 1px;
-    background: var(--sand);
+    background: #9CAF88;
 }
 
 .section-header {
@@ -123,12 +160,12 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
     content: '';
     width: 26px;
     height: 1px;
-    background: var(--sand);
+    background: #9CAF88;
 }
 
 .section-title {
     font-size: clamp(2rem, 3.2vw, 2.9rem);
-    color: var(--ink);
+    color: #2F3E2F;
     margin-top: 12px;
     font-weight: 700;
     line-height: 1.15;
@@ -138,7 +175,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 .section-lede {
     max-width: 540px;
     margin: 16px auto 0;
-    color: var(--ink-soft);
+    color: #3C2F2F;
     font-size: 1.02rem;
     font-family: 'Arial', 'Helvetica', sans-serif;
 }
@@ -149,7 +186,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
     top: 0;
     left: 0;
     right: 0;
-    background: rgba(251, 248, 244, 0.92);
+    background: rgba(245, 243, 239, 0.92);
     backdrop-filter: blur(14px);
     z-index: 1000;
     padding: 12px 0;
@@ -160,7 +197,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 .header-scrolled {
     padding: 8px 0;
     border-bottom-color: var(--line);
-    box-shadow: 0 4px 24px rgba(36, 31, 26, 0.05);
+    box-shadow: 0 4px 24px rgba(26, 26, 26, 0.05);
 }
 
 .header-container {
@@ -175,13 +212,13 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
     gap: 10px;
     text-decoration: none;
     font-family: 'Arial', 'Helvetica', sans-serif;
-    font-size: 1.4rem;
+    font-size: 1.8rem;
     font-weight: 700;
-    color: var(--forest);
+    color: #2F3E2F;
 }
 
 .logo-img {
-    height: 60px;
+    height: 80px;
     width: auto;
     border-radius: 50%;
     transition: transform 0.35s var(--ease);
@@ -201,7 +238,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 
 .nav-link {
     text-decoration: none;
-    color: var(--ink);
+    color: #1A1A1A;
     font-weight: 500;
     font-size: 0.88rem;
     transition: color 0.3s ease;
@@ -217,13 +254,13 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
     left: 0;
     width: 0;
     height: 1.5px;
-    background: var(--forest);
+    background: #2F3E2F;
     transition: width 0.35s var(--ease);
 }
 
 .nav-link:hover::after,
 .nav-link.active::after { width: 100%; }
-.nav-link:hover, .nav-link.active { color: var(--forest); }
+.nav-link:hover, .nav-link.active { color: #2F3E2F; }
 
 .header-cta {
     display: flex;
@@ -241,7 +278,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
     background: none;
     border: none;
     font-size: 1.6rem;
-    color: var(--ink);
+    color: #1A1A1A;
     cursor: pointer;
     padding: 8px;
     transition: transform 0.3s ease;
@@ -270,20 +307,20 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 }
 
 .btn-primary {
-    background: var(--forest);
-    color: var(--white);
-    box-shadow: 0 10px 26px rgba(105, 114, 84, 0.28);
+    background: #2F3E2F;
+    color: #FFFFFF;
+    box-shadow: 0 10px 26px rgba(47, 62, 47, 0.28);
 }
 
 .btn-primary:hover {
-    background: var(--moss);
+    background: #3C2F2F;
     transform: translateY(-2px);
-    box-shadow: 0 14px 34px rgba(105, 114, 84, 0.36);
+    box-shadow: 0 14px 34px rgba(47, 62, 47, 0.36);
 }
 
 .btn-whatsapp {
     background: #25D366;
-    color: var(--white);
+    color: #FFFFFF;
     box-shadow: 0 10px 26px rgba(37, 211, 102, 0.25);
 }
 
@@ -295,20 +332,20 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 
 .btn-outline {
     background: transparent;
-    color: var(--forest);
-    border-color: var(--forest);
+    color: #2F3E2F;
+    border-color: #2F3E2F;
 }
 
 .btn-outline:hover {
-    background: var(--forest);
-    color: var(--white);
+    background: #2F3E2F;
+    color: #FFFFFF;
     transform: translateY(-2px);
 }
 
 /* ===== HERO ===== */
 .hero {
     padding: 148px 0 80px;
-    background: var(--paper);
+    background: #F5F3EF;
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -321,8 +358,8 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
     position: absolute;
     inset: 0;
     background:
-        radial-gradient(ellipse 60% 50% at 85% 15%, rgba(167, 173, 137, 0.16), transparent 60%),
-        radial-gradient(ellipse 50% 40% at 5% 90%, rgba(182, 156, 133, 0.14), transparent 60%);
+        radial-gradient(ellipse 60% 50% at 85% 15%, rgba(156, 175, 136, 0.16), transparent 60%),
+        radial-gradient(ellipse 50% 40% at 5% 90%, rgba(60, 47, 47, 0.08), transparent 60%);
     pointer-events: none;
 }
 
@@ -336,7 +373,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 }
 
 .hero-trail path {
-    stroke: var(--sand);
+    stroke: #9CAF88;
     stroke-width: 1.2;
     fill: none;
     stroke-dasharray: 6 8;
@@ -356,7 +393,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 .hero-title {
     font-size: clamp(2.6rem, 5vw, 4rem);
     font-weight: 700;
-    color: var(--ink);
+    color: #2F3E2F;
     line-height: 1.08;
     margin: 18px 0 22px;
     font-family: 'Arial', 'Helvetica', sans-serif;
@@ -365,12 +402,12 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 .hero-title em {
     font-family: 'Brilliant Demo', cursive;
     font-weight: normal;
-    color: var(--forest);
+    color: #2F3E2F;
 }
 
 .hero-description {
     font-size: 1.12rem;
-    color: var(--ink-soft);
+    color: #3C2F2F;
     margin-bottom: 32px;
     max-width: 480px;
     font-family: 'Arial', 'Helvetica', sans-serif;
@@ -390,7 +427,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 }
 
 .hero-social span {
-    color: var(--ink-soft);
+    color: #3C2F2F;
     font-size: 0.82rem;
     font-weight: 500;
     letter-spacing: 0.02em;
@@ -398,7 +435,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 }
 
 .hero-social a {
-    color: var(--earth);
+    color: #3C2F2F;
     font-size: 1.1rem;
     transition: all 0.3s var(--ease);
     width: 38px;
@@ -407,14 +444,14 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    background: var(--white);
+    background: #FFFFFF;
     border: 1px solid var(--line);
 }
 
 .hero-social a:hover {
-    color: var(--white);
-    background: var(--forest);
-    border-color: var(--forest);
+    color: #FFFFFF;
+    background: #2F3E2F;
+    border-color: #2F3E2F;
     transform: translateY(-2px);
 }
 
@@ -438,7 +475,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
     object-fit: contain;
     transition: transform 0.6s ease;
     animation: zoomIn 1.2s ease-out;
-    filter: drop-shadow(0 30px 60px rgba(105, 114, 84, 0.2));
+    filter: drop-shadow(0 30px 60px rgba(47, 62, 47, 0.15));
 }
 
 .hero-perfume-image:hover {
@@ -459,15 +496,15 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
     position: absolute;
     bottom: 30px;
     right: -10px;
-    background: var(--ink);
-    color: var(--white);
+    background: #1A1A1A;
+    color: #FFFFFF;
     padding: 10px 24px;
     border-radius: 50px;
     font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.12em;
-    box-shadow: 0 10px 28px rgba(36, 31, 26, 0.25);
+    box-shadow: 0 10px 28px rgba(26, 26, 26, 0.25);
     z-index: 3;
     animation: pulse 2s ease-in-out infinite;
     font-family: 'Arial', 'Helvetica', sans-serif;
@@ -484,7 +521,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
-    color: var(--ink-soft);
+    color: #3C2F2F;
     font-size: 0.74rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -496,13 +533,13 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
     display: block;
     margin-top: 8px;
     font-size: 1rem;
-    color: var(--sand);
+    color: #9CAF88;
 }
 
 /* ===== WHY CHOOSE ===== */
 .why-choose {
     padding: 90px 0;
-    background: var(--white);
+    background: #FFFFFF;
     border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
 }
@@ -520,12 +557,12 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 .why-card {
     text-align: left;
     padding: 38px 30px;
-    background: var(--white);
+    background: #FFFFFF;
     transition: all 0.35s var(--ease);
 }
 
 .why-card:hover {
-    background: var(--paper);
+    background: #F5F3EF;
 }
 
 .why-icon {
@@ -535,7 +572,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
     align-items: center;
     justify-content: center;
     font-size: 1.2rem;
-    color: var(--forest);
+    color: #2F3E2F;
     margin-bottom: 18px;
     border: 1px solid var(--line);
     border-radius: 50%;
@@ -543,21 +580,21 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 }
 
 .why-card:hover .why-icon {
-    background: var(--forest);
-    color: var(--white);
-    border-color: var(--forest);
+    background: #2F3E2F;
+    color: #FFFFFF;
+    border-color: #2F3E2F;
 }
 
 .why-card h3 {
     font-family: 'Arial', 'Helvetica', sans-serif;
     font-size: 1rem;
     font-weight: 700;
-    color: var(--ink);
+    color: #2F3E2F;
     margin-bottom: 8px;
 }
 
 .why-card p {
-    color: var(--ink-soft);
+    color: #3C2F2F;
     font-size: 0.92rem;
     font-family: 'Arial', 'Helvetica', sans-serif;
 }
@@ -565,7 +602,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 /* ===== CATALOGUE ===== */
 .catalogue {
     padding: 100px 0 90px;
-    background: var(--paper);
+    background: #F5F3EF;
 }
 
 .category-tabs {
@@ -579,26 +616,26 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 .tab-btn {
     padding: 11px 30px;
     border: 1.5px solid var(--line);
-    background: var(--white);
+    background: #FFFFFF;
     border-radius: 50px;
     font-weight: 600;
     font-size: 0.9rem;
-    color: var(--ink);
+    color: #1A1A1A;
     cursor: pointer;
     transition: all 0.3s var(--ease);
     font-family: 'Arial', 'Helvetica', sans-serif;
 }
 
 .tab-btn:hover {
-    border-color: var(--sage);
+    border-color: #9CAF88;
     transform: translateY(-2px);
 }
 
 .tab-btn.active {
-    background: var(--forest);
-    color: var(--white);
-    border-color: var(--forest);
-    box-shadow: 0 10px 24px rgba(105, 114, 84, 0.25);
+    background: #2F3E2F;
+    color: #FFFFFF;
+    border-color: #2F3E2F;
+    box-shadow: 0 10px 24px rgba(47, 62, 47, 0.25);
 }
 
 .product-grid {
@@ -609,7 +646,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 }
 
 .product-card {
-    background: var(--white);
+    background: #FFFFFF;
     border-radius: var(--radius);
     padding: 22px 22px 20px;
     box-shadow: var(--shadow-sm);
@@ -626,13 +663,13 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 .product-card:hover {
     transform: translateY(-6px);
     box-shadow: var(--shadow-hover);
-    border-color: var(--sand);
+    border-color: #9CAF88;
 }
 
 .product-image {
     width: 100%;
     height: 210px;
-    background: linear-gradient(165deg, var(--paper-deep), var(--white));
+    background: linear-gradient(165deg, #EBE7E0, #FFFFFF);
     border-radius: var(--radius-sm);
     display: flex;
     align-items: center;
@@ -654,7 +691,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 
 .product-image i {
     font-size: 4.2rem;
-    color: var(--sand);
+    color: #9CAF88;
 }
 
 /* Price Bubble */
@@ -662,13 +699,13 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
     position: absolute;
     bottom: 12px;
     left: 12px;
-    background: var(--forest);
+    background: #2F3E2F;
     color: white;
     padding: 6px 16px;
     border-radius: 50px;
     font-size: 0.8rem;
     font-weight: 700;
-    box-shadow: 0 4px 15px rgba(105, 114, 84, 0.3);
+    box-shadow: 0 4px 15px rgba(47, 62, 47, 0.3);
     z-index: 2;
     animation: pulse 2s ease-in-out infinite;
 }
@@ -683,8 +720,8 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: var(--white);
-    background: var(--earth);
+    color: #FFFFFF;
+    background: #9CAF88;
     z-index: 2;
     font-family: 'Arial', 'Helvetica', sans-serif;
 }
@@ -693,14 +730,14 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
     font-family: 'Arial', 'Helvetica', sans-serif;
     font-size: 1.22rem;
     font-weight: 700;
-    color: var(--ink);
+    color: #2F3E2F;
     margin-bottom: 3px;
     flex-shrink: 0;
 }
 
 .product-inspired {
     font-size: 0.78rem;
-    color: var(--moss);
+    color: #9CAF88;
     font-weight: 600;
     margin-bottom: 6px;
     letter-spacing: 0.02em;
@@ -710,7 +747,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 
 .product-description {
     font-size: 0.88rem;
-    color: var(--ink-soft);
+    color: #3C2F2F;
     margin-bottom: 10px;
     line-height: 1.6;
     font-family: 'Arial', 'Helvetica', sans-serif;
@@ -718,7 +755,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 }
 
 .product-notes {
-    background: var(--paper);
+    background: #F5F3EF;
     padding: 10px 12px;
     border-radius: var(--radius-sm);
     margin-bottom: 14px;
@@ -730,7 +767,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
     font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: var(--moss);
+    color: #2F3E2F;
     font-weight: 700;
     display: block;
     margin-bottom: 4px;
@@ -739,7 +776,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 
 .notes-text {
     font-size: 0.8rem;
-    color: var(--ink-soft);
+    color: #3C2F2F;
     line-height: 1.5;
     font-family: 'Arial', 'Helvetica', sans-serif;
 }
@@ -755,7 +792,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
     font-size: 0.72rem;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: var(--ink-soft);
+    color: #3C2F2F;
     margin-bottom: 8px;
     font-weight: 700;
     font-family: 'Arial', 'Helvetica', sans-serif;
@@ -777,19 +814,19 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
     cursor: pointer;
     transition: all 0.3s ease;
     text-align: center;
-    background: var(--white);
+    background: #FFFFFF;
 }
 
 .size-option:hover {
-    border-color: var(--sage);
-    background: var(--paper);
+    border-color: #9CAF88;
+    background: #F5F3EF;
 }
 
 .size-option.active {
-    border-color: var(--forest);
-    background: var(--forest);
-    color: var(--white);
-    box-shadow: 0 4px 12px rgba(105, 114, 84, 0.25);
+    border-color: #2F3E2F;
+    background: #2F3E2F;
+    color: #FFFFFF;
+    box-shadow: 0 4px 12px rgba(47, 62, 47, 0.25);
 }
 
 .size-option input[type="radio"] {
@@ -810,7 +847,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 
 .size-option.active .size-name,
 .size-option.active .size-price {
-    color: var(--white);
+    color: #FFFFFF;
 }
 
 .product-card .btn-whatsapp {
@@ -824,8 +861,8 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 /* ===== DIFFUSERS ===== */
 .diffusers-section {
     padding: 90px 0;
-    background: var(--forest);
-    color: var(--white);
+    background: #2F3E2F;
+    color: #FFFFFF;
     position: relative;
     overflow: hidden;
 }
@@ -845,13 +882,13 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
     z-index: 1;
 }
 
-.diffusers-content .eyebrow { color: var(--cream); justify-content: center; }
-.diffusers-content .eyebrow::before, .diffusers-content .eyebrow::after { background: rgba(255,255,255,0.4); }
-.diffusers-content .section-title { color: var(--white); }
+.diffusers-content .eyebrow { color: #9CAF88; justify-content: center; }
+.diffusers-content .eyebrow::before, .diffusers-content .eyebrow::after { background: rgba(255,255,255,0.3); }
+.diffusers-content .section-title { color: #FFFFFF; }
 
 .diffusers-icon {
     font-size: 2.6rem;
-    color: var(--sage);
+    color: #9CAF88;
     margin-bottom: 14px;
 }
 
@@ -875,7 +912,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
     display: inline-block;
     background: rgba(255,255,255,0.12);
     border: 1px solid rgba(255,255,255,0.3);
-    color: var(--white);
+    color: #FFFFFF;
     padding: 11px 28px;
     border-radius: 50px;
     font-weight: 600;
@@ -888,7 +925,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 /* ===== ABOUT ===== */
 .about {
     padding: 110px 0 100px;
-    background: var(--white);
+    background: #FFFFFF;
 }
 
 .about-header { text-align: center; margin-bottom: 64px; }
@@ -897,7 +934,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
     text-align: center;
     font-family: 'Brilliant Demo', cursive;
     font-size: 1.5rem;
-    color: var(--forest);
+    color: #3C2F2F;
     margin: 18px auto 0;
     max-width: 560px;
     font-weight: normal;
@@ -918,7 +955,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
     left: 8%;
     right: 8%;
     height: 1px;
-    background: repeating-linear-gradient(90deg, var(--sand) 0 8px, transparent 8px 16px);
+    background: repeating-linear-gradient(90deg, #9CAF88 0 8px, transparent 8px 16px);
     z-index: 0;
 }
 
@@ -928,14 +965,14 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
     width: 54px;
     height: 54px;
     border-radius: 50%;
-    background: var(--paper);
-    border: 1.5px solid var(--sand);
+    background: #F5F3EF;
+    border: 1.5px solid #9CAF88;
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: 'Brilliant Demo', cursive;
     font-size: 1rem;
-    color: var(--forest);
+    color: #2F3E2F;
     margin-bottom: 22px;
     font-weight: normal;
 }
@@ -944,7 +981,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
     text-transform: uppercase;
     font-size: 0.7rem;
     letter-spacing: 0.18em;
-    color: var(--moss);
+    color: #2F3E2F;
     font-weight: 600;
     margin-bottom: 8px;
     font-family: 'Arial', 'Helvetica', sans-serif;
@@ -952,20 +989,20 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 
 .note-block h3 {
     font-size: 1.3rem;
-    color: var(--ink);
+    color: #2F3E2F;
     margin-bottom: 10px;
     font-weight: 700;
     font-family: 'Arial', 'Helvetica', sans-serif;
 }
 
 .note-block p {
-    color: var(--ink-soft);
+    color: #3C2F2F;
     font-size: 0.96rem;
     margin-bottom: 10px;
     font-family: 'Arial', 'Helvetica', sans-serif;
 }
 
-.note-block strong { color: var(--forest); font-weight: 700; }
+.note-block strong { color: #2F3E2F; font-weight: 700; }
 
 .about-container {
     display: grid;
@@ -978,7 +1015,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
     display: flex;
     gap: 0;
     margin-bottom: 36px;
-    background: var(--paper);
+    background: #F5F3EF;
     border-radius: var(--radius);
     overflow: hidden;
 }
@@ -998,12 +1035,12 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
     font-family: 'Arial', 'Helvetica', sans-serif;
     font-size: 1.7rem;
     font-weight: 700;
-    color: var(--forest);
+    color: #2F3E2F;
 }
 
 .highlight-label {
     font-size: 0.76rem;
-    color: var(--ink-soft);
+    color: #3C2F2F;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.04em;
@@ -1019,7 +1056,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 .value-card {
     padding: 26px 26px;
     border-radius: var(--radius);
-    background: var(--white);
+    background: #FFFFFF;
     border: 1px solid var(--line);
     transition: all 0.35s var(--ease);
 }
@@ -1027,15 +1064,15 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 .value-card:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow);
-    border-color: var(--sand);
+    border-color: #9CAF88;
 }
 
-.value-card.vision { border-top: 3px solid var(--sage); }
-.value-card.mission { border-top: 3px solid var(--forest); }
+.value-card.vision { border-top: 3px solid #9CAF88; }
+.value-card.mission { border-top: 3px solid #2F3E2F; }
 
 .value-icon {
     font-size: 1.5rem;
-    color: var(--earth);
+    color: #9CAF88;
     margin-bottom: 10px;
     display: block;
 }
@@ -1044,13 +1081,13 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
     font-family: 'Arial', 'Helvetica', sans-serif;
     font-size: 1rem;
     font-weight: 700;
-    color: var(--ink);
+    color: #2F3E2F;
     margin-bottom: 8px;
 }
 
 .value-card p {
     font-size: 0.9rem !important;
-    color: var(--ink-soft) !important;
+    color: #3C2F2F !important;
     margin-bottom: 0 !important;
     line-height: 1.6 !important;
     font-family: 'Arial', 'Helvetica', sans-serif;
@@ -1065,7 +1102,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 }
 
 .quick-facts, .brand-values {
-    background: var(--paper);
+    background: #F5F3EF;
     border-radius: var(--radius);
     padding: 30px 30px;
     border: 1px solid var(--line);
@@ -1073,7 +1110,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 
 .quick-facts h4, .brand-values h4 {
     font-family: 'Arial', 'Helvetica', sans-serif;
-    color: var(--ink);
+    color: #2F3E2F;
     margin-bottom: 18px;
     font-size: 0.96rem;
     font-weight: 700;
@@ -1094,7 +1131,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 .quick-facts ul li {
     padding: 10px 0;
     border-bottom: 1px solid var(--line);
-    color: var(--ink-soft);
+    color: #3C2F2F;
     font-size: 0.9rem;
     display: flex;
     align-items: center;
@@ -1105,7 +1142,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 .quick-facts ul li:last-child { border-bottom: none; }
 
 .quick-facts ul li i {
-    color: var(--earth);
+    color: #9CAF88;
     width: 20px;
     font-size: 0.95rem;
 }
@@ -1117,12 +1154,12 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 }
 
 .value-tags span {
-    background: var(--white);
+    background: #FFFFFF;
     border: 1px solid var(--line);
     padding: 7px 16px;
     border-radius: 50px;
     font-size: 0.8rem;
-    color: var(--forest);
+    color: #2F3E2F;
     font-weight: 500;
     font-family: 'Arial', 'Helvetica', sans-serif;
 }
@@ -1130,7 +1167,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 /* ===== CONTACT ===== */
 .contact {
     padding: 100px 0;
-    background: var(--paper);
+    background: #F5F3EF;
 }
 
 .contact-container {
@@ -1158,7 +1195,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 }
 
 .contact-card-item:hover {
-    background: var(--white);
+    background: #FFFFFF;
     box-shadow: var(--shadow-sm);
     transform: translateX(4px);
 }
@@ -1172,14 +1209,14 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 }
 
 .contact-link {
-    color: var(--ink-soft);
+    color: #3C2F2F;
     text-decoration: none;
     transition: color 0.3s ease;
     font-family: 'Arial', 'Helvetica', sans-serif;
 }
 
 .contact-link:hover {
-    color: var(--forest);
+    color: #2F3E2F;
     text-decoration: underline;
 }
 
@@ -1189,40 +1226,40 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 }
 
 .contact-link--alt:hover {
-    color: var(--forest);
+    color: #2F3E2F;
 }
 
 .contact-icon {
     width: 46px;
     height: 46px;
-    background: var(--white);
+    background: #FFFFFF;
     border: 1px solid var(--line);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.1rem;
-    color: var(--forest);
+    color: #2F3E2F;
     flex-shrink: 0;
     transition: all 0.35s var(--ease);
 }
 
 .contact-card-item:hover .contact-icon {
-    background: var(--forest);
-    color: var(--white);
-    border-color: var(--forest);
+    background: #2F3E2F;
+    color: #FFFFFF;
+    border-color: #2F3E2F;
 }
 
 .contact-card-item h4 {
     font-family: 'Arial', 'Helvetica', sans-serif;
     font-size: 0.9rem;
     font-weight: 700;
-    color: var(--ink);
+    color: #2F3E2F;
     margin-bottom: 3px;
 }
 
 .contact-card-item p {
-    color: var(--ink-soft);
+    color: #3C2F2F;
     font-size: 0.93rem;
     margin: 0;
     word-break: break-word;
@@ -1251,7 +1288,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 }
 
 .contact-form {
-    background: var(--white);
+    background: #FFFFFF;
     padding: 42px;
     border-radius: var(--radius);
     border: 1px solid var(--line);
@@ -1262,7 +1299,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
     font-family: 'Arial', 'Helvetica', sans-serif;
     font-size: 1.35rem;
     font-weight: 700;
-    color: var(--ink);
+    color: #2F3E2F;
     margin-bottom: 22px;
 }
 
@@ -1277,8 +1314,8 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
     font-family: 'Arial', 'Helvetica', sans-serif;
     font-size: 16px;
     transition: all 0.3s ease;
-    background: var(--paper);
-    color: var(--ink);
+    background: #F5F3EF;
+    color: #1A1A1A;
 }
 
 .form-group input::placeholder,
@@ -1287,15 +1324,15 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: var(--sage);
-    background: var(--white);
-    box-shadow: 0 0 0 4px rgba(167, 173, 137, 0.14);
+    border-color: #9CAF88;
+    background: #FFFFFF;
+    box-shadow: 0 0 0 4px rgba(156, 175, 136, 0.14);
 }
 
 /* ===== DELIVERY ===== */
 .delivery-section {
     padding: 70px 0;
-    background: var(--white);
+    background: #FFFFFF;
     border-top: 1px solid var(--line);
 }
 
@@ -1307,13 +1344,13 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 
 .delivery-content > i:first-child {
     font-size: 2.2rem;
-    color: var(--earth);
+    color: #9CAF88;
     margin-bottom: 14px;
 }
 
 .delivery-content h2 {
     font-family: 'Arial', 'Helvetica', sans-serif;
-    color: var(--ink);
+    color: #2F3E2F;
     margin-bottom: 28px;
     font-size: 1.8rem;
     font-weight: 700;
@@ -1330,20 +1367,20 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
     align-items: center;
     gap: 12px;
     padding: 18px 22px;
-    background: var(--paper);
+    background: #F5F3EF;
     border-radius: var(--radius-sm);
     border: 1px solid var(--line);
     text-align: left;
 }
 
 .delivery-item i {
-    color: var(--forest);
+    color: #2F3E2F;
     font-size: 1.05rem;
     flex-shrink: 0;
 }
 
 .delivery-item p {
-    color: var(--ink-soft);
+    color: #3C2F2F;
     font-size: 0.92rem;
     margin: 0;
     font-family: 'Arial', 'Helvetica', sans-serif;
@@ -1351,7 +1388,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 
 /* ===== FOOTER ===== */
 .footer {
-    background: var(--ink);
+    background: #1A1A1A;
     color: #C9C2B8;
     padding: 64px 0 28px;
 }
@@ -1365,7 +1402,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 
 .footer-brand .logo {
     margin-bottom: 14px;
-    color: var(--white);
+    color: #FFFFFF;
 }
 
 .logo-img-footer {
@@ -1376,7 +1413,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 
 .footer-brand .logo span {
     font-size: 1.3rem;
-    color: var(--white);
+    color: #FFFFFF;
 }
 
 .footer-brand p {
@@ -1422,8 +1459,8 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 }
 
 .footer-social a:hover {
-    background: var(--sage);
-    color: var(--ink);
+    background: #9CAF88;
+    color: #1A1A1A;
 }
 
 .footer-links h4,
@@ -1432,7 +1469,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
     font-family: 'Arial', 'Helvetica', sans-serif;
     font-size: 0.92rem;
     font-weight: 700;
-    color: var(--white);
+    color: #FFFFFF;
     margin-bottom: 17px;
     text-transform: uppercase;
     letter-spacing: 0.06em;
@@ -1449,7 +1486,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
     font-family: 'Arial', 'Helvetica', sans-serif;
 }
 
-.footer-links ul li a:hover { color: var(--sage); }
+.footer-links ul li a:hover { color: #9CAF88; }
 
 .footer-contact p {
     margin-bottom: 10px;
@@ -1458,7 +1495,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
     font-family: 'Arial', 'Helvetica', sans-serif;
 }
 
-.footer-contact p i { width: 22px; color: var(--sage); }
+.footer-contact p i { width: 22px; color: #9CAF88; }
 
 .footer-info p {
     color: #A39A8E;
@@ -1468,7 +1505,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 }
 
 .footer-info .coming-tag {
-    color: var(--sage);
+    color: #9CAF88;
     font-weight: 600;
     margin-top: 8px;
 }
@@ -1510,7 +1547,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 .tooltip {
     position: absolute;
     right: 70px;
-    background: var(--ink);
+    background: #1A1A1A;
     color: white;
     padding: 7px 14px;
     border-radius: 8px;
@@ -1530,7 +1567,7 @@ em, .accent-italic, .script-text, .hero-title em, .perfume-plate-label, .about-f
 
 /* ===== ACCESSIBILITY ===== */
 a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
-    outline: 2px solid var(--forest);
+    outline: 2px solid #2F3E2F;
     outline-offset: 2px;
 }
 
@@ -1570,7 +1607,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 @media (max-width: 768px) {
     .container { padding: 0 18px; }
 
-    /* HEADER FIXES */
     .header {
         padding: 8px 0;
     }
@@ -1584,7 +1620,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
         flex-wrap: nowrap;
     }
 
-    /* Logo on mobile */
     .logo {
         display: flex;
         align-items: center;
@@ -1605,14 +1640,13 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
         display: block;
     }
 
-    /* Hamburger - pushed to far right */
     .hamburger {
         display: block;
         z-index: 1001;
         background: none;
         border: none;
         font-size: 1.8rem;
-        color: var(--ink);
+        color: #1A1A1A;
         cursor: pointer;
         padding: 5px 0 5px 15px;
         transition: transform 0.3s ease;
@@ -1625,18 +1659,16 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
         transform: rotate(90deg);
     }
 
-    /* Hide the "Order Now" button on mobile */
     .header-cta {
         display: none;
     }
 
-    /* Navigation menu - slides down from top */
     .nav-menu {
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
-        background: var(--white);
+        background: #FFFFFF;
         padding: 80px 24px 30px;
         box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         transform: translateY(-120%);
@@ -1668,7 +1700,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
         display: block;
         text-align: center;
         font-weight: 500;
-        color: var(--ink);
+        color: #1A1A1A;
         text-decoration: none;
         transition: color 0.3s ease;
         position: relative;
@@ -1683,7 +1715,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
         transform: translateX(-50%);
         width: 0;
         height: 2px;
-        background: var(--forest);
+        background: #2F3E2F;
         transition: width 0.3s ease;
     }
 
@@ -1694,10 +1726,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
     .nav-link:hover,
     .nav-link.active {
-        color: var(--forest);
+        color: #2F3E2F;
     }
 
-    /* Mobile WhatsApp button in menu */
     .nav-whatsapp-mobile {
         display: flex;
         justify-content: center;
@@ -1715,7 +1746,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
         font-size: 0.95rem;
     }
 
-    /* HERO */
     .hero { padding: 100px 0 56px; min-height: auto; }
     .why-choose { padding: 60px 0; }
     .catalogue { padding: 64px 0 56px; }
