@@ -1730,3 +1730,186 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .product-inspired {
     flex-shrink: 0;
 }
+
+/* ===== FIX: MOBILE HEADER ===== */
+
+/* Ensure header works on mobile */
+@media (max-width: 768px) {
+    .header {
+        padding: 10px 0;
+    }
+
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        position: relative;
+    }
+
+    /* Logo on mobile */
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 1rem;
+        z-index: 1001;
+    }
+
+    .logo-img {
+        height: 40px;
+        width: auto;
+    }
+
+    .logo span {
+        font-size: 0.9rem;
+        display: block;
+    }
+
+    /* Hamburger button - always visible on mobile */
+    .hamburger {
+        display: block;
+        z-index: 1001;
+        background: none;
+        border: none;
+        font-size: 1.6rem;
+        color: var(--ink);
+        cursor: pointer;
+        padding: 8px;
+        transition: transform 0.3s ease;
+        order: 3;
+    }
+
+    .hamburger:hover {
+        transform: rotate(90deg);
+    }
+
+    /* Hide the "Order Now" button on mobile (already hidden in your CSS) */
+    .header-cta .btn-whatsapp {
+        display: none;
+    }
+
+    /* Navigation menu - slides down from top */
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        padding: 80px 24px 30px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        transform: translateY(-120%);
+        transition: transform 0.4s cubic-bezier(.22, .7, .2, 1);
+        border-bottom: 1px solid var(--line);
+        max-height: 100vh;
+        overflow-y: auto;
+        z-index: 1000;
+        border-radius: 0 0 20px 20px;
+    }
+
+    .nav-menu.active {
+        transform: translateY(0);
+    }
+
+    .nav-list {
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .nav-link {
+        font-size: 1.1rem;
+        padding: 8px 0;
+        display: block;
+        text-align: center;
+        font-weight: 500;
+        color: var(--ink);
+        text-decoration: none;
+        transition: color 0.3s ease;
+        position: relative;
+    }
+
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 2px;
+        background: var(--forest);
+        transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+        width: 60%;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+        color: var(--forest);
+    }
+
+    /* Mobile WhatsApp button in menu (optional - shows in the nav) */
+    .nav-whatsapp-mobile {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid var(--line);
+    }
+
+    .nav-whatsapp-mobile .btn-whatsapp {
+        width: 100%;
+        max-width: 280px;
+        justify-content: center;
+        padding: 12px 24px;
+        font-size: 0.95rem;
+    }
+}
+
+/* Fix for very small phones */
+@media (max-width: 480px) {
+    .logo-img {
+        height: 36px;
+    }
+
+    .logo span {
+        font-size: 0.85rem;
+    }
+
+    .hamburger {
+        font-size: 1.4rem;
+        padding: 6px;
+    }
+
+    .nav-menu {
+        padding: 70px 20px 25px;
+    }
+
+    .nav-link {
+        font-size: 1rem;
+        padding: 6px 0;
+    }
+}
+
+/* Fix for landscape phones */
+@media (max-height: 480px) and (orientation: landscape) {
+    .nav-menu {
+        padding: 60px 20px 20px;
+        max-height: 100vh;
+    }
+
+    .nav-list {
+        gap: 12px;
+    }
+
+    .nav-link {
+        font-size: 0.9rem;
+        padding: 4px 0;
+    }
+}
