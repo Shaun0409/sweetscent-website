@@ -6,250 +6,322 @@ let products = [];
 
 // ===== PRODUCTS DATA =====
 const productData = [
-    // Male Fragrances (30ml - R150 | 100ml - R450)
+    // ===== MALE FRAGRANCES =====
     {
         id: 1,
         name: 'Most Wanted',
         category: 'male',
-        description: 'Bold and charismatic. A fragrance for those who command attention.',
-        sizes: '30ml | 100ml',
-        price: 'R150 | R450',
+        description: 'A bold and energetic fragrance with a fresh, spicy, and woody character. Perfect for the confident man who likes to stand out.',
+        inspired: 'Azzaro Wanted',
+        notes: '🍋 Lemon • 🌿 Ginger • 🫚 Cardamom • 🌲 Juniper Berries • 🍦 Tonka Bean • 🌱 Vetiver • 🪵 Amberwood',
+        displayPrice: 'R150',
+        sizes: [
+            { size: '30ml', price: 'R150' },
+            { size: '100ml', price: 'R450' }
+        ],
         icon: 'fa-crown',
         badge: 'Bestseller',
-        image: 'images/products/most-wanted.jpeg',
-        order: 1
+        image: 'images/products/Male/Most Wanted.png'
     },
     {
         id: 2,
         name: 'Dunhill Desire',
         category: 'male',
-        description: 'Sophisticated and timeless. An enduring classic.',
-        sizes: '30ml | 100ml',
-        price: 'R150 | R450',
+        description: 'A warm, fruity, and seductive fragrance that balances sweetness with masculine depth.',
+        inspired: 'Dunhill Desire Red',
+        notes: '🍎 Apple • 🌸 Orange Blossom • 🍊 Bergamot • 🌹 Rose • 🌿 Patchouli • 🍦 Vanilla • 🤍 Musk',
+        displayPrice: 'R150',
+        sizes: [
+            { size: '30ml', price: 'R150' },
+            { size: '100ml', price: 'R450' }
+        ],
         icon: 'fa-gem',
         badge: '',
-        image: 'images/products/dunhill-desire.jpg',
-        order: 2
+        image: 'images/products/Male/Dunhill Desire.png'
     },
     {
         id: 3,
         name: 'Scandal',
         category: 'male',
-        description: 'Daring and unforgettable. Make a statement.',
-        sizes: '30ml | 100ml',
-        price: 'R150 | R450',
+        description: 'A rich and modern fragrance with sweet caramel notes blended with fresh aromatics and woody accords.',
+        inspired: 'Jean Paul Gaultier Scandal Pour Homme',
+        notes: '🍊 Mandarin Orange • 🌿 Clary Sage • 🍬 Caramel • 🍦 Tonka Bean • 🌱 Vetiver',
+        displayPrice: 'R150',
+        sizes: [
+            { size: '30ml', price: 'R150' },
+            { size: '100ml', price: 'R450' }
+        ],
         icon: 'fa-bolt',
         badge: '',
-        image: 'images/products/scandal.jpg',
-        order: 3
+        image: 'images/products/Male/Scandal.png'
     },
     {
         id: 4,
         name: 'Invictus',
         category: 'male',
-        description: 'Victorious and powerful. Unleash your inner champion.',
-        sizes: '30ml | 100ml',
-        price: 'R150 | R450',
+        description: 'A fresh aquatic fragrance with a sporty and masculine edge, designed for winners.',
+        inspired: 'Paco Rabanne Invictus',
+        notes: '🍊 Grapefruit • 🌊 Marine Notes • 🌿 Bay Leaf • 🌼 Jasmine • 🪵 Guaiac Wood • ✨ Ambergris',
+        displayPrice: 'R150',
+        sizes: [
+            { size: '30ml', price: 'R150' },
+            { size: '100ml', price: 'R450' }
+        ],
         icon: 'fa-trophy',
         badge: '',
-        image: 'images/products/invictus.jpg',
-        order: 4
+        image: 'images/products/Male/Invictus.png'
     },
     {
         id: 5,
         name: 'Bad',
         category: 'male',
-        description: 'Edgy and rebellious. For those who dare to be different.',
-        sizes: '30ml | 100ml',
-        price: 'R150 | R450',
+        description: 'A daring and sophisticated scent combining freshness, spice, and smoky warmth.',
+        inspired: 'Diesel Bad',
+        notes: '🍋 Bergamot • 💜 Lavender • 🫚 Cardamom • 🐟 Caviar Accord • 🚬 Tobacco • 🪵 Woody Notes',
+        displayPrice: 'R150',
+        sizes: [
+            { size: '30ml', price: 'R150' },
+            { size: '100ml', price: 'R450' }
+        ],
         icon: 'fa-skull',
         badge: '',
-        image: 'images/products/bad.jpg',
-        order: 5
+        image: 'images/products/Male/Bad.png'
     },
     {
         id: 6,
         name: 'Aventus',
         category: 'male',
-        description: 'Legendary and distinguished. The pinnacle of fragrance.',
-        sizes: '30ml | 100ml',
-        price: 'R150 | R450',
+        description: 'A powerful and iconic fragrance known for its fresh fruity opening and smoky woody dry-down.',
+        inspired: 'Creed Aventus',
+        notes: '🍍 Pineapple • 🍋 Bergamot • 🫐 Blackcurrant • 🌳 Birch • 🌿 Patchouli • 🍃 Oakmoss • 🤍 Musk',
+        displayPrice: 'R150',
+        sizes: [
+            { size: '30ml', price: 'R150' },
+            { size: '100ml', price: 'R450' }
+        ],
         icon: 'fa-fire',
         badge: 'Premium',
-        image: 'images/products/aventus.jpg',
-        order: 6
+        image: 'images/products/Male/Aventus.png'
     },
 
-    // Female Fragrances (30ml - R150 | 100ml - R450)
+    // ===== FEMALE FRAGRANCES =====
     {
         id: 7,
         name: "J'adore",
         category: 'female',
-        description: 'Elegant and floral. A timeless masterpiece.',
-        sizes: '30ml | 100ml',
-        price: 'R150 | R450',
+        description: 'An elegant floral fragrance that feels feminine, radiant, and luxurious.',
+        inspired: 'Dior J\'adore',
+        notes: '🍐 Pear • 🍈 Melon • 🌸 Magnolia • 🌼 Jasmine • 🌹 Rose • 🍑 Peach • 🍦 Vanilla • 🤍 Musk',
+        displayPrice: 'R150',
+        sizes: [
+            { size: '30ml', price: 'R150' },
+            { size: '100ml', price: 'R450' }
+        ],
         icon: 'fa-flower',
         badge: 'Bestseller',
-        image: 'images/products/jadore.jpg',
-        order: 1
+        image: 'images/products/Female/Jadore.png'
     },
     {
         id: 8,
         name: 'Contre Moi',
         category: 'female',
-        description: 'Warm and sensual. An intimate embrace in a bottle.',
-        sizes: '30ml | 100ml',
-        price: 'R150 | R450',
+        description: 'A soft and sensual vanilla fragrance with delicate floral touches.',
+        inspired: 'Louis Vuitton Contre Moi',
+        notes: '🍦 Vanilla • 🌸 Orange Blossom • 🌺 Magnolia • 🌹 Rose • 🍫 Cocoa',
+        displayPrice: 'R150',
+        sizes: [
+            { size: '30ml', price: 'R150' },
+            { size: '100ml', price: 'R450' }
+        ],
         icon: 'fa-heart',
         badge: '',
-        image: 'images/products/contre-moi.jpeg',
-        order: 2
+        image: 'images/products/Female/Contre-moi.png'
     },
     {
         id: 9,
         name: 'Coconut',
         category: 'female',
-        description: 'Fresh and tropical. A vacation in every spritz.',
-        sizes: '30ml | 100ml',
-        price: 'R150 | R450',
+        description: 'A timeless fragrance that is fresh, elegant, and effortlessly sophisticated.',
+        inspired: 'Chanel Coco Mademoiselle',
+        notes: '🍊 Orange • 🍋 Bergamot • 🌹 Rose • 🌼 Jasmine • 🌿 Patchouli • 🍦 Vanilla • 🤍 White Musk',
+        displayPrice: 'R150',
+        sizes: [
+            { size: '30ml', price: 'R150' },
+            { size: '100ml', price: 'R450' }
+        ],
         icon: 'fa-umbrella-beach',
         badge: '',
-        image: 'images/products/coconut.jpg',
-        order: 3
+        image: 'images/products/Female/Coconut.png'
     },
     {
         id: 10,
         name: 'Delirious',
         category: 'female',
-        description: 'Intoxicating and bold. Lose yourself in the scent.',
-        sizes: '30ml | 100ml',
-        price: 'R150 | R450',
+        description: 'A playful and youthful fragrance bursting with fruity sweetness and soft florals.',
+        inspired: 'Katy Perry Mad Love',
+        notes: '🍏 Apple Sorbet • 🍓 Strawberry • 🌼 Jasmine • 🌸 Peony • 🥥 Coconut • 🪵 Sandalwood',
+        displayPrice: 'R150',
+        sizes: [
+            { size: '30ml', price: 'R150' },
+            { size: '100ml', price: 'R450' }
+        ],
         icon: 'fa-star',
         badge: '',
-        image: 'images/products/delirious.jpg',
-        order: 4
+        image: 'images/products/Female/Delirious.png'
     },
     {
         id: 11,
         name: 'Mad Love',
         category: 'female',
-        description: 'Passionate and romantic. A love story in every drop.',
-        sizes: '30ml | 100ml',
-        price: 'R150 | R450',
+        description: 'A playful and youthful fragrance bursting with fruity sweetness and soft florals.',
+        inspired: 'Katy Perry Mad Love',
+        notes: '🍏 Apple Sorbet • 🍓 Strawberry • 🌼 Jasmine • 🌸 Peony • 🥥 Coconut • 🪵 Sandalwood',
+        displayPrice: 'R150',
+        sizes: [
+            { size: '30ml', price: 'R150' },
+            { size: '100ml', price: 'R450' }
+        ],
         icon: 'fa-heartbeat',
         badge: '',
-        image: 'images/products/mad-love.jpg',
-        order: 5
+        image: 'images/products/Female/Mad Love.png'
     },
     {
         id: 12,
         name: 'Marshmallow',
         category: 'female',
-        description: 'Sweet and comforting. A hug in a bottle.',
-        sizes: '30ml | 100ml',
-        price: 'R150 | R450',
+        description: 'A sweet and addictive fragrance with fluffy marshmallow and creamy vanilla accords.',
+        inspired: 'Kilian Love, Don\'t Be Shy',
+        notes: '🍊 Neroli • 🍋 Bergamot • 🌸 Orange Blossom • 🌺 Honeysuckle • 🍬 Marshmallow • 🍦 Vanilla • 🤍 Musk',
+        displayPrice: 'R150',
+        sizes: [
+            { size: '30ml', price: 'R150' },
+            { size: '100ml', price: 'R450' }
+        ],
         icon: 'fa-candy-cane',
         badge: '',
-        image: 'images/products/marshmallow.jpg',
-        order: 6
+        image: 'images/products/Female/Marshmallow.png'
     },
 
-    // Premium Unisex Collection (30ml - R150)
+    // ===== UNISEX FRAGRANCES =====
     {
         id: 13,
         name: 'Hibiscus Garden',
         category: 'unisex',
-        description: 'Inspired by Hibiscus Mahaljad. Floral and exotic.',
-        sizes: '30ml',
-        price: 'R150',
+        description: 'A vibrant and exotic fragrance blending florals, fruits, and warm undertones.',
+        inspired: 'Hibiscus Mahajád',
+        notes: '🌺 Hibiscus • 🌹 Rose • 🌿 Mint • 🫐 Blackcurrant • 👜 Leather • 🍦 Vanilla',
+        displayPrice: 'R180',
+        sizes: [
+            { size: '30ml', price: 'R180' }
+        ],
         icon: 'fa-leaf',
         badge: 'Premium',
-        image: 'images/products/hibiscus-garden.jpeg',
-        order: 1
+        image: 'images/products/Unisex/hibiscus-Garden.jpeg'
     },
     {
         id: 14,
         name: 'Oud Ispahan',
         category: 'unisex',
-        description: 'Rich and mysterious. An oriental masterpiece.',
-        sizes: '30ml',
-        price: 'R150',
+        description: 'A luxurious oriental fragrance combining rich oud and velvety rose.',
+        inspired: 'Oud Ispahan',
+        notes: '🪵 Oud • 🌹 Rose • ✨ Labdanum • 🪵 Sandalwood • 🌿 Patchouli',
+        displayPrice: 'R180',
+        sizes: [
+            { size: '30ml', price: 'R180' }
+        ],
         icon: 'fa-tree',
         badge: 'Premium',
-        image: 'images/products/oud-ispahan.jpg',
-        order: 2
+        image: 'images/products/Unisex/oud-ispahan.jpeg'
     },
     {
         id: 15,
         name: 'After Dark',
         category: 'unisex',
-        description: 'Inspired by Montaje Intense Café. Deep and captivating.',
-        sizes: '30ml',
-        price: 'R150',
+        description: 'A deliciously comforting fragrance where fresh coffee meets creamy vanilla and rose.',
+        inspired: 'Montale Intense Café',
+        notes: '☕ Coffee • 🌹 Rose • 🍦 Vanilla • 🤍 White Musk • ✨ Amber',
+        displayPrice: 'R180',
+        sizes: [
+            { size: '30ml', price: 'R180' }
+        ],
         icon: 'fa-moon',
         badge: 'Premium',
-        image: 'images/products/after-dark.jpg',
-        order: 3
+        image: 'images/products/Unisex/after-dark.jpg'
     },
     {
         id: 16,
         name: 'Phantom Nights',
         category: 'unisex',
-        description: 'Inspired by Black Phantom. Mysterious and alluring.',
-        sizes: '30ml',
-        price: 'R150',
+        description: 'A dark and mysterious fragrance with sweet gourmand notes and rich depth.',
+        inspired: 'Black Phantom',
+        notes: '🥃 Rum • ☕ Coffee • 🍫 Dark Chocolate • 🍮 Caramel • 🌾 Sugar Cane • 🪵 Sandalwood',
+        displayPrice: 'R180',
+        sizes: [
+            { size: '30ml', price: 'R180' }
+        ],
         icon: 'fa-ghost',
         badge: 'Premium',
-        image: 'images/products/phantom-nights.jpeg',
-        order: 4
+        image: 'images/products/Unisex/phantom-nights.jpeg'
     },
     {
         id: 17,
         name: 'Fresh Neroli',
         category: 'unisex',
-        description: 'Inspired by Neroli Portofino. Fresh and invigorating.',
-        sizes: '30ml',
-        price: 'R150',
+        description: 'A crisp and refreshing fragrance inspired by the Mediterranean coastline.',
+        inspired: 'Tom Ford Neroli Portofino',
+        notes: '🌼 Neroli • 🍋 Bergamot • 🍋 Lemon • 🌸 Orange Blossom • 💜 Lavender • ✨ Amber',
+        displayPrice: 'R180',
+        sizes: [
+            { size: '30ml', price: 'R180' }
+        ],
         icon: 'fa-sun',
         badge: 'Premium',
-        image: 'images/products/fresh-neroli.jpeg',
-        order: 5
+        image: 'images/products/Unisex/fresh-neroli.jpeg'
     },
     {
         id: 18,
         name: 'Vanilla Nude',
         category: 'unisex',
-        description: 'Warm and intimate. A cozy embrace. Layer fragrance.',
-        sizes: '30ml',
-        price: 'R150',
+        description: 'A smooth and comforting fragrance with warm vanilla and soft musky notes.',
+        inspired: 'Calvin Klein Nude Vanilla',
+        notes: '🍦 Vanilla • 🌼 Jasmine • 🌲 Cedarwood • 🤍 Musk • ✨ Amber',
+        displayPrice: 'R150',
+        sizes: [
+            { size: '30ml', price: 'R150' }
+        ],
         icon: 'fa-ice-cream',
         badge: 'Layer',
-        image: 'images/products/vanilla-nude.jpeg',
-        order: 6
+        image: 'images/products/Unisex/vanilla-nude.jpeg'
     },
     {
         id: 19,
         name: 'Vanilla Sex',
         category: 'unisex',
-        description: 'Bold and seductive. Not for the faint-hearted.',
-        sizes: '30ml',
-        price: 'R150',
+        description: 'A luxurious vanilla fragrance with creamy, warm, and sensual character.',
+        inspired: 'Tom Ford Vanilla Sex',
+        notes: '🍦 Vanilla Absolute • 🍦 Tonka Bean • 🪵 Sandalwood • 🌰 Almond',
+        displayPrice: 'R180',
+        sizes: [
+            { size: '30ml', price: 'R180' }
+        ],
         icon: 'fa-pepper-hot',
         badge: 'Premium',
-        image: 'images/products/vanilla-sex.jpg',
-        order: 7
+        image: 'images/products/Unisex/vanilla-sex.jpeg'
     },
     {
         id: 20,
         name: 'Crystal Rouge',
         category: 'unisex',
-        description: 'Crystal clear elegance. Pure sophistication.',
-        sizes: '30ml',
-        price: 'R150',
+        description: 'An iconic fragrance known for its airy sweetness, elegance, and exceptional longevity.',
+        inspired: 'Baccarat Rouge 540',
+        notes: '✨ Saffron • 🌼 Jasmine • 🪵 Amberwood • ✨ Ambergris • 🌲 Cedarwood',
+        displayPrice: 'R180',
+        sizes: [
+            { size: '30ml', price: 'R180' }
+        ],
         icon: 'fa-gem',
         badge: 'Premium',
-        image: 'images/products/crystal-rouge.jpg',
-        order: 8
+        image: 'images/products/Unisex/crystal-rouge.jpeg'
     }
 ];
 
@@ -275,28 +347,158 @@ function renderProducts(category = 'male') {
         return;
     }
 
-    grid.innerHTML = filtered.sort((a, b) => (a.order || 0) - (b.order || 0)).map(product => `
+    grid.innerHTML = filtered.map(product => `
         <div class="product-card" data-aos="fade-up" data-aos-delay="${Math.random() * 200}">
             ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ''}
+
             <div class="product-image">
-                ${product.image ?
-                    `<img src="${product.image}" alt="${product.name}">` :
-                    `<i class="fas ${product.icon || 'fa-flask'}"></i>`
-                }
+                <img src="${product.image}" alt="${product.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <i class="fas ${product.icon}" style="display:none;"></i>
+                <div class="price-bubble">From ${product.displayPrice}</div>
             </div>
+
             <h3 class="product-name">${product.name}</h3>
-            <p class="product-description">${product.description || 'Luxury fragrance'}</p>
-            <div class="product-details">
-                <span class="product-sizes"><i class="fas fa-flask"></i> ${product.sizes || '30ml | 100ml'}</span>
-                <span class="product-price">${product.price || 'R150 | R450'}</span>
+            <p class="product-inspired">Inspired by: ${product.inspired}</p>
+            <p class="product-description">${product.description}</p>
+
+            <div class="product-notes">
+                <span class="notes-label">Notes:</span>
+                <span class="notes-text">${product.notes}</span>
             </div>
-            <a href="https://wa.me/27622102873?text=Hi%20Sweet%20Scent!%20I'd%20like%20to%20order%20${encodeURIComponent(product.name)}%20(${encodeURIComponent(product.sizes || '')}).%20Please%20assist.%20🙏"
-               target="_blank"
-               class="btn-whatsapp">
+
+            <div class="product-sizes">
+                <span class="size-label">Choose Your Size:</span>
+                <div class="size-options">
+                    ${product.sizes.map((size, index) => `
+                        <label class="size-option ${index === 0 ? 'active' : ''}">
+                            <input type="radio" name="size_${product.id}" value="${size.size}" data-price="${size.price}" ${index === 0 ? 'checked' : ''}>
+                            <span class="size-name">${size.size}</span>
+                            <span class="size-price">${size.price}</span>
+                        </label>
+                    `).join('')}
+                </div>
+            </div>
+
+            <a href="#" class="btn-whatsapp" data-product="${product.name}" data-id="${product.id}">
                 <i class="fab fa-whatsapp"></i> Order via WhatsApp
             </a>
         </div>
     `).join('');
+
+    // Setup size selection and WhatsApp links
+    setupSizeSelection();
+    setupWhatsAppLinks();
+}
+
+// ===== RENDER UNISEX =====
+function renderUnisex() {
+    const grid = document.getElementById('unisexGrid');
+    if (!grid) return;
+
+    const unisexProducts = products.filter(p => p.category === 'unisex');
+
+    if (!unisexProducts || unisexProducts.length === 0) {
+        grid.innerHTML = `
+            <div style="grid-column:1/-1; text-align:center; padding:60px 20px;">
+                <p style="color:#999; font-size:1.1rem;">No unisex products available</p>
+            </div>
+        `;
+        return;
+    }
+
+    grid.innerHTML = unisexProducts.map(product => `
+        <div class="product-card" data-aos="fade-up" data-aos-delay="${Math.random() * 200}">
+            ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ''}
+
+            <div class="product-image">
+                <img src="${product.image}" alt="${product.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <i class="fas ${product.icon}" style="display:none;"></i>
+                <div class="price-bubble">${product.displayPrice}</div>
+            </div>
+
+            <h3 class="product-name">${product.name}</h3>
+            <p class="product-inspired">Inspired by: ${product.inspired}</p>
+            <p class="product-description">${product.description}</p>
+
+            <div class="product-notes">
+                <span class="notes-label">Notes:</span>
+                <span class="notes-text">${product.notes}</span>
+            </div>
+
+            <div class="product-sizes">
+                <span class="size-label">Choose Your Size:</span>
+                <div class="size-options">
+                    ${product.sizes.map((size, index) => `
+                        <label class="size-option ${index === 0 ? 'active' : ''}">
+                            <input type="radio" name="size_${product.id}" value="${size.size}" data-price="${size.price}" ${index === 0 ? 'checked' : ''}>
+                            <span class="size-name">${size.size}</span>
+                            <span class="size-price">${size.price}</span>
+                        </label>
+                    `).join('')}
+                </div>
+            </div>
+
+            <a href="#" class="btn-whatsapp" data-product="${product.name}" data-id="${product.id}">
+                <i class="fab fa-whatsapp"></i> Order via WhatsApp
+            </a>
+        </div>
+    `).join('');
+
+    setupSizeSelection();
+    setupWhatsAppLinks();
+}
+
+// ===== SIZE SELECTION =====
+function setupSizeSelection() {
+    document.querySelectorAll('.size-option input[type="radio"]').forEach(input => {
+        input.addEventListener('change', function() {
+            const parent = this.closest('.size-options');
+            parent.querySelectorAll('.size-option').forEach(opt => {
+                opt.classList.remove('active');
+            });
+            this.closest('.size-option').classList.add('active');
+            updateWhatsAppLink(this);
+        });
+    });
+}
+
+// ===== UPDATE WHATSAPP LINK =====
+function updateWhatsAppLink(input) {
+    const productCard = input.closest('.product-card');
+    const productName = productCard.querySelector('.product-name').textContent;
+    const size = input.value;
+    const price = input.dataset.price;
+    const whatsappBtn = productCard.querySelector('.btn-whatsapp');
+
+    const message = `Hi Sweet Scent! I'd like to order ${productName} - ${size} (${price}). Please assist. 🙏`;
+    whatsappBtn.href = `https://wa.me/27622102873?text=${encodeURIComponent(message)}`;
+}
+
+// ===== SETUP WHATSAPP LINKS =====
+function setupWhatsAppLinks() {
+    document.querySelectorAll('.btn-whatsapp').forEach(btn => {
+        if (!btn.href || btn.href === '#' || btn.href === '') {
+            const productCard = btn.closest('.product-card');
+            const productName = productCard.querySelector('.product-name').textContent;
+            const selectedSize = productCard.querySelector('.size-option.active input[type="radio"]');
+
+            if (selectedSize) {
+                const size = selectedSize.value;
+                const price = selectedSize.dataset.price;
+                const message = `Hi Sweet Scent! I'd like to order ${productName} - ${size} (${price}). Please assist. 🙏`;
+                btn.href = `https://wa.me/27622102873?text=${encodeURIComponent(message)}`;
+            } else {
+                // Fallback - use first size
+                const firstSize = productCard.querySelector('.size-option input[type="radio"]');
+                if (firstSize) {
+                    const size = firstSize.value;
+                    const price = firstSize.dataset.price;
+                    const message = `Hi Sweet Scent! I'd like to order ${productName} - ${size} (${price}). Please assist. 🙏`;
+                    btn.href = `https://wa.me/27622102873?text=${encodeURIComponent(message)}`;
+                }
+            }
+        }
+    });
 }
 
 // ===== TAB SWITCHING =====
@@ -414,6 +616,7 @@ function initAOS() {
 // ===== INITIALIZE =====
 document.addEventListener('DOMContentLoaded', function() {
     loadProducts();
+    renderUnisex();
     setupTabs();
     setupHamburger();
     setupActiveNav();
