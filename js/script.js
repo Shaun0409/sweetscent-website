@@ -623,6 +623,82 @@ function setupModalEvents() {
     });
 }
 
+// ===== VALUE POPUP =====
+function setupValuePopup() {
+    const popup = document.getElementById('valuePopup');
+    const closeBtn = document.getElementById('valuePopupClose');
+    const title = document.getElementById('valuePopupTitle');
+    const description = document.getElementById('valuePopupDescription');
+    
+    // Value descriptions
+    const valueDescriptions = {
+        quality: {
+            title: 'Quality',
+            description: 'We never compromise on quality. Every fragrance is crafted with precision, using premium ingredients to ensure a long-lasting, luxurious experience that you can trust.'
+        },
+        affordability: {
+            title: 'Affordability',
+            description: 'We believe everyone deserves to smell great without breaking the bank. Our fragrances are priced fairly, making luxury accessible to all South Africans.'
+        },
+        consistency: {
+            title: 'Consistency',
+            description: 'Every bottle of Sweet Scent delivers the same exceptional quality. We maintain strict quality control to ensure you get the same great fragrance every time.'
+        },
+        community: {
+            title: 'Community',
+            description: 'Sweet Scent is built on community. We support local entrepreneurs, create jobs, and give back to the communities that have supported our growth from day one.'
+        },
+        integrity: {
+            title: 'Integrity',
+            description: 'We operate with honesty and transparency. From our ingredients to our pricing, we are open and honest with our customers about what goes into every bottle.'
+        },
+        passion: {
+            title: 'Passion',
+            description: 'Fragrance is our passion. Every scent we create is born from a genuine love for the art of perfumery and a desire to help people feel confident and beautiful.'
+        }
+    };
+    
+    // Click handlers for value tags
+    document.querySelectorAll('.value-tag').forEach(tag => {
+        tag.addEventListener('click', function() {
+            const value = this.dataset.value;
+            const data = valueDescriptions[value];
+            if (data) {
+                title.textContent = data.title;
+                description.textContent = data.description;
+                popup.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        });
+    });
+    
+    // Close popup
+    function closePopup() {
+        popup.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    
+    closeBtn.addEventListener('click', closePopup);
+    
+    popup.addEventListener('click', function(e) {
+        if (e.target === this) {
+            closePopup();
+        }
+    });
+    
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closePopup();
+        }
+    });
+}
+
+// Add to initialization
+document.addEventListener('DOMContentLoaded', function() {
+    // ... existing code ...
+    setupValuePopup();
+});
+
 // ===== INITIALIZE AOS =====
 function initAOS() {
     if (typeof AOS !== 'undefined') {

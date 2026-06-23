@@ -61,7 +61,7 @@
         <div class="container hero-container">
             <div class="hero-content" data-aos="fade-up" data-aos-duration="900">
                 <span class="eyebrow">Sweet Scent Fragrances</span>
-                <h1 class="hero-title">Wear the fragrance.<br><em>Own the room.</em></h1>
+                <h1 class="hero-title">Wear the scent.<br><em>Own the moment.</em></h1>
                 <p class="hero-description">Premium quality fragrances crafted with care. Inspired by iconic scents. Made for everyone.</p>
                 <div class="hero-buttons">
                     <a href="#catalogue" class="btn-primary">
@@ -246,15 +246,27 @@
                     </div>
 
                     <div class="brand-values">
-                        <h4>Our Core Values</h4>
-                        <div class="value-tags">
-                            <span>Quality</span>
-                            <span>Affordability</span>
-                            <span>Consistency</span>
-                            <span>Community</span>
-                            <span>Integrity</span>
-                            <span>Passion</span>
+    <h4>Our Core Values</h4>
+    <div class="value-tags">
+        <span class="value-tag" data-value="quality">Quality</span>
+        <span class="value-tag" data-value="affordability">Affordability</span>
+        <span class="value-tag" data-value="consistency">Consistency</span>
+        <span class="value-tag" data-value="community">Community</span>
+        <span class="value-tag" data-value="integrity">Integrity</span>
+        <span class="value-tag" data-value="passion">Passion</span>
+    </div>
+</div>
+
+                <!-- ===== VALUE POPUP ===== -->
+                <div class="value-popup-overlay" id="valuePopup">
+                    <div class="value-popup-card">
+                        <button class="value-popup-close" id="valuePopupClose">&times;</button>
+                        <div class="value-popup-content">
+                            <h3 id="valuePopupTitle">Quality</h3>
+                            <p id="valuePopupDescription">We never compromise on quality. Every fragrance is crafted with precision, using premium ingredients to ensure a long-lasting, luxurious experience.</p>
                         </div>
+                    </div>
+                </div>
                     </div>
                 </div>
             </div>
@@ -285,14 +297,14 @@
                             <p>062 210 2873</p>
                         </div>
                     </a>
-                    <a href="https://maps.app.goo.gl/QFq7vRs5HXiUvKis9" target="_blank" class="contact-card-item">
-                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
-                        <div>
-                            <h4>Location</h4>
-                            <p>1605 Fascine Road</p>
-                            <p>Klipfontein View Ext 3</p>
-                        </div>
-                    </a>
+                    <div class="contact-card-item contact-card-item--static">
+                    <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <div>
+                        <h4>Location</h4>
+                        <p>1605 Fascine Road</p>
+                        <p>Klipfontein View Ext 3</p>
+                    </div>
+                </div>
                     <div class="contact-card-item contact-card-item--static">
                         <div class="contact-icon"><i class="fab fa-instagram"></i></div>
                         <div>
@@ -363,6 +375,22 @@
         </div>
     </section>
 
+    <!-- ===== DISCLAIMER ===== -->
+        <section class="disclaimer-section">
+            <div class="container">
+                <div class="disclaimer-content">
+                    <div class="disclaimer-warning">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>MAY CAUSE SEDIMENTATION WHEN MIXED WITH PERFUME BASE</span>
+                    </div>
+                    <div class="disclaimer-text">
+                        <p><strong>Disclaimer:</strong> “Names, trademarks and copyrights are properties of their respective manufacturers and/or designers. The ‘Inspired by’ fragrances offered by our company have no affiliation with the original manufacturers/designers. Our interpretation of these fragrances is created through chemical analysis and reproduction through reverse engineering, and the purpose of this description is to give the customer an idea of scent character, not to mislead or confuse the customer. It is not intended to infringe on the manufacturer’s/designer’s name and/or trademark. We do not represent our ‘Inspired by’ fragrances to be original designer fragrances. Any references to the original brand names by our ‘Inspired by’ fragrance range are made strictly for comparison.”</p>
+                        <p class="disclaimer-price-note"><i class="fas fa-info-circle"></i> Prices are subject to change without prior notice.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     <!-- FOOTER -->
     <footer class="footer">
         <div class="container">
@@ -372,7 +400,7 @@
                         <img src="images/logo.png" alt="Sweet Scent Logo" class="logo-img-footer">
                         <span>SWEET SCENT</span>
                     </a>
-                    <p>Wear the Fragrance. Own the Room.</p>
+                    <p>Wear the scent. Own the moment.</p>
                     <div class="footer-badges">
                         <span>✨ Premium Quality</span>
                         <span>🌟 Long Lasting</span>
@@ -419,7 +447,7 @@
     </footer>
 
     <!-- FLOATING WHATSAPP -->
-    <a href="https://wa.me/27622102873" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+    <a href="" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
         <i class="fab fa-whatsapp"></i>
         <span class="tooltip">Chat with us!</span>
     </a>
