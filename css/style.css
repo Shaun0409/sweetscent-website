@@ -1639,6 +1639,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 /* ===== FULL SCREEN MODAL - NO SCROLL ===== */
+
+
 .modal-container {
     background: #FFFFFF;
     border-radius: 0;

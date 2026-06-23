@@ -438,9 +438,9 @@ function openProductModal(product) {
         
         <p class="modal-total-price">Total: <strong id="modalTotalPrice">${defaultSize.price}</strong></p>
         
-        <button class="btn-whatsapp modal-whatsapp-btn" id="modalWhatsAppBtn">
+        <a href="#" id="modalWhatsAppBtn" class="btn-whatsapp modal-whatsapp-btn">
             <i class="fab fa-whatsapp"></i> Order via WhatsApp
-        </button>
+        </a>
     `;
     
     modal.classList.add('active');
@@ -456,15 +456,18 @@ function openProductModal(product) {
     let selectedSize = defaultSize;
     let selectedPrice = defaultPrice;
     
-    function updatePriceAndImage() {
+    function updateWhatsAppLink() {
         const quantity = parseInt(quantitySelect.value);
         const total = selectedPrice * quantity;
         totalPriceDisplay.textContent = `R${total}`;
         
-        // Update WhatsApp message
-        const message = `Hello Sweet Scent%0A%0AI’d like to place an order.%0A%0AProduct: ${product.name}%0ASize: ${selectedSize.size}%0A%0ACustomer Details:%0AName: %0AContact Number: %0ADelivery method: (Uber Courier / Paxi / Collection)%0A%0AAdditional Notes:%0A%0APlease let me know the total amount and payment details.%0A%0AThank you.`;
-        whatsappBtn.dataset.message = message;
+        // Updated WhatsApp message with quantity and total
+        const message = `Hello Sweet Scent%0A%0AI’d like to place an order.%0A%0AProduct: ${product.name}%0ASize: ${selectedSize.size}%0AQuantity: ${quantity}%0ATotal: R${total}%0A%0ACustomer Details:%0AName: %0AContact Number: %0A%0AAdditional Notes:%0A%0APlease let me know the total amount and payment details.%0A%0AThank you.`;
         whatsappBtn.href = `https://wa.me/27622102873?text=${message}`;
+    }
+    
+    function updatePriceAndImage() {
+        updateWhatsAppLink();
     }
     
     sizeButtons.forEach(btn => {
@@ -482,7 +485,7 @@ function openProductModal(product) {
             // Update image
             productImage.src = image;
             
-            // Update price
+            // Update price and WhatsApp link
             updatePriceAndImage();
         });
     });
