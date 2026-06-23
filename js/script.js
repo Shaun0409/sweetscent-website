@@ -216,7 +216,7 @@ const productData = [
         ],
         icon: 'fa-leaf',
         badge: 'Premium',
-        image: 'images/products/Unisex/hibiscus-garden.jpeg'
+        image: 'images/products/Unisex/hibiscus-Garden.jpeg'
     },
     {
         id: 14,
@@ -231,7 +231,7 @@ const productData = [
         ],
         icon: 'fa-tree',
         badge: 'Premium',
-        image: 'images/products/Unisex/oud-ispahan.jpeg'
+        image: 'images/products/Unisex/oud-ispahan.jpg'
     },
     {
         id: 15,
@@ -246,7 +246,7 @@ const productData = [
         ],
         icon: 'fa-moon',
         badge: 'Premium',
-        image: 'images/products/Unisex/after-dark.jpg'
+        image: 'images/products/Unisex/after-dark.png'
     },
     {
         id: 16,
@@ -321,7 +321,7 @@ const productData = [
         ],
         icon: 'fa-gem',
         badge: 'Premium',
-        image: 'images/products/Unisex/crystal-rouge.jpeg'
+        image: 'images/products/Unisex/crystal-rouge.png'
     }
 ];
 
@@ -348,10 +348,10 @@ function renderProducts(category = 'male') {
     }
 
     grid.innerHTML = filtered.map(product => `
-        <div class="product-card" data-aos="fade-up" data-aos-delay="${Math.random() * 200}">
+        <div class="product-card" data-aos="fade-up" data-aos-delay="${Math.random() * 200}" data-product-id="${product.id}">
             ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ''}
 
-            <div class="product-image">
+            <div class="product-image" style="cursor:pointer;">
                 <img src="${product.image}" alt="${product.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
                 <i class="fas ${product.icon}" style="display:none;"></i>
                 <div class="price-bubble">From ${product.displayPrice}</div>
@@ -366,28 +366,14 @@ function renderProducts(category = 'male') {
                 <span class="notes-text">${product.notes}</span>
             </div>
 
-            <div class="product-sizes">
-                <span class="size-label">Choose Your Size:</span>
-                <div class="size-options">
-                    ${product.sizes.map((size, index) => `
-                        <label class="size-option ${index === 0 ? 'active' : ''}">
-                            <input type="radio" name="size_${product.id}" value="${size.size}" data-price="${size.price}" ${index === 0 ? 'checked' : ''}>
-                            <span class="size-name">${size.size}</span>
-                            <span class="size-price">${size.price}</span>
-                        </label>
-                    `).join('')}
-                </div>
-            </div>
-
-            <a href="#" class="btn-whatsapp" data-product="${product.name}" data-id="${product.id}">
-                <i class="fab fa-whatsapp"></i> Order via WhatsApp
-            </a>
+            <button class="btn-whatsapp btn-detail" data-product-id="${product.id}" style="margin-top:auto; width:100%; justify-content:center; font-size:0.84rem; padding:11px 20px;">
+                <i class="fas fa-info-circle"></i> View Details
+            </button>
         </div>
     `).join('');
 
-    // Setup size selection and WhatsApp links
-    setupSizeSelection();
-    setupWhatsAppLinks();
+    // Setup detail buttons
+    setupDetailButtons();
 }
 
 // ===== RENDER UNISEX =====
@@ -407,10 +393,10 @@ function renderUnisex() {
     }
 
     grid.innerHTML = unisexProducts.map(product => `
-        <div class="product-card" data-aos="fade-up" data-aos-delay="${Math.random() * 200}">
+        <div class="product-card" data-aos="fade-up" data-aos-delay="${Math.random() * 200}" data-product-id="${product.id}">
             ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ''}
 
-            <div class="product-image">
+            <div class="product-image" style="cursor:pointer;">
                 <img src="${product.image}" alt="${product.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
                 <i class="fas ${product.icon}" style="display:none;"></i>
                 <div class="price-bubble">${product.displayPrice}</div>
@@ -425,80 +411,124 @@ function renderUnisex() {
                 <span class="notes-text">${product.notes}</span>
             </div>
 
-            <div class="product-sizes">
-                <span class="size-label">Choose Your Size:</span>
-                <div class="size-options">
-                    ${product.sizes.map((size, index) => `
-                        <label class="size-option ${index === 0 ? 'active' : ''}">
-                            <input type="radio" name="size_${product.id}" value="${size.size}" data-price="${size.price}" ${index === 0 ? 'checked' : ''}>
-                            <span class="size-name">${size.size}</span>
-                            <span class="size-price">${size.price}</span>
-                        </label>
-                    `).join('')}
-                </div>
-            </div>
-
-            <a href="#" class="btn-whatsapp" data-product="${product.name}" data-id="${product.id}">
-                <i class="fab fa-whatsapp"></i> Order via WhatsApp
-            </a>
+            <button class="btn-whatsapp btn-detail" data-product-id="${product.id}" style="margin-top:auto; width:100%; justify-content:center; font-size:0.84rem; padding:11px 20px;">
+                <i class="fas fa-info-circle"></i> View Details
+            </button>
         </div>
     `).join('');
 
-    setupSizeSelection();
-    setupWhatsAppLinks();
+    setupDetailButtons();
 }
 
-// ===== SIZE SELECTION =====
-function setupSizeSelection() {
-    document.querySelectorAll('.size-option input[type="radio"]').forEach(input => {
-        input.addEventListener('change', function() {
-            const parent = this.closest('.size-options');
-            parent.querySelectorAll('.size-option').forEach(opt => {
-                opt.classList.remove('active');
-            });
-            this.closest('.size-option').classList.add('active');
-            updateWhatsAppLink(this);
+// ===== DETAIL BUTTONS =====
+function setupDetailButtons() {
+    document.querySelectorAll('.btn-detail').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const productId = parseInt(this.dataset.productId);
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                openProductModal(product);
+            }
+        });
+    });
+    
+    // Also make product image clickable
+    document.querySelectorAll('.product-image').forEach(img => {
+        img.addEventListener('click', function() {
+            const card = this.closest('.product-card');
+            const productId = parseInt(card.dataset.productId);
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                openProductModal(product);
+            }
         });
     });
 }
 
-// ===== UPDATE WHATSAPP LINK =====
-function updateWhatsAppLink(input) {
-    const productCard = input.closest('.product-card');
-    const productName = productCard.querySelector('.product-name').textContent;
-    const size = input.value;
-    const price = input.dataset.price;
-    const whatsappBtn = productCard.querySelector('.btn-whatsapp');
-
-    const message = `Hi Sweet Scent! I'd like to order ${productName} - ${size} (${price}). Please assist. 🙏`;
-    whatsappBtn.href = `https://wa.me/27622102873?text=${encodeURIComponent(message)}`;
+// ===== OPEN PRODUCT MODAL =====
+function openProductModal(product) {
+    const modal = document.getElementById('productModal');
+    const content = document.getElementById('modalContent');
+    
+    // Get the price per unit for each size
+    const sizeOptions = product.sizes.map((size, index) => `
+        <option value="${size.size}" data-price="${parseInt(size.price.replace('R', ''))}" ${index === 0 ? 'selected' : ''}>
+            ${size.size} - ${size.price}
+        </option>
+    `).join('');
+    
+    // Get the initial selected size price
+    const initialPrice = parseInt(product.sizes[0].price.replace('R', ''));
+    
+    content.innerHTML = `
+        <img src="${product.image}" alt="${product.name}" class="modal-product-image" onerror="this.style.display='none'">
+        <h2 class="modal-product-name">${product.name}</h2>
+        <p class="modal-product-inspired">Inspired by: ${product.inspired}</p>
+        <p class="modal-product-description">${product.description}</p>
+        <div class="modal-product-notes">
+            <span class="modal-notes-label">Notes:</span>
+            <span class="modal-notes-text">${product.notes}</span>
+        </div>
+        <p class="modal-product-price" id="modalUnitPrice">${product.sizes[0].price}</p>
+        
+        <div class="modal-quantity-selector">
+            <label for="modalSize">Size:</label>
+            <select id="modalSize">
+                ${sizeOptions}
+            </select>
+            <label for="modalQuantity">Qty:</label>
+            <select id="modalQuantity">
+                ${[1,2,3,4,5,6,7,8,9,10].map(num => `<option value="${num}">${num}</option>`).join('')}
+            </select>
+        </div>
+        
+        <p class="modal-total-price">Total: <strong id="modalTotalPrice">${product.sizes[0].price}</strong></p>
+        
+        <a href="#" class="btn-whatsapp modal-whatsapp-btn" id="modalWhatsAppBtn">
+            <i class="fab fa-whatsapp"></i> Order via WhatsApp
+        </a>
+    `;
+    
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    
+    // Set up the calculation
+    const sizeSelect = document.getElementById('modalSize');
+    const quantitySelect = document.getElementById('modalQuantity');
+    const unitPriceDisplay = document.getElementById('modalUnitPrice');
+    const totalPriceDisplay = document.getElementById('modalTotalPrice');
+    const whatsappBtn = document.getElementById('modalWhatsAppBtn');
+    
+    function updatePrices() {
+        // Get the selected option and its price
+        const selectedOption = sizeSelect.options[sizeSelect.selectedIndex];
+        const unitPrice = parseInt(selectedOption.dataset.price);
+        const sizeLabel = selectedOption.value;
+        const quantity = parseInt(quantitySelect.value);
+        const totalPrice = unitPrice * quantity;
+        
+        // Update displays
+        unitPriceDisplay.textContent = `R${unitPrice}`;
+        totalPriceDisplay.textContent = `R${totalPrice}`;
+        
+        // Update WhatsApp link
+        const message = `Hi Sweet Scent! I'd like to order ${product.name} - ${sizeLabel} (R${unitPrice}) x${quantity} = R${totalPrice}. Please assist. 🙏`;
+        whatsappBtn.href = `https://wa.me/27622102873?text=${encodeURIComponent(message)}`;
+    }
+    
+    sizeSelect.addEventListener('change', updatePrices);
+    quantitySelect.addEventListener('change', updatePrices);
+    
+    // Initial update
+    updatePrices();
 }
 
-// ===== SETUP WHATSAPP LINKS =====
-function setupWhatsAppLinks() {
-    document.querySelectorAll('.btn-whatsapp').forEach(btn => {
-        if (!btn.href || btn.href === '#' || btn.href === '') {
-            const productCard = btn.closest('.product-card');
-            const productName = productCard.querySelector('.product-name').textContent;
-            const selectedSize = productCard.querySelector('.size-option.active input[type="radio"]');
-
-            if (selectedSize) {
-                const size = selectedSize.value;
-                const price = selectedSize.dataset.price;
-                const message = `Hi Sweet Scent! I'd like to order ${productName} - ${size} (${price}). Please assist. 🙏`;
-                btn.href = `https://wa.me/27622102873?text=${encodeURIComponent(message)}`;
-            } else {
-                // Fallback - use first size
-                const firstSize = productCard.querySelector('.size-option input[type="radio"]');
-                if (firstSize) {
-                    const size = firstSize.value;
-                    const price = firstSize.dataset.price;
-                    const message = `Hi Sweet Scent! I'd like to order ${productName} - ${size} (${price}). Please assist. 🙏`;
-                    btn.href = `https://wa.me/27622102873?text=${encodeURIComponent(message)}`;
-                }
-            }
-        }
-    });
+// ===== CLOSE MODAL =====
+function closeModal() {
+    const modal = document.getElementById('productModal');
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
 }
 
 // ===== TAB SWITCHING =====
@@ -601,6 +631,26 @@ function setupContactForm() {
     });
 }
 
+// ===== MODAL CLOSE EVENTS =====
+function setupModalEvents() {
+    const modal = document.getElementById('productModal');
+    const closeBtn = document.getElementById('modalClose');
+    
+    closeBtn.addEventListener('click', closeModal);
+    
+    modal.addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeModal();
+        }
+    });
+    
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeModal();
+        }
+    });
+}
+
 // ===== INITIALIZE AOS =====
 function initAOS() {
     if (typeof AOS !== 'undefined') {
@@ -621,6 +671,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setupHamburger();
     setupActiveNav();
     setupContactForm();
+    setupModalEvents();
     initAOS();
 
     setTimeout(() => {

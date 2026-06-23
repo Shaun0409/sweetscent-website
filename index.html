@@ -28,8 +28,7 @@
     <header class="header">
         <div class="container header-container">
             <a href="#home" class="logo">
-                <img src="images/logo.png
-                " alt="Sweet Scent Logo" class="logo-img">
+                <img src="images/logo.png" alt="Sweet Scent Logo" class="logo-img">
                 <span>SWEET SCENT</span>
             </a>
 
@@ -148,8 +147,8 @@
     <section class="diffusers-section">
         <div class="container">
             <div class="diffusers-content" data-aos="fade-up">
-                <div class="diffusers-icon">
-                    <i class="fas fa-wind"></i>
+                <div class="diffusers-image-wrapper">
+                    <img src="images/room-diffuser.png" alt="Room Diffuser" class="diffusers-image">
                 </div>
                 <span class="eyebrow">Coming Soon</span>
                 <h2 class="section-title">Room Diffusers</h2>
@@ -287,15 +286,15 @@
                             <p>062 210 2873</p>
                         </div>
                     </a>
-                  <a href="https://maps.app.goo.gl/QFq7vRs5HXiUvKis9" target="_blank" class="contact-card-item">
-                    <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
-                    <div>
-                        <h4>Location</h4>
-                        <p>1605 Fascine Road</p>
-                        <p>Klipfontein View Ext 3</p>
-                    </div>
-                  </a>
-                                    <div class="contact-card-item contact-card-item--static">
+                    <a href="https://maps.app.goo.gl/QFq7vRs5HXiUvKis9" target="_blank" class="contact-card-item">
+                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div>
+                            <h4>Location</h4>
+                            <p>1605 Fascine Road</p>
+                            <p>Klipfontein View Ext 3</p>
+                        </div>
+                    </a>
+                    <div class="contact-card-item contact-card-item--static">
                         <div class="contact-icon"><i class="fab fa-instagram"></i></div>
                         <div>
                             <h4>Instagram</h4>
@@ -425,6 +424,16 @@
         <i class="fab fa-whatsapp"></i>
         <span class="tooltip">Chat with us!</span>
     </a>
+
+    <!-- PRODUCT DETAIL MODAL -->
+    <div class="modal-overlay" id="productModal">
+        <div class="modal-container">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div class="modal-content" id="modalContent">
+                <!-- Dynamic content rendered by JavaScript -->
+            </div>
+        </div>
+    </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="js/script.js"></script>
