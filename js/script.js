@@ -6,7 +6,7 @@ let products = [];
 
 // ===== PRODUCTS DATA =====
 const productData = [
-    // ===== MALE FRAGRANCES =====
+    // ===== MALE FRAGRANCES ======
     {
         id: 1,
         name: 'Most Wanted',
