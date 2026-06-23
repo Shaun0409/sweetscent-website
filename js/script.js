@@ -216,7 +216,7 @@ const productData = [
         ],
         icon: 'fa-leaf',
         badge: 'Premium',
-        image: 'images/products/Unisex/hibiscus-Garden.jpeg'
+        image: 'images/products/Unisex/hibiscus-garden.jpeg'
     },
     {
         id: 14,
