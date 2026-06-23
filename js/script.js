@@ -16,12 +16,12 @@ const productData = [
         notes: '🍋 Lemon • 🌿 Ginger • 🫚 Cardamom • 🌲 Juniper Berries • 🍦 Tonka Bean • 🌱 Vetiver • 🪵 Amberwood',
         displayPrice: 'R150',
         sizes: [
-            { size: '30ml', price: 'R150' },
-            { size: '100ml', price: 'R450' }
+            { size: '30ml', price: 'R150', image: 'images/products/Male/30ml/Most Wanted.png' },
+            { size: '100ml', price: 'R450', image: 'images/products/Male/100ml/Most Wanted.png' }
         ],
         icon: 'fa-crown',
-        badge: 'Bestseller',
-        image: 'images/products/Male/Most Wanted.png'
+        // badge: 'Bestseller',
+        image: 'images/products/Male/100ml/Most Wanted.png'
     },
     {
         id: 2,
@@ -32,12 +32,12 @@ const productData = [
         notes: '🍎 Apple • 🌸 Orange Blossom • 🍊 Bergamot • 🌹 Rose • 🌿 Patchouli • 🍦 Vanilla • 🤍 Musk',
         displayPrice: 'R150',
         sizes: [
-            { size: '30ml', price: 'R150' },
-            { size: '100ml', price: 'R450' }
+            { size: '30ml', price: 'R150', image: 'images/products/Male/30ml/Dunhill Desire.png' },
+            { size: '100ml', price: 'R450', image: 'images/products/Male/100ml/Dunhill Desire.png' }
         ],
         icon: 'fa-gem',
         badge: '',
-        image: 'images/products/Male/Dunhill Desire.png'
+        image: 'images/products/Male/100ml/Dunhill Desire.png'
     },
     {
         id: 3,
@@ -48,12 +48,12 @@ const productData = [
         notes: '🍊 Mandarin Orange • 🌿 Clary Sage • 🍬 Caramel • 🍦 Tonka Bean • 🌱 Vetiver',
         displayPrice: 'R150',
         sizes: [
-            { size: '30ml', price: 'R150' },
-            { size: '100ml', price: 'R450' }
+            { size: '30ml', price: 'R150', image: 'images/products/Male/30ml/Scandal.png' },
+            { size: '100ml', price: 'R450', image: 'images/products/Male/100ml/Scandal.png' }
         ],
         icon: 'fa-bolt',
         badge: '',
-        image: 'images/products/Male/Scandal.png'
+        image: 'images/products/Male/100ml/Scandal.png'
     },
     {
         id: 4,
@@ -64,12 +64,12 @@ const productData = [
         notes: '🍊 Grapefruit • 🌊 Marine Notes • 🌿 Bay Leaf • 🌼 Jasmine • 🪵 Guaiac Wood • ✨ Ambergris',
         displayPrice: 'R150',
         sizes: [
-            { size: '30ml', price: 'R150' },
-            { size: '100ml', price: 'R450' }
+            { size: '30ml', price: 'R150', image: 'images/products/Male/30ml/Invictus.png' },
+            { size: '100ml', price: 'R450', image: 'images/products/Male/100ml/Invictus.png' }
         ],
         icon: 'fa-trophy',
         badge: '',
-        image: 'images/products/Male/Invictus.png'
+        image: 'images/products/Male/100ml/Invictus.png'
     },
     {
         id: 5,
@@ -80,12 +80,12 @@ const productData = [
         notes: '🍋 Bergamot • 💜 Lavender • 🫚 Cardamom • 🐟 Caviar Accord • 🚬 Tobacco • 🪵 Woody Notes',
         displayPrice: 'R150',
         sizes: [
-            { size: '30ml', price: 'R150' },
-            { size: '100ml', price: 'R450' }
+            { size: '30ml', price: 'R150', image: 'images/products/Male/30ml/Bad.png' },
+            { size: '100ml', price: 'R450', image: 'images/products/Male/100ml/Bad.png' }
         ],
         icon: 'fa-skull',
         badge: '',
-        image: 'images/products/Male/Bad.png'
+        image: 'images/products/Male/100ml/Bad.png'
     },
     {
         id: 6,
@@ -96,12 +96,12 @@ const productData = [
         notes: '🍍 Pineapple • 🍋 Bergamot • 🫐 Blackcurrant • 🌳 Birch • 🌿 Patchouli • 🍃 Oakmoss • 🤍 Musk',
         displayPrice: 'R150',
         sizes: [
-            { size: '30ml', price: 'R150' },
-            { size: '100ml', price: 'R450' }
+            { size: '30ml', price: 'R150', image: 'images/products/Male/30ml/Aventus.png' },
+            { size: '100ml', price: 'R450', image: 'images/products/Male/100ml/Aventus.png' }
         ],
         icon: 'fa-fire',
-        badge: 'Premium',
-        image: 'images/products/Male/Aventus.png'
+        badge: '',
+        image: 'images/products/Male/100ml/Aventus.png'
     },
 
     // ===== FEMALE FRAGRANCES =====
@@ -114,12 +114,12 @@ const productData = [
         notes: '🍐 Pear • 🍈 Melon • 🌸 Magnolia • 🌼 Jasmine • 🌹 Rose • 🍑 Peach • 🍦 Vanilla • 🤍 Musk',
         displayPrice: 'R150',
         sizes: [
-            { size: '30ml', price: 'R150' },
-            { size: '100ml', price: 'R450' }
+            { size: '30ml', price: 'R150', image: 'images/products/Female/30ml/Jadore.png' },
+            { size: '100ml', price: 'R450', image: 'images/products/Female/100ml/Jadore.png' }
         ],
         icon: 'fa-flower',
         badge: 'Bestseller',
-        image: 'images/products/Female/Jadore.png'
+        image: 'images/products/Female/100ml/Jadore.png'
     },
     {
         id: 8,
@@ -130,12 +130,12 @@ const productData = [
         notes: '🍦 Vanilla • 🌸 Orange Blossom • 🌺 Magnolia • 🌹 Rose • 🍫 Cocoa',
         displayPrice: 'R150',
         sizes: [
-            { size: '30ml', price: 'R150' },
-            { size: '100ml', price: 'R450' }
+            { size: '30ml', price: 'R150', image: 'images/products/Female/30ml/Contre-moi.png' },
+            { size: '100ml', price: 'R450', image: 'images/products/Female/100ml/Contre-moi.png' }
         ],
         icon: 'fa-heart',
         badge: '',
-        image: 'images/products/Female/Contre-moi.png'
+        image: 'images/products/Female/100ml/Contre-moi.png'
     },
     {
         id: 9,
@@ -146,12 +146,12 @@ const productData = [
         notes: '🍊 Orange • 🍋 Bergamot • 🌹 Rose • 🌼 Jasmine • 🌿 Patchouli • 🍦 Vanilla • 🤍 White Musk',
         displayPrice: 'R150',
         sizes: [
-            { size: '30ml', price: 'R150' },
-            { size: '100ml', price: 'R450' }
+            { size: '30ml', price: 'R150', image: 'images/products/Female/30ml/Coconut.png' },
+            { size: '100ml', price: 'R450', image: 'images/products/Female/100ml/Coconut.png' }
         ],
         icon: 'fa-umbrella-beach',
         badge: '',
-        image: 'images/products/Female/Coconut.png'
+        image: 'images/products/Female/100ml/Coconut.png'
     },
     {
         id: 10,
@@ -162,12 +162,12 @@ const productData = [
         notes: '🍏 Apple Sorbet • 🍓 Strawberry • 🌼 Jasmine • 🌸 Peony • 🥥 Coconut • 🪵 Sandalwood',
         displayPrice: 'R150',
         sizes: [
-            { size: '30ml', price: 'R150' },
-            { size: '100ml', price: 'R450' }
+            { size: '30ml', price: 'R150', image: 'images/products/Female/30ml/Delirious.png' },
+            { size: '100ml', price: 'R450', image: 'images/products/Female/100ml/Delirious.png' }
         ],
         icon: 'fa-star',
         badge: '',
-        image: 'images/products/Female/Delirious.png'
+        image: 'images/products/Female/100ml/Delirious.png'
     },
     {
         id: 11,
@@ -178,12 +178,12 @@ const productData = [
         notes: '🍏 Apple Sorbet • 🍓 Strawberry • 🌼 Jasmine • 🌸 Peony • 🥥 Coconut • 🪵 Sandalwood',
         displayPrice: 'R150',
         sizes: [
-            { size: '30ml', price: 'R150' },
-            { size: '100ml', price: 'R450' }
+            { size: '30ml', price: 'R150', image: 'images/products/Female/30ml/Mad Love.png' },
+            { size: '100ml', price: 'R450', image: 'images/products/Female/100ml/Mad Love.png' }
         ],
         icon: 'fa-heartbeat',
         badge: '',
-        image: 'images/products/Female/Mad Love.png'
+        image: 'images/products/Female/100ml/Mad Love.png'
     },
     {
         id: 12,
@@ -194,12 +194,12 @@ const productData = [
         notes: '🍊 Neroli • 🍋 Bergamot • 🌸 Orange Blossom • 🌺 Honeysuckle • 🍬 Marshmallow • 🍦 Vanilla • 🤍 Musk',
         displayPrice: 'R150',
         sizes: [
-            { size: '30ml', price: 'R150' },
-            { size: '100ml', price: 'R450' }
+            { size: '30ml', price: 'R150', image: 'images/products/Female/30ml/Marshmallow.png' },
+            { size: '100ml', price: 'R450', image: 'images/products/Female/100ml/Marshmallow.png' }
         ],
         icon: 'fa-candy-cane',
         badge: '',
-        image: 'images/products/Female/Marshmallow.png'
+        image: 'images/products/Female/100ml/Marshmallow.png'
     },
 
     // ===== UNISEX FRAGRANCES =====
@@ -212,11 +212,11 @@ const productData = [
         notes: '🌺 Hibiscus • 🌹 Rose • 🌿 Mint • 🫐 Blackcurrant • 👜 Leather • 🍦 Vanilla',
         displayPrice: 'R180',
         sizes: [
-            { size: '30ml', price: 'R180' }
+            { size: '30ml', price: 'R180', image: 'images/products/Unisex/hibiscus-Garden.jpeg' }
         ],
         icon: 'fa-leaf',
         badge: 'Premium',
-        image: 'images/products/Unisex/hibiscus-garden.jpeg'
+        image: 'images/products/Unisex/hibiscus-Garden.jpeg'
     },
     {
         id: 14,
@@ -227,7 +227,7 @@ const productData = [
         notes: '🪵 Oud • 🌹 Rose • ✨ Labdanum • 🪵 Sandalwood • 🌿 Patchouli',
         displayPrice: 'R180',
         sizes: [
-            { size: '30ml', price: 'R180' }
+            { size: '30ml', price: 'R180', image: 'images/products/Unisex/oud-ispahan.jpg' }
         ],
         icon: 'fa-tree',
         badge: 'Premium',
@@ -242,7 +242,7 @@ const productData = [
         notes: '☕ Coffee • 🌹 Rose • 🍦 Vanilla • 🤍 White Musk • ✨ Amber',
         displayPrice: 'R180',
         sizes: [
-            { size: '30ml', price: 'R180' }
+            { size: '30ml', price: 'R180', image: 'images/products/Unisex/after-dark.png' }
         ],
         icon: 'fa-moon',
         badge: 'Premium',
@@ -257,7 +257,7 @@ const productData = [
         notes: '🥃 Rum • ☕ Coffee • 🍫 Dark Chocolate • 🍮 Caramel • 🌾 Sugar Cane • 🪵 Sandalwood',
         displayPrice: 'R180',
         sizes: [
-            { size: '30ml', price: 'R180' }
+            { size: '30ml', price: 'R180', image: 'images/products/Unisex/phantom-nights.jpeg' }
         ],
         icon: 'fa-ghost',
         badge: 'Premium',
@@ -272,7 +272,7 @@ const productData = [
         notes: '🌼 Neroli • 🍋 Bergamot • 🍋 Lemon • 🌸 Orange Blossom • 💜 Lavender • ✨ Amber',
         displayPrice: 'R180',
         sizes: [
-            { size: '30ml', price: 'R180' }
+            { size: '30ml', price: 'R180', image: 'images/products/Unisex/fresh-neroli.jpeg' }
         ],
         icon: 'fa-sun',
         badge: 'Premium',
@@ -287,10 +287,10 @@ const productData = [
         notes: '🍦 Vanilla • 🌼 Jasmine • 🌲 Cedarwood • 🤍 Musk • ✨ Amber',
         displayPrice: 'R150',
         sizes: [
-            { size: '30ml', price: 'R150' }
+            { size: '30ml', price: 'R150', image: 'images/products/Unisex/vanilla-nude.jpeg' }
         ],
         icon: 'fa-ice-cream',
-        badge: 'Layer',
+        badge: 'Premium',
         image: 'images/products/Unisex/vanilla-nude.jpeg'
     },
     {
@@ -302,7 +302,7 @@ const productData = [
         notes: '🍦 Vanilla Absolute • 🍦 Tonka Bean • 🪵 Sandalwood • 🌰 Almond',
         displayPrice: 'R180',
         sizes: [
-            { size: '30ml', price: 'R180' }
+            { size: '30ml', price: 'R180', image: 'images/products/Unisex/vanilla-sex.jpeg' }
         ],
         icon: 'fa-pepper-hot',
         badge: 'Premium',
@@ -317,7 +317,7 @@ const productData = [
         notes: '✨ Saffron • 🌼 Jasmine • 🪵 Amberwood • ✨ Ambergris • 🌲 Cedarwood',
         displayPrice: 'R180',
         sizes: [
-            { size: '30ml', price: 'R180' }
+            { size: '30ml', price: 'R180', image: 'images/products/Unisex/crystal-rouge.png' }
         ],
         icon: 'fa-gem',
         badge: 'Premium',
@@ -359,57 +359,6 @@ function renderProducts(category = 'male') {
 
             <h3 class="product-name">${product.name}</h3>
             <p class="product-inspired">Inspired by: ${product.inspired}</p>
-            <p class="product-description">${product.description}</p>
-
-            <div class="product-notes">
-                <span class="notes-label">Notes:</span>
-                <span class="notes-text">${product.notes}</span>
-            </div>
-
-            <button class="btn-whatsapp btn-detail" data-product-id="${product.id}" style="margin-top:auto; width:100%; justify-content:center; font-size:0.84rem; padding:11px 20px;">
-                <i class="fas fa-info-circle"></i> View Details
-            </button>
-        </div>
-    `).join('');
-
-    // Setup detail buttons
-    setupDetailButtons();
-}
-
-// ===== RENDER UNISEX =====
-function renderUnisex() {
-    const grid = document.getElementById('unisexGrid');
-    if (!grid) return;
-
-    const unisexProducts = products.filter(p => p.category === 'unisex');
-
-    if (!unisexProducts || unisexProducts.length === 0) {
-        grid.innerHTML = `
-            <div style="grid-column:1/-1; text-align:center; padding:60px 20px;">
-                <p style="color:#999; font-size:1.1rem;">No unisex products available</p>
-            </div>
-        `;
-        return;
-    }
-
-    grid.innerHTML = unisexProducts.map(product => `
-        <div class="product-card" data-aos="fade-up" data-aos-delay="${Math.random() * 200}" data-product-id="${product.id}">
-            ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ''}
-
-            <div class="product-image" style="cursor:pointer;">
-                <img src="${product.image}" alt="${product.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                <i class="fas ${product.icon}" style="display:none;"></i>
-                <div class="price-bubble">${product.displayPrice}</div>
-            </div>
-
-            <h3 class="product-name">${product.name}</h3>
-            <p class="product-inspired">Inspired by: ${product.inspired}</p>
-            <p class="product-description">${product.description}</p>
-
-            <div class="product-notes">
-                <span class="notes-label">Notes:</span>
-                <span class="notes-text">${product.notes}</span>
-            </div>
 
             <button class="btn-whatsapp btn-detail" data-product-id="${product.id}" style="margin-top:auto; width:100%; justify-content:center; font-size:0.84rem; padding:11px 20px;">
                 <i class="fas fa-info-circle"></i> View Details
@@ -433,7 +382,6 @@ function setupDetailButtons() {
         });
     });
     
-    // Also make product image clickable
     document.querySelectorAll('.product-image').forEach(img => {
         img.addEventListener('click', function() {
             const card = this.closest('.product-card');
@@ -451,18 +399,21 @@ function openProductModal(product) {
     const modal = document.getElementById('productModal');
     const content = document.getElementById('modalContent');
     
-    // Get the price per unit for each size
-    const sizeOptions = product.sizes.map((size, index) => `
-        <option value="${size.size}" data-price="${parseInt(size.price.replace('R', ''))}" ${index === 0 ? 'selected' : ''}>
-            ${size.size} - ${size.price}
-        </option>
+    // Default to first size (30ml)
+    const defaultSize = product.sizes[0];
+    const defaultPrice = parseInt(defaultSize.price.replace('R', ''));
+    
+    // Create size buttons HTML
+    const sizeButtonsHTML = product.sizes.map((size, index) => `
+        <button class="modal-size-btn ${index === 0 ? 'active' : ''}" data-size="${size.size}" data-price="${size.price}" data-image="${size.image}">
+            ${size.size} · ${size.price}
+        </button>
     `).join('');
     
-    // Get the initial selected size price
-    const initialPrice = parseInt(product.sizes[0].price.replace('R', ''));
-    
     content.innerHTML = `
-        <img src="${product.image}" alt="${product.name}" class="modal-product-image" onerror="this.style.display='none'">
+        <div class="modal-product-image-wrapper">
+            <img src="${defaultSize.image}" alt="${product.name}" class="modal-product-image" id="modalProductImage" onerror="this.style.display='none'">
+        </div>
         <h2 class="modal-product-name">${product.name}</h2>
         <p class="modal-product-inspired">Inspired by: ${product.inspired}</p>
         <p class="modal-product-description">${product.description}</p>
@@ -470,58 +421,76 @@ function openProductModal(product) {
             <span class="modal-notes-label">Notes:</span>
             <span class="modal-notes-text">${product.notes}</span>
         </div>
-        <p class="modal-product-price" id="modalUnitPrice">${product.sizes[0].price}</p>
+        
+        <div class="modal-size-selector">
+            <span class="modal-size-label">Select Size:</span>
+            <div class="modal-size-buttons">
+                ${sizeButtonsHTML}
+            </div>
+        </div>
         
         <div class="modal-quantity-selector">
-            <label for="modalSize">Size:</label>
-            <select id="modalSize">
-                ${sizeOptions}
-            </select>
-            <label for="modalQuantity">Qty:</label>
+            <label for="modalQuantity">Quantity:</label>
             <select id="modalQuantity">
                 ${[1,2,3,4,5,6,7,8,9,10].map(num => `<option value="${num}">${num}</option>`).join('')}
             </select>
         </div>
         
-        <p class="modal-total-price">Total: <strong id="modalTotalPrice">${product.sizes[0].price}</strong></p>
+        <p class="modal-total-price">Total: <strong id="modalTotalPrice">${defaultSize.price}</strong></p>
         
-        <a href="#" class="btn-whatsapp modal-whatsapp-btn" id="modalWhatsAppBtn">
+        <button class="btn-whatsapp modal-whatsapp-btn" id="modalWhatsAppBtn">
             <i class="fab fa-whatsapp"></i> Order via WhatsApp
-        </a>
+        </button>
     `;
     
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
     
-    // Set up the calculation
-    const sizeSelect = document.getElementById('modalSize');
-    const quantitySelect = document.getElementById('modalQuantity');
-    const unitPriceDisplay = document.getElementById('modalUnitPrice');
+    // Set up size button functionality
+    const sizeButtons = document.querySelectorAll('.modal-size-btn');
+    const productImage = document.getElementById('modalProductImage');
     const totalPriceDisplay = document.getElementById('modalTotalPrice');
+    const quantitySelect = document.getElementById('modalQuantity');
     const whatsappBtn = document.getElementById('modalWhatsAppBtn');
     
-    function updatePrices() {
-        // Get the selected option and its price
-        const selectedOption = sizeSelect.options[sizeSelect.selectedIndex];
-        const unitPrice = parseInt(selectedOption.dataset.price);
-        const sizeLabel = selectedOption.value;
+    let selectedSize = defaultSize;
+    let selectedPrice = defaultPrice;
+    
+    function updatePriceAndImage() {
         const quantity = parseInt(quantitySelect.value);
-        const totalPrice = unitPrice * quantity;
+        const total = selectedPrice * quantity;
+        totalPriceDisplay.textContent = `R${total}`;
         
-        // Update displays
-        unitPriceDisplay.textContent = `R${unitPrice}`;
-        totalPriceDisplay.textContent = `R${totalPrice}`;
-        
-        // Update WhatsApp link
-        const message = `Hi Sweet Scent! I'd like to order ${product.name} - ${sizeLabel} (R${unitPrice}) x${quantity} = R${totalPrice}. Please assist. 🙏`;
-        whatsappBtn.href = `https://wa.me/27622102873?text=${encodeURIComponent(message)}`;
+        // Update WhatsApp message
+        const message = `Hello Sweet Scent%0A%0AI’d like to place an order.%0A%0AProduct: ${product.name}%0ASize: ${selectedSize.size}%0A%0ACustomer Details:%0AName: %0AContact Number: %0ADelivery method: (Uber Courier / Paxi / Collection)%0A%0AAdditional Notes:%0A%0APlease let me know the total amount and payment details.%0A%0AThank you.`;
+        whatsappBtn.dataset.message = message;
+        whatsappBtn.href = `https://wa.me/27622102873?text=${message}`;
     }
     
-    sizeSelect.addEventListener('change', updatePrices);
-    quantitySelect.addEventListener('change', updatePrices);
+    sizeButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            sizeButtons.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            
+            const size = this.dataset.size;
+            const price = this.dataset.price;
+            const image = this.dataset.image;
+            
+            selectedSize = product.sizes.find(s => s.size === size);
+            selectedPrice = parseInt(price.replace('R', ''));
+            
+            // Update image
+            productImage.src = image;
+            
+            // Update price
+            updatePriceAndImage();
+        });
+    });
+    
+    quantitySelect.addEventListener('change', updatePriceAndImage);
     
     // Initial update
-    updatePrices();
+    updatePriceAndImage();
 }
 
 // ===== CLOSE MODAL =====
@@ -666,7 +635,6 @@ function initAOS() {
 // ===== INITIALIZE =====
 document.addEventListener('DOMContentLoaded', function() {
     loadProducts();
-    renderUnisex();
     setupTabs();
     setupHamburger();
     setupActiveNav();
