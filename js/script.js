@@ -203,21 +203,23 @@ const productData = [
     },
 
     // ===== UNISEX FRAGRANCES =====
-    {
+     {
         id: 13,
-        name: 'Hibiscus Garden',
+        name: 'Phantom Nights',
         category: 'unisex',
-        description: 'A vibrant and exotic fragrance blending florals, fruits, and warm undertones.',
-        inspired: 'Hibiscus Mahajád',
-        notes: '🌺 Hibiscus • 🌹 Rose • 🌿 Mint • 🫐 Blackcurrant • 👜 Leather • 🍦 Vanilla',
+        description: 'A dark and mysterious fragrance with sweet gourmand notes and rich depth.',
+        inspired: 'Black Phantom',
+        notes: '🥃 Rum • ☕ Coffee • 🍫 Dark Chocolate • 🍮 Caramel • 🌾 Sugar Cane • 🪵 Sandalwood',
         displayPrice: 'R180',
         sizes: [
-            { size: '30ml', price: 'R180', image: 'images/products/Unisex/hibiscus-Garden.jpeg' }
+            { size: '30ml', price: 'R180', image: 'images/products/Unisex/phantom-nights.jpeg' }
         ],
-        icon: 'fa-leaf',
+        icon: 'fa-ghost',
         badge: 'Premium',
-        image: 'images/products/Unisex/hibiscus-Garden.jpeg'
+        image: 'images/products/Unisex/phantom-nights.jpeg'
     },
+
+   
     {
         id: 14,
         name: 'Oud Ispahan',
@@ -248,21 +250,25 @@ const productData = [
         badge: 'Premium',
         image: 'images/products/Unisex/after-dark.png'
     },
-    {
+
+     {
         id: 16,
-        name: 'Phantom Nights',
+        name: 'Vanilla Sex',
         category: 'unisex',
-        description: 'A dark and mysterious fragrance with sweet gourmand notes and rich depth.',
-        inspired: 'Black Phantom',
-        notes: '🥃 Rum • ☕ Coffee • 🍫 Dark Chocolate • 🍮 Caramel • 🌾 Sugar Cane • 🪵 Sandalwood',
+        description: 'A luxurious vanilla fragrance with creamy, warm, and sensual character.',
+        inspired: 'Tom Ford Vanilla Sex',
+        notes: '🍦 Vanilla Absolute • 🍦 Tonka Bean • 🪵 Sandalwood • 🌰 Almond',
         displayPrice: 'R180',
         sizes: [
-            { size: '30ml', price: 'R180', image: 'images/products/Unisex/phantom-nights.jpeg' }
+            { size: '30ml', price: 'R180', image: 'images/products/Unisex/vanilla-sex.jpeg' }
         ],
-        icon: 'fa-ghost',
+        icon: 'fa-pepper-hot',
         badge: 'Premium',
-        image: 'images/products/Unisex/phantom-nights.jpeg'
+        image: 'images/products/Unisex/vanilla-sex.jpeg'
     },
+
+     
+   
     {
         id: 17,
         name: 'Fresh Neroli',
@@ -278,8 +284,25 @@ const productData = [
         badge: 'Premium',
         image: 'images/products/Unisex/fresh-neroli.jpeg'
     },
+
     {
         id: 18,
+        name: 'Hibiscus Garden',
+        category: 'unisex',
+        description: 'A vibrant and exotic fragrance blending florals, fruits, and warm undertones.',
+        inspired: 'Hibiscus Mahajád',
+        notes: '🌺 Hibiscus • 🌹 Rose • 🌿 Mint • 🫐 Blackcurrant • 👜 Leather • 🍦 Vanilla',
+        displayPrice: 'R180',
+        sizes: [
+            { size: '30ml', price: 'R180', image: 'images/products/Unisex/hibiscus-Garden.jpeg' }
+        ],
+        icon: 'fa-leaf',
+        badge: 'Premium',
+        image: 'images/products/Unisex/Hibiscus-Garden.jpeg'
+    },
+
+    {
+        id: 19,
         name: 'Vanilla Nude',
         category: 'unisex',
         description: 'A smooth and comforting fragrance with warm vanilla and soft musky notes.',
@@ -293,21 +316,7 @@ const productData = [
         badge: 'Premium',
         image: 'images/products/Unisex/vanilla-nude.jpeg'
     },
-    {
-        id: 19,
-        name: 'Vanilla Sex',
-        category: 'unisex',
-        description: 'A luxurious vanilla fragrance with creamy, warm, and sensual character.',
-        inspired: 'Tom Ford Vanilla Sex',
-        notes: '🍦 Vanilla Absolute • 🍦 Tonka Bean • 🪵 Sandalwood • 🌰 Almond',
-        displayPrice: 'R180',
-        sizes: [
-            { size: '30ml', price: 'R180', image: 'images/products/Unisex/vanilla-sex.jpeg' }
-        ],
-        icon: 'fa-pepper-hot',
-        badge: 'Premium',
-        image: 'images/products/Unisex/vanilla-sex.jpeg'
-    },
+
     {
         id: 20,
         name: 'Crystal Rouge',
