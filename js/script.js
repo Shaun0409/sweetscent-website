@@ -471,7 +471,7 @@ function openProductModal(product) {
         totalPriceDisplay.textContent = `R${total}`;
         
         // Updated WhatsApp message with quantity and total
-        const message = `Hello Sweet Scent%0A%0AI’d like to place an order.%0A%0AProduct: ${product.name}%0ASize: ${selectedSize.size}%0AQuantity: ${quantity}%0ATotal: R${total}%0A%0ACustomer Details:%0AName: %0AContact Number: %0A%0AAdditional Notes:%0A%0APlease let me know the total amount and payment details.%0A%0AThank you.`;
+        const message = `Hello Sweet Scent%0A%0AI’d like to place an order.%0A%0AProduct: ${product.name}%0ASize: ${selectedSize.size}%0AQuantity: ${quantity}%0ATotal: R${total}%0AName: %0AContact Number: %0A%0AAdditional Notes:%0A%0APlease let me know the total amount and payment details.%0A%0AThank you.`;
         whatsappBtn.href = `https://wa.me/27622102873?text=${message}`;
     }
     
@@ -643,11 +643,11 @@ function setupValuePopup() {
     const valueDescriptions = {
         quality: {
             title: 'Quality',
-            description: 'We never compromise on quality. Every fragrance is crafted with precision, using premium ingredients to ensure a long-lasting, luxurious experience that you can trust.'
+            description: 'We never compromise on quality. Every fragrance is crafted with precision, using premium ingredients to ensure a long-lasting, experience that you can trust.'
         },
         affordability: {
             title: 'Affordability',
-            description: 'We believe everyone deserves to smell great without breaking the bank. Our fragrances are priced fairly, making luxury accessible to all South Africans.'
+            description: 'We believe everyone deserves to smell great without breaking the bank. Our fragrances are priced fairly and easily accessible to all South Africans.'
         },
         consistency: {
             title: 'Consistency',
@@ -655,7 +655,7 @@ function setupValuePopup() {
         },
         community: {
             title: 'Community',
-            description: 'Sweet Scent is built on community. We support local entrepreneurs, create jobs, and give back to the communities that have supported our growth from day one.'
+            description: 'Sweet Scent is built on community. We support local entrepreneurs and give back to the communities that have supported our growth from day one.'
         },
         integrity: {
             title: 'Integrity',
