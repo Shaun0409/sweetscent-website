@@ -298,7 +298,7 @@ const productData = [
         ],
         icon: 'fa-leaf',
         badge: 'Premium',
-        image: 'images/products/Unisex/Hibiscus-Garden.jpeg'
+        image: 'images/products/Unisex/hibiscus-garden.jpeg'
     },
 
     {
