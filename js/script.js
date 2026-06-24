@@ -471,7 +471,7 @@ function openProductModal(product) {
         totalPriceDisplay.textContent = `R${total}`;
         
         // Updated WhatsApp message with quantity and total
-        const message = `Hello Sweet Scent%0A%0AI’d like to place an order.%0A%0AProduct: ${product.name}%0ASize: ${selectedSize.size}%0AQuantity: ${quantity}%0ATotal: R${total}%0AName: %0AContact Number: %0A%0AAdditional Notes:%0A%0APlease let me know the total amount and payment details.%0A%0AThank you.`;
+        const message = `Hello Sweet Scent%0A%0AI’d like to place an order.%0A%0AProduct: ${product.name}%0ASize: ${selectedSize.size}%0AQuantity: ${quantity}%0ATotal: R${total}%0AName: %0A%0APlease let me know the total amount and payment details.%0A%0AThank you.`;
         whatsappBtn.href = `https://wa.me/27622102873?text=${message}`;
     }
     
