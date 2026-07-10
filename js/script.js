@@ -423,7 +423,7 @@ async function loadProducts() {
     }
 }
 
-// ===== GET FILTERED PRODUCTS =====
+/// ===== GET FILTERED PRODUCTS =====
 function getFilteredProducts() {
     // If no category is set, default to 'male'
     if (!currentCategory || currentCategory === 'all') {
@@ -482,6 +482,7 @@ function renderProducts() {
     // Update currentCategory for other functions
     currentCategory = category;
 
+    // Show all products in this category (no pagination within category)
     if (!filtered || filtered.length === 0) {
         grid.innerHTML = `
             <div style="grid-column:1/-1; text-align:center; padding:60px 20px;">
@@ -492,6 +493,7 @@ function renderProducts() {
         return;
     }
 
+    // Display ALL products in the category (no slicing)
     grid.innerHTML = filtered.map(function(product) {
         const isOutOfStock = product.inStock === false;
         
@@ -530,33 +532,26 @@ function updatePaginationButtons() {
     const container = document.querySelector('.pagination-container');
     if (!container) return;
     
-    // Always show 3 pages (1, 2, 3)
+    // ALWAYS show 3 pages (1, 2, 3) regardless of products
     const totalPages = 3;
-    
-    // Check if each page has products
-    const categoryMap = {
-        1: 'male',
-        2: 'female',
-        3: 'unisex'
+    const pageLabels = {
+        1: 'Male',
+        2: 'Female',
+        3: 'Unisex'
     };
     
     let buttonsHTML = '';
     for (let i = 1; i <= totalPages; i++) {
-        const category = categoryMap[i];
-        const hasProducts = products.some(function(p) { return p.category === category; });
-        const label = category.charAt(0).toUpperCase() + category.slice(1);
-        
-        if (hasProducts) {
-            buttonsHTML += `
-                <button class="page-btn ${i === currentPage ? 'active' : ''}" data-page="${i}">
-                    ${i}
-                </button>
-            `;
-        }
+        // Always show all 3 page buttons
+        buttonsHTML += `
+            <button class="page-btn ${i === currentPage ? 'active' : ''}" data-page="${i}" title="${pageLabels[i]}">
+                ${i}
+            </button>
+        `;
     }
     
     container.innerHTML = buttonsHTML;
-    container.style.display = buttonsHTML ? 'flex' : 'none';
+    container.style.display = 'flex'; // Always show pagination
     
     container.querySelectorAll('.page-btn').forEach(function(btn) {
         btn.addEventListener('click', function() {
