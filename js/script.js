@@ -432,11 +432,22 @@ function getFilteredProducts() {
     return products.filter(function(p) { return p.category === currentCategory; });
 }
 
-// ===== GET PAGINATED PRODUCTS =====
-function getPaginatedProducts(filtered) {
-    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-    const endIndex = startIndex + ITEMS_PER_PAGE;
-    return filtered.slice(startIndex, endIndex);
+// ===== GET PRODUCTS FOR CURRENT PAGE =====
+function getProductsForPage(page) {
+    // Page 1 = Male, Page 2 = Female, Page 3 = Unisex
+    const categoryMap = {
+        1: 'male',
+        2: 'female',
+        3: 'unisex'
+    };
+    
+    const category = categoryMap[page] || 'male';
+    return products.filter(function(p) { return p.category === category; });
+}
+
+// ===== GET TOTAL PAGES =====
+function getTotalPages() {
+    return 3; // Always 3 pages (Male, Female, Unisex)
 }
 
 // ===== RENDER PRODUCTS =====
@@ -444,17 +455,34 @@ function renderProducts() {
     const grid = document.getElementById('productGrid');
     if (!grid) return;
 
-    const filtered = getFilteredProducts();
-    const totalProducts = filtered.length;
+    // Map page to category
+    const categoryMap = {
+        1: 'male',
+        2: 'female',
+        3: 'unisex'
+    };
     
-    const maxPage = Math.ceil(totalProducts / ITEMS_PER_PAGE);
-    if (currentPage > maxPage && maxPage > 0) {
+    // If page is not set, default to 1 (Male)
+    if (!currentPage || currentPage < 1 || currentPage > 3) {
         currentPage = 1;
     }
     
-    const paginated = getPaginatedProducts(filtered);
+    // Get products for current page/category
+    const category = categoryMap[currentPage] || 'male';
+    const filtered = products.filter(function(p) { return p.category === category; });
+    
+    // Update active category tab
+    document.querySelectorAll('.category-tab').forEach(function(tab) {
+        tab.classList.remove('active');
+        if (tab.dataset.category === category) {
+            tab.classList.add('active');
+        }
+    });
+    
+    // Update currentCategory for other functions
+    currentCategory = category;
 
-    if (!paginated || paginated.length === 0) {
+    if (!filtered || filtered.length === 0) {
         grid.innerHTML = `
             <div style="grid-column:1/-1; text-align:center; padding:60px 20px;">
                 <p style="color:#999; font-size:1.1rem;">No products found in this category</p>
@@ -464,7 +492,7 @@ function renderProducts() {
         return;
     }
 
-    grid.innerHTML = paginated.map(function(product) {
+    grid.innerHTML = filtered.map(function(product) {
         const isOutOfStock = product.inStock === false;
         
         return `
@@ -502,22 +530,33 @@ function updatePaginationButtons() {
     const container = document.querySelector('.pagination-container');
     if (!container) return;
     
-    const filtered = getFilteredProducts();
-    const totalProducts = filtered.length;
-    const actualPages = Math.ceil(totalProducts / ITEMS_PER_PAGE);
+    // Always show 3 pages (1, 2, 3)
+    const totalPages = 3;
     
-    const maxPages = Math.min(3, Math.max(1, actualPages));
+    // Check if each page has products
+    const categoryMap = {
+        1: 'male',
+        2: 'female',
+        3: 'unisex'
+    };
     
     let buttonsHTML = '';
-    for (let i = 1; i <= maxPages; i++) {
-        const hasProducts = (i - 1) * ITEMS_PER_PAGE < totalProducts;
-        if (hasProducts || i === 1) {
-            buttonsHTML += `<button class="page-btn ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>`;
+    for (let i = 1; i <= totalPages; i++) {
+        const category = categoryMap[i];
+        const hasProducts = products.some(function(p) { return p.category === category; });
+        const label = category.charAt(0).toUpperCase() + category.slice(1);
+        
+        if (hasProducts) {
+            buttonsHTML += `
+                <button class="page-btn ${i === currentPage ? 'active' : ''}" data-page="${i}">
+                    ${i}
+                </button>
+            `;
         }
     }
     
     container.innerHTML = buttonsHTML;
-    container.style.display = buttonsHTML && totalProducts > ITEMS_PER_PAGE ? 'flex' : 'none';
+    container.style.display = buttonsHTML ? 'flex' : 'none';
     
     container.querySelectorAll('.page-btn').forEach(function(btn) {
         btn.addEventListener('click', function() {
@@ -536,16 +575,23 @@ function setupCategoryTabs() {
     const tabs = document.querySelectorAll('.category-tab');
     if (!tabs.length) return;
     
-    // Set default category to 'male' (first tab)
-    currentCategory = 'male';
+    // Map category to page number
+    const pageMap = {
+        'male': 1,
+        'female': 2,
+        'unisex': 3
+    };
     
     tabs.forEach(function(tab) {
         tab.addEventListener('click', function() {
             tabs.forEach(function(t) { t.classList.remove('active'); });
             this.classList.add('active');
             
-            currentCategory = this.dataset.category;
-            currentPage = 1;
+            const category = this.dataset.category;
+            const page = pageMap[category] || 1;
+            
+            currentPage = page;
+            currentCategory = category;
             renderProducts();
             
             document.getElementById('catalogue').scrollIntoView({ behavior: 'smooth', block: 'start' });
