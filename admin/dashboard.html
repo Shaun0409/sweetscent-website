@@ -14,7 +14,376 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
     <style>
-        /* ... (keep your existing styles) ... */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #F5F3EF;
+            color: #1A1A1A;
+            padding: 20px;
+        }
+
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #FFFFFF;
+            border-radius: 18px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+            padding: 40px;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #F0EDE8;
+            margin-bottom: 30px;
+        }
+
+        .admin-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #2F3E2F;
+        }
+
+        .admin-name span {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: #9CAF88;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        .admin-badge {
+            background: #2F3E2F;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .live-indicator {
+            display: inline-block;
+            background: #27ae60;
+            color: white;
+            padding: 4px 14px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            animation: pulse 2s infinite;
+            margin-right: 10px;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .admin-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: #2F3E2F;
+            margin-bottom: 8px;
+        }
+
+        .admin-subtitle {
+            color: #999;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+        }
+
+        .instruction-note {
+            background: #E8F5E9;
+            border: 1px solid #81C784;
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin-bottom: 25px;
+            font-size: 0.9rem;
+            color: #2E7D32;
+        }
+
+        .instruction-note i {
+            margin-right: 10px;
+            color: #43A047;
+        }
+
+        .instruction-note strong {
+            color: #1B5E20;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        thead {
+            background: #F5F3EF;
+        }
+
+        th {
+            text-align: left;
+            padding: 14px 16px;
+            font-weight: 600;
+            color: #2F3E2F;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #F0EDE8;
+            vertical-align: middle;
+        }
+
+        tr:hover td {
+            background: #FAF8F5;
+        }
+
+        .product-cell {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .product-thumb {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: #F5F3EF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .product-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .product-thumb i {
+            font-size: 1.2rem;
+            color: #9CAF88;
+        }
+
+        .product-name-text {
+            font-weight: 600;
+            color: #1A1A1A;
+        }
+
+        .product-category-tag {
+            display: inline-block;
+            background: #E6EDE0;
+            padding: 2px 10px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #2F3E2F;
+        }
+
+        .price-input {
+            width: 90px;
+            padding: 6px 10px;
+            border: 1.5px solid #E0DDD8;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-family: 'Inter', sans-serif;
+            background: #FAF8F5;
+            transition: border-color 0.3s ease;
+        }
+
+        .price-input:focus {
+            outline: none;
+            border-color: #9CAF88;
+            background: #FFFFFF;
+        }
+
+        .toggle-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toggle {
+            position: relative;
+            width: 44px;
+            height: 24px;
+            cursor: pointer;
+        }
+
+        .toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #ddd;
+            border-radius: 24px;
+            transition: 0.3s ease;
+        }
+
+        .toggle-slider::before {
+            content: '';
+            position: absolute;
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background: white;
+            border-radius: 50%;
+            transition: 0.3s ease;
+        }
+
+        .toggle input:checked + .toggle-slider {
+            background: #2F3E2F;
+        }
+
+        .toggle input:checked + .toggle-slider::before {
+            transform: translateX(20px);
+        }
+
+        .toggle-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .toggle-label.in-stock {
+            color: #27ae60;
+        }
+
+        .toggle-label.out-of-stock {
+            color: #E74C3C;
+        }
+
+        .save-btn {
+            background: #2F3E2F;
+            color: white;
+            border: none;
+            padding: 14px 40px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .save-btn:hover {
+            background: #3C2F2F;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(47, 62, 47, 0.25);
+        }
+
+        .save-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .status-message {
+            display: inline-block;
+            margin-left: 20px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .status-message.success {
+            background: #E8F5E9;
+            color: #27ae60;
+        }
+
+        .status-message.error {
+            background: #FFEBEE;
+            color: #E74C3C;
+        }
+
+        .status-message.hidden {
+            display: none;
+        }
+
+        .admin-footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #F0EDE8;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #999;
+            font-size: 0.85rem;
+        }
+
+        .admin-footer a {
+            color: #2F3E2F;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .admin-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #F0EDE8;
+            border-top-color: #2F3E2F;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .admin-container { padding: 20px; }
+            .admin-name { font-size: 1.6rem; }
+            .admin-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+            table { font-size: 0.8rem; }
+            th, td { padding: 8px 10px; }
+            .price-input { width: 70px; padding: 4px 8px; font-size: 0.75rem; }
+            .toggle-wrapper { gap: 6px; }
+            .save-btn { width: 100%; justify-content: center; }
+            .admin-footer { flex-direction: column; gap: 10px; text-align: center; }
+        }
+
+        @media (max-width: 480px) {
+            .admin-container { padding: 15px; }
+            .product-thumb { width: 30px; height: 30px; }
+            .product-name-text { font-size: 0.8rem; }
+            .price-input { width: 60px; }
+        }
     </style>
 </head>
 <body>
@@ -83,17 +452,15 @@
 
     <script>
         // ============================================
-        // SUPABASE CONFIGURATION
+        // SUPABASE CONFIGURATION - FIXED
         // ============================================
         
-        // ✅ FIX: Store credentials securely
-        // For production, use environment variables or a backend proxy
-        // These are ANON keys - they're safe to expose but should be restricted
+        // ✅ FIX: Use const for Supabase client
         const SUPABASE_URL = 'https://kpnfylunzxrvxsymyrks.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtwbmZ5bHVuenhydnhzeW15cmtzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM2NjgwNjksImV4cCI6MjA5OTI0NDA2OX0.oMitGZ7hif6rQsojuqfypRrRJHfTL1XmVo-Dx57GmFg';
 
-        // ✅ FIX: Add retry logic
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+        // ✅ FIX: Check if supabase already exists in window
+        const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
             auth: {
                 autoRefreshToken: true,
                 persistSession: true
@@ -122,7 +489,7 @@
                 description: 'A bold and energetic fragrance...', 
                 inspired: 'Azzaro Wanted', 
                 notes: '🍋 Lemon • 🌿 Ginger...', 
-                displayPrice: 150,  // ✅ FIX: Store as number
+                displayPrice: 150,
                 price30ml: 150, 
                 price100ml: 450, 
                 inStock: true, 
@@ -484,7 +851,6 @@
         // UTILITY FUNCTIONS
         // ============================================
 
-        // ✅ FIX: Sanitize HTML to prevent XSS
         function escapeHtml(text) {
             if (!text) return '';
             const div = document.createElement('div');
@@ -492,15 +858,13 @@
             return div.innerHTML;
         }
 
-        // ✅ FIX: Format price with currency
         function formatPrice(price) {
-            if (price === null || price === undefined || price === '') return '-';
+            if (price === null || price === undefined || price === '') return '';
             const numeric = typeof price === 'number' ? price : parseFloat(String(price).replace(/[^0-9.]/g, ''));
-            if (isNaN(numeric) || numeric === 0) return '-';
+            if (isNaN(numeric) || numeric === 0) return '';
             return `R${numeric}`;
         }
 
-        // ✅ FIX: Validate and parse price input
         function parsePriceInput(value) {
             const clean = String(value).replace(/[^0-9.]/g, '');
             const num = parseFloat(clean);
@@ -511,18 +875,16 @@
         // DATABASE OPERATIONS
         // ============================================
 
-        // ✅ FIX: Check if products table exists
+        // ✅ FIX: Use supabaseClient instead of supabase
         async function ensureTableExists() {
             try {
-                const { error } = await supabase
+                const { error } = await supabaseClient
                     .from('products')
                     .select('id')
                     .limit(1);
                 
-                if (error && error.code === '42P01') { // Table doesn't exist
+                if (error && error.code === '42P01') {
                     console.log('Creating products table...');
-                    // You'll need to create this via Supabase SQL editor
-                    // or use the Supabase dashboard
                     return false;
                 }
                 return true;
@@ -532,18 +894,16 @@
             }
         }
 
-        // ✅ FIX: Load products with better error handling
         async function loadProducts() {
             const tbody = document.getElementById('productTableBody');
             
             try {
-                // Check table exists
                 const tableExists = await ensureTableExists();
                 if (!tableExists) {
                     throw new Error('Products table not found. Please create it in Supabase dashboard.');
                 }
 
-                const { data, error } = await supabase
+                const { data, error } = await supabaseClient
                     .from('products')
                     .select('*')
                     .order('id');
@@ -554,16 +914,14 @@
                     products = data;
                     console.log('✅ Products loaded from Supabase:', products.length);
                 } else {
-                    // Seed the database
                     console.log('🌱 Seeding database with initial products...');
-                    const { error: seedError } = await supabase
+                    const { error: seedError } = await supabaseClient
                         .from('products')
                         .upsert(seedProducts);
                     
                     if (seedError) throw seedError;
                     
-                    // Reload products
-                    const { data: seededData, error: reloadError } = await supabase
+                    const { data: seededData, error: reloadError } = await supabaseClient
                         .from('products')
                         .select('*')
                         .order('id');
@@ -580,7 +938,6 @@
                 
             } catch (error) {
                 console.error('Error loading products:', error);
-                // Use seed data as fallback
                 products = seedProducts;
                 renderProducts();
                 updateStatusMessage(`⚠️ ${error.message || 'Using local data'}`, 'error');
@@ -614,14 +971,11 @@
                 const categoryLabel = categoryMap[product.category] || product.category;
                 const inStock = product.inStock !== undefined ? product.inStock : true;
                 
-                // ✅ FIX: Handle null/undefined values
                 const price30ml = product.price30ml !== undefined && product.price30ml !== null ? product.price30ml : '';
                 const price100ml = product.price100ml !== undefined && product.price100ml !== null ? product.price100ml : '';
                 
                 const imageSrc = product.image || '';
                 const hasImage = imageSrc && imageSrc !== '';
-                
-                // ✅ FIX: Escape product name
                 const safeName = escapeHtml(product.name);
                 
                 return `
@@ -658,7 +1012,6 @@
                 `;
             }).join('');
 
-            // ✅ FIX: Attach event listeners with debounce
             attachEventListeners();
         }
 
@@ -667,9 +1020,7 @@
         // ============================================
 
         function attachEventListeners() {
-            // Stock toggles
             document.querySelectorAll('.stock-toggle').forEach(toggle => {
-                // Remove old listeners
                 const newToggle = toggle.cloneNode(true);
                 toggle.parentNode.replaceChild(newToggle, toggle);
                 
@@ -687,7 +1038,6 @@
                 });
             });
 
-            // Price inputs - ✅ FIX: Use input event for real-time
             document.querySelectorAll('.price-input').forEach(input => {
                 const newInput = input.cloneNode(true);
                 input.parentNode.replaceChild(newInput, input);
@@ -697,7 +1047,6 @@
                 });
                 
                 newInput.addEventListener('blur', function() {
-                    // Validate and format price on blur
                     const value = this.value.trim();
                     if (value) {
                         const parsed = parsePriceInput(value);
@@ -717,7 +1066,6 @@
             changesMade = true;
             updateStatusMessage('✏️ Unsaved changes...', '');
             
-            // ✅ FIX: Auto-save after 3 seconds of inactivity
             clearTimeout(autoSaveTimeout);
             autoSaveTimeout = setTimeout(() => {
                 if (changesMade && !isSaving) {
@@ -731,16 +1079,15 @@
         // ============================================
 
         function setupRealTimeUpdates() {
-            // ✅ FIX: Proper channel cleanup
-            const channel = supabase
+            // ✅ FIX: Use supabaseClient
+            const channel = supabaseClient
                 .channel('products-changes')
                 .on('postgres_changes', 
                     { event: '*', schema: 'public', table: 'products' },
                     async (payload) => {
                         console.log('🔄 Real-time update:', payload);
-                        // Reload products
                         try {
-                            const { data, error } = await supabase
+                            const { data, error } = await supabaseClient
                                 .from('products')
                                 .select('*')
                                 .order('id');
@@ -758,7 +1105,6 @@
                 )
                 .subscribe();
             
-            // Store channel for cleanup
             window._supabaseChannel = channel;
         }
 
@@ -792,7 +1138,6 @@
             updateStatusMessage('💾 Saving changes to Supabase...', '');
 
             try {
-                // Collect data from UI
                 const rows = document.querySelectorAll('#productTableBody tr[data-product-id]');
                 const updatedProducts = [];
 
@@ -807,19 +1152,16 @@
 
                     const inStock = toggle ? toggle.checked : true;
                     
-                    // ✅ FIX: Parse prices correctly
                     const price30mlRaw = price30mlInput ? price30mlInput.value.trim() : '';
                     const price100mlRaw = price100mlInput ? price100mlInput.value.trim() : '';
                     
                     const price30ml = parsePriceInput(price30mlRaw);
                     const price100ml = price100mlRaw ? parsePriceInput(price100mlRaw) : null;
 
-                    // Validate prices
                     if (price30ml === null || price30ml <= 0) {
                         throw new Error(`Invalid price for ${product.name}: "${price30mlRaw}"`);
                     }
 
-                    // Create updated product
                     updatedProducts.push({
                         ...product,
                         inStock: inStock,
@@ -830,8 +1172,8 @@
                     });
                 });
 
-                // ✅ FIX: Use upsert with conflict handling
-                const { error } = await supabase
+                // ✅ FIX: Use supabaseClient
+                const { error } = await supabaseClient
                     .from('products')
                     .upsert(updatedProducts, { 
                         onConflict: 'id',
@@ -840,13 +1182,11 @@
                 
                 if (error) throw error;
                 
-                // Update local state
                 products = updatedProducts;
                 changesMade = false;
                 clearTimeout(autoSaveTimeout);
                 
                 updateStatusMessage('✅ Changes saved successfully! Website updating automatically.', 'success');
-
                 setTimeout(() => updateStatusMessage('', ''), 5000);
 
             } catch (error) {
@@ -882,7 +1222,6 @@
             loadProducts();
             setupSaveButton();
             
-            // ✅ FIX: Warn before leaving with unsaved changes
             window.addEventListener('beforeunload', function(e) {
                 if (changesMade) {
                     e.preventDefault();
@@ -892,7 +1231,6 @@
             });
         });
 
-        // ✅ FIX: Cleanup on page unload
         window.addEventListener('unload', function() {
             if (window._supabaseChannel) {
                 window._supabaseChannel.unsubscribe();
