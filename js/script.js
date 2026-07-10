@@ -5,7 +5,15 @@
 let products = [];
 let cart = [];
 
-// ===== PRODUCTS DATA =====
+// ===== SUPABASE CONFIGURATION =====
+// REPLACE WITH YOUR ACTUAL SUPABASE CREDENTIALS
+const SUPABASE_URL = 'https://kpnfylunzxrvxsymyrks.supabase.co/rest/v1/';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtwbmZ5bHVuenhydnhzeW15cmtzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM2NjgwNjksImV4cCI6MjA5OTI0NDA2OX0.oMitGZ7hif6rQsojuqfypRrRJHfTL1XmVo-Dx57GmFg';
+
+// Initialize Supabase
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+// ===== PRODUCTS DATA (Fallback/Seed) =====
 const productData = [
     // ===== MALE FRAGRANCES ======
     {
@@ -376,9 +384,62 @@ const productData = [
 ];
 
 // ===== LOAD PRODUCTS =====
-function loadProducts() {
-    products = productData;
-    renderProducts(1);
+async function loadProducts() {
+    try {
+        // Try Supabase first
+        const { data, error } = await supabaseClient
+            .from('products')
+            .select('*')
+            .order('id');
+        
+        if (error) throw error;
+        
+        if (data && data.length > 0) {
+            products = data;
+            console.log('✅ Products loaded from Supabase');
+        } else {
+            // Seed Supabase with initial data
+            products = productData;
+            const { error: seedError } = await supabaseClient
+                .from('products')
+                .upsert(products);
+            
+            if (seedError) throw seedError;
+            console.log('✅ Products seeded to Supabase');
+        }
+        
+        renderProducts(1);
+        setupPagination();
+        setupDetailButtons();
+        setupAddToCartButtons();
+        setupRealTimeUpdates();
+        
+    } catch (error) {
+        console.error('Error loading products:', error);
+        // Fallback to local data
+        products = productData;
+        renderProducts(1);
+        setupPagination();
+        setupDetailButtons();
+        setupAddToCartButtons();
+    }
+}
+
+// ===== REAL-TIME UPDATES =====
+function setupRealTimeUpdates() {
+    supabaseClient
+        .channel('products-changes')
+        .on('postgres_changes', 
+            { event: '*', schema: 'public', table: 'products' },
+            function(payload) {
+                console.log('🔄 Real-time update:', payload);
+                // Reload products from Supabase
+                loadProducts();
+                // Update cart if needed
+                updateCartUI();
+            }
+        )
+        .subscribe();
 }
 
 // ===== CATEGORY PAGES =====
@@ -394,7 +455,7 @@ function renderProducts(page = 1) {
     if (!grid) return;
 
     const category = categoryMap[page] || 'male';
-    const filtered = products.filter(p => p.category === category);
+    const filtered = products.filter(function(p) { return p.category === category; });
 
     if (!filtered || filtered.length === 0) {
         grid.innerHTML = `
@@ -405,7 +466,7 @@ function renderProducts(page = 1) {
         return;
     }
 
-    grid.innerHTML = filtered.map(product => {
+    grid.innerHTML = filtered.map(function(product) {
         const isOutOfStock = product.inStock === false;
         
         return `
@@ -444,11 +505,11 @@ function renderProducts(page = 1) {
 
 // ===== SETUP ADD TO CART BUTTONS =====
 function setupAddToCartButtons() {
-    document.querySelectorAll('.btn-add-cart').forEach(btn => {
+    document.querySelectorAll('.btn-add-cart').forEach(function(btn) {
         btn.addEventListener('click', function(e) {
             e.stopPropagation();
-            const productId = parseInt(this.dataset.productId);
-            const product = products.find(p => p.id === productId);
+            var productId = parseInt(this.dataset.productId);
+            var product = products.find(function(p) { return p.id === productId; });
             if (product) {
                 addToCart(product);
             }
@@ -458,23 +519,23 @@ function setupAddToCartButtons() {
 
 // ===== CART FUNCTIONS =====
 function addToCart(product) {
-    const existing = cart.find(item => item.id === product.id);
+    var existing = cart.find(function(item) { return item.id === product.id; });
     if (existing) {
         existing.quantity += 1;
     } else {
         cart.push({ ...product, quantity: 1, selectedSize: product.sizes[0] });
     }
     updateCartUI();
-    showCartNotification(`${product.name} added to cart!`);
+    showCartNotification(product.name + ' added to cart!');
 }
 
 function removeFromCart(productId) {
-    cart = cart.filter(item => item.id !== productId);
+    cart = cart.filter(function(item) { return item.id !== productId; });
     updateCartUI();
 }
 
 function updateCartQuantity(productId, quantity) {
-    const item = cart.find(item => item.id === productId);
+    var item = cart.find(function(item) { return item.id === productId; });
     if (item) {
         if (quantity <= 0) {
             removeFromCart(productId);
@@ -486,21 +547,21 @@ function updateCartQuantity(productId, quantity) {
 }
 
 function getCartTotal() {
-    let total = 0;
-    cart.forEach(item => {
-        const price = parseInt(item.selectedSize.price.replace('R', ''));
+    var total = 0;
+    cart.forEach(function(item) {
+        var price = parseInt(item.selectedSize.price.replace('R', ''));
         total += price * item.quantity;
     });
     return total;
 }
 
 function updateCartUI() {
-    const countEl = document.getElementById('cartCount');
-    const itemsEl = document.getElementById('cartItems');
-    const totalEl = document.getElementById('cartTotal');
+    var countEl = document.getElementById('cartCount');
+    var itemsEl = document.getElementById('cartItems');
+    var totalEl = document.getElementById('cartTotal');
     
     if (countEl) {
-        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        var totalItems = cart.reduce(function(sum, item) { return sum + item.quantity; }, 0);
         countEl.textContent = totalItems;
     }
     
@@ -508,7 +569,8 @@ function updateCartUI() {
         if (cart.length === 0) {
             itemsEl.innerHTML = '<p class="cart-empty">Your cart is empty.</p>';
         } else {
-            itemsEl.innerHTML = cart.map(item => `
+            itemsEl.innerHTML = cart.map(function(item) {
+                return `
                 <div class="cart-item">
                     <div class="cart-item-info">
                         <span class="cart-item-name">${item.name}</span>
@@ -522,18 +584,17 @@ function updateCartUI() {
                         <button class="cart-remove-btn" onclick="removeFromCart(${item.id})"><i class="fas fa-trash"></i></button>
                     </div>
                 </div>
-            `).join('');
+            `}).join('');
         }
     }
     
     if (totalEl) {
-        totalEl.textContent = `R${getCartTotal()}`;
+        totalEl.textContent = 'R' + getCartTotal();
     }
 }
 
 function showCartNotification(message) {
-    // Simple toast notification
-    const toast = document.createElement('div');
+    var toast = document.createElement('div');
     toast.style.cssText = `
         position: fixed;
         bottom: 100px;
@@ -551,19 +612,19 @@ function showCartNotification(message) {
     `;
     toast.textContent = message;
     document.body.appendChild(toast);
-    setTimeout(() => {
+    setTimeout(function() {
         toast.style.opacity = '0';
         toast.style.transition = 'opacity 0.3s ease';
-        setTimeout(() => toast.remove(), 300);
+        setTimeout(function() { toast.remove(); }, 300);
     }, 2500);
 }
 
 // ===== CART MODAL =====
 function setupCartModal() {
-    const cartBtn = document.getElementById('cartBtn');
-    const cartOverlay = document.getElementById('cartOverlay');
-    const cartClose = document.getElementById('cartClose');
-    const checkoutBtn = document.getElementById('cartCheckout');
+    var cartBtn = document.getElementById('cartBtn');
+    var cartOverlay = document.getElementById('cartOverlay');
+    var cartClose = document.getElementById('cartClose');
+    var checkoutBtn = document.getElementById('cartCheckout');
     
     if (cartBtn) {
         cartBtn.addEventListener('click', function(e) {
@@ -604,36 +665,36 @@ function setupCartModal() {
 }
 
 function closeCart() {
-    const cartOverlay = document.getElementById('cartOverlay');
+    var cartOverlay = document.getElementById('cartOverlay');
     cartOverlay.classList.remove('active');
     document.body.style.overflow = '';
 }
 
 function sendCartOrder() {
-    let message = `Hello Sweet Scent%0A%0AI'd like to place an order.%0A%0A--- ORDER SUMMARY ---%0A`;
-    let total = 0;
+    var message = 'Hello Sweet Scent%0A%0AI\'d like to place an order.%0A%0A--- ORDER SUMMARY ---%0A';
+    var total = 0;
     
-    cart.forEach((item, index) => {
-        const price = parseInt(item.selectedSize.price.replace('R', ''));
-        const subtotal = price * item.quantity;
+    cart.forEach(function(item, index) {
+        var price = parseInt(item.selectedSize.price.replace('R', ''));
+        var subtotal = price * item.quantity;
         total += subtotal;
-        message += `%0A${index + 1}. ${item.name}%0A   Size: ${item.selectedSize.size}%0A   Quantity: ${item.quantity}%0A   Price: ${item.selectedSize.price}%0A   Subtotal: R${subtotal}%0A`;
+        message += '%0A' + (index + 1) + '. ' + item.name + '%0A   Size: ' + item.selectedSize.size + '%0A   Quantity: ' + item.quantity + '%0A   Price: ' + item.selectedSize.price + '%0A   Subtotal: R' + subtotal + '%0A';
     });
     
-    message += `%0A--- TOTAL: R${total} ---%0A%0ACustomer Details:%0AName: %0AContact Number: %0ADelivery method: (Uber Courier / Paxi / Collection)%0A%0AAdditional Notes:%0A%0APlease let me know the total amount and payment details.%0A%0AThank you.`;
+    message += '%0A--- TOTAL: R' + total + ' ---%0A%0ACustomer Details:%0AName: %0AContact Number: %0ADelivery method: (Uber Courier / Paxi / Collection)%0A%0AAdditional Notes:%0A%0APlease let me know the total amount and payment details.%0A%0AThank you.';
     
-    window.open(`https://wa.me/27622102873?text=${message}`, '_blank');
+    window.open('https://wa.me/27622102873?text=' + message, '_blank');
     closeCart();
 }
 
 // ===== SETUP PAGINATION =====
 function setupPagination() {
-    const pageBtns = document.querySelectorAll('.page-btn');
-    pageBtns.forEach(btn => {
+    var pageBtns = document.querySelectorAll('.page-btn');
+    pageBtns.forEach(function(btn) {
         btn.addEventListener('click', function() {
-            pageBtns.forEach(b => b.classList.remove('active'));
+            pageBtns.forEach(function(b) { b.classList.remove('active'); });
             this.classList.add('active');
-            const page = parseInt(this.dataset.page);
+            var page = parseInt(this.dataset.page);
             renderProducts(page);
             document.getElementById('catalogue').scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
@@ -642,22 +703,22 @@ function setupPagination() {
 
 // ===== DETAIL BUTTONS =====
 function setupDetailButtons() {
-    document.querySelectorAll('.btn-detail').forEach(btn => {
+    document.querySelectorAll('.btn-detail').forEach(function(btn) {
         btn.addEventListener('click', function(e) {
             e.stopPropagation();
-            const productId = parseInt(this.dataset.productId);
-            const product = products.find(p => p.id === productId);
+            var productId = parseInt(this.dataset.productId);
+            var product = products.find(function(p) { return p.id === productId; });
             if (product) {
                 openProductModal(product);
             }
         });
     });
     
-    document.querySelectorAll('.product-image').forEach(img => {
+    document.querySelectorAll('.product-image').forEach(function(img) {
         img.addEventListener('click', function() {
-            const card = this.closest('.product-card');
-            const productId = parseInt(card.dataset.productId);
-            const product = products.find(p => p.id === productId);
+            var card = this.closest('.product-card');
+            var productId = parseInt(card.dataset.productId);
+            var product = products.find(function(p) { return p.id === productId; });
             if (product) {
                 openProductModal(product);
             }
@@ -667,19 +728,19 @@ function setupDetailButtons() {
 
 // ===== OPEN PRODUCT MODAL =====
 function openProductModal(product) {
-    const modal = document.getElementById('productModal');
-    const content = document.getElementById('modalContent');
+    var modal = document.getElementById('productModal');
+    var content = document.getElementById('modalContent');
     
-    // Default to first size (30ml)
-    const defaultSize = product.sizes[0];
-    const defaultPrice = parseInt(defaultSize.price.replace('R', ''));
+    var defaultSize = product.sizes[0];
+    var defaultPrice = parseInt(defaultSize.price.replace('R', ''));
     
-    // Create size buttons HTML
-    const sizeButtonsHTML = product.sizes.map((size, index) => `
-        <button class="modal-size-btn ${index === 0 ? 'active' : ''}" data-size="${size.size}" data-price="${size.price}" data-image="${size.image}">
-            ${size.size} · ${size.price}
-        </button>
-    `).join('');
+    var sizeButtonsHTML = product.sizes.map(function(size, index) {
+        return `
+            <button class="modal-size-btn ${index === 0 ? 'active' : ''}" data-size="${size.size}" data-price="${size.price}" data-image="${size.image}">
+                ${size.size} · ${size.price}
+            </button>
+        `;
+    }).join('');
     
     content.innerHTML = `
         <div class="modal-product-image-wrapper">
@@ -703,7 +764,7 @@ function openProductModal(product) {
         <div class="modal-quantity-selector">
             <label for="modalQuantity">Quantity:</label>
             <select id="modalQuantity">
-                ${[1,2,3,4,5,6,7,8,9,10].map(num => `<option value="${num}">${num}</option>`).join('')}
+                ${[1,2,3,4,5,6,7,8,9,10].map(function(num) { return `<option value="${num}">${num}</option>`; }).join('')}
             </select>
         </div>
         
@@ -722,40 +783,39 @@ function openProductModal(product) {
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
     
-    // Set up size button functionality
-    const sizeButtons = document.querySelectorAll('.modal-size-btn');
-    const productImage = document.getElementById('modalProductImage');
-    const totalPriceDisplay = document.getElementById('modalTotalPrice');
-    const quantitySelect = document.getElementById('modalQuantity');
-    const whatsappBtn = document.getElementById('modalWhatsAppBtn');
-    const addToCartBtn = document.getElementById('modalAddToCartBtn');
+    var sizeButtons = document.querySelectorAll('.modal-size-btn');
+    var productImage = document.getElementById('modalProductImage');
+    var totalPriceDisplay = document.getElementById('modalTotalPrice');
+    var quantitySelect = document.getElementById('modalQuantity');
+    var whatsappBtn = document.getElementById('modalWhatsAppBtn');
+    var addToCartBtn = document.getElementById('modalAddToCartBtn');
     
-    let selectedSize = defaultSize;
-    let selectedPrice = defaultPrice;
+    var selectedSize = defaultSize;
+    var selectedPrice = defaultPrice;
     
     function updateWhatsAppLink() {
-        const quantity = parseInt(quantitySelect.value);
-        const total = selectedPrice * quantity;
-        totalPriceDisplay.textContent = `R${total}`;
+        var quantity = parseInt(quantitySelect.value);
+        var total = selectedPrice * quantity;
+        totalPriceDisplay.textContent = 'R' + total;
         
-        const message = `Hello Sweet Scent%0A%0AI'd like to place an order.%0A%0AProduct: ${product.name}%0ASize: ${selectedSize.size}%0AQuantity: ${quantity}%0ATotal: R${total}%0AName: %0A%0APlease let me know the total amount and payment details.%0A%0AThank you.`;
-        whatsappBtn.href = `https://wa.me/27622102873?text=${message}`;
+        var message = 'Hello Sweet Scent%0A%0AI\'d like to place an order.%0A%0AProduct: ' + product.name + '%0ASize: ' + selectedSize.size + '%0AQuantity: ' + quantity + '%0ATotal: R' + total + '%0AName: %0A%0APlease let me know the total amount and payment details.%0A%0AThank you.';
+        whatsappBtn.href = 'https://wa.me/27622102873?text=' + message;
     }
     
     function updatePriceAndImage() {
         updateWhatsAppLink();
     }
     
-    sizeButtons.forEach(btn => {
+    sizeButtons.forEach(function(btn) {
         btn.addEventListener('click', function() {
-            sizeButtons.forEach(b => b.classList.remove('active'));
+            sizeButtons.forEach(function(b) { b.classList.remove('active'); });
             this.classList.add('active');
             
-            const size = this.dataset.size;
-            const price = this.dataset.price;
-            const image = this.dataset.image;
+            var size = this.dataset.size;
+            var price = this.dataset.price;
+            var image = this.dataset.image;
             
-            selectedSize = product.sizes.find(s => s.size === size);
+            selectedSize = product.sizes.find(function(s) { return s.size === size; });
             selectedPrice = parseInt(price.replace('R', ''));
             
             productImage.src = image;
@@ -765,35 +825,33 @@ function openProductModal(product) {
     
     quantitySelect.addEventListener('change', updatePriceAndImage);
     
-    // Add to Cart from Modal
     addToCartBtn.addEventListener('click', function() {
-        const quantity = parseInt(quantitySelect.value);
-        const existing = cart.find(item => item.id === product.id);
+        var quantity = parseInt(quantitySelect.value);
+        var existing = cart.find(function(item) { return item.id === product.id; });
         if (existing) {
             existing.quantity += quantity;
         } else {
             cart.push({ ...product, quantity: quantity, selectedSize: selectedSize });
         }
         updateCartUI();
-        showCartNotification(`${product.name} added to cart!`);
+        showCartNotification(product.name + ' added to cart!');
         closeModal();
     });
     
-    // Initial update
     updatePriceAndImage();
 }
 
 // ===== CLOSE MODAL =====
 function closeModal() {
-    const modal = document.getElementById('productModal');
+    var modal = document.getElementById('productModal');
     modal.classList.remove('active');
     document.body.style.overflow = '';
 }
 
 // ===== CLOSE MODAL EVENTS =====
 function setupModalEvents() {
-    const modal = document.getElementById('productModal');
-    const closeBtn = document.getElementById('modalClose');
+    var modal = document.getElementById('productModal');
+    var closeBtn = document.getElementById('modalClose');
     
     closeBtn.addEventListener('click', closeModal);
     modal.addEventListener('click', function(e) {
@@ -810,23 +868,23 @@ function setupModalEvents() {
 
 // ===== CONTACT FORM =====
 function setupContactForm() {
-    const form = document.getElementById('contactForm');
+    var form = document.getElementById('contactForm');
     if (!form) return;
 
     form.addEventListener('submit', function(e) {
         e.preventDefault();
 
-        const name = document.getElementById('contactName').value.trim();
-        const phone = document.getElementById('contactPhone').value.trim();
-        const message = document.getElementById('contactMessage').value.trim();
+        var name = document.getElementById('contactName').value.trim();
+        var phone = document.getElementById('contactPhone').value.trim();
+        var message = document.getElementById('contactMessage').value.trim();
 
         if (!name || !phone || !message) {
             alert('Please fill in all fields');
             return;
         }
 
-        const whatsappMessage = `Hi Sweet Scent!%0A%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0AMessage: ${encodeURIComponent(message)}`;
-        window.open(`https://wa.me/27622102873?text=${whatsappMessage}`, '_blank');
+        var whatsappMessage = 'Hi Sweet Scent!%0A%0AName: ' + encodeURIComponent(name) + '%0APhone: ' + encodeURIComponent(phone) + '%0AMessage: ' + encodeURIComponent(message);
+        window.open('https://wa.me/27622102873?text=' + whatsappMessage, '_blank');
 
         form.reset();
         alert('Thank you! Your message has been sent via WhatsApp.');
@@ -835,8 +893,8 @@ function setupContactForm() {
 
 // ===== MOBILE HAMBURGER =====
 function setupHamburger() {
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.getElementById('navMenu');
+    var hamburger = document.getElementById('hamburger');
+    var navMenu = document.getElementById('navMenu');
 
     if (!hamburger || !navMenu) return;
 
@@ -846,10 +904,10 @@ function setupHamburger() {
         this.querySelector('i').classList.toggle('fa-times');
     });
 
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', () => {
+    document.querySelectorAll('.nav-link').forEach(function(link) {
+        link.addEventListener('click', function() {
             navMenu.classList.remove('active');
-            const icon = hamburger.querySelector('i');
+            var icon = hamburger.querySelector('i');
             icon.classList.remove('fa-times');
             icon.classList.add('fa-bars');
         });
@@ -858,26 +916,26 @@ function setupHamburger() {
 
 // ===== ACTIVE NAV LINK =====
 function setupActiveNav() {
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
+    var sections = document.querySelectorAll('section[id]');
+    var navLinks = document.querySelectorAll('.nav-link');
 
-    window.addEventListener('scroll', () => {
-        let current = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop - 150;
+    window.addEventListener('scroll', function() {
+        var current = '';
+        sections.forEach(function(section) {
+            var sectionTop = section.offsetTop - 150;
             if (window.scrollY >= sectionTop) {
                 current = section.getAttribute('id');
             }
         });
 
-        navLinks.forEach(link => {
+        navLinks.forEach(function(link) {
             link.classList.remove('active');
-            if (link.getAttribute('href') === `#${current}`) {
+            if (link.getAttribute('href') === '#' + current) {
                 link.classList.add('active');
             }
         });
 
-        const header = document.querySelector('.header');
+        var header = document.querySelector('.header');
         if (header) {
             if (window.scrollY > 50) {
                 header.classList.add('header-scrolled');
@@ -890,12 +948,12 @@ function setupActiveNav() {
 
 // ===== VALUE POPUP =====
 function setupValuePopup() {
-    const popup = document.getElementById('valuePopup');
-    const closeBtn = document.getElementById('valuePopupClose');
-    const title = document.getElementById('valuePopupTitle');
-    const description = document.getElementById('valuePopupDescription');
+    var popup = document.getElementById('valuePopup');
+    var closeBtn = document.getElementById('valuePopupClose');
+    var title = document.getElementById('valuePopupTitle');
+    var description = document.getElementById('valuePopupDescription');
     
-    const valueDescriptions = {
+    var valueDescriptions = {
         quality: {
             title: 'Quality',
             description: 'We never compromise on quality. Every fragrance is crafted with precision, using premium ingredients to ensure a long-lasting experience that you can trust.'
@@ -922,10 +980,10 @@ function setupValuePopup() {
         }
     };
     
-    document.querySelectorAll('.value-tag').forEach(tag => {
+    document.querySelectorAll('.value-tag').forEach(function(tag) {
         tag.addEventListener('click', function() {
-            const value = this.dataset.value;
-            const data = valueDescriptions[value];
+            var value = this.dataset.value;
+            var data = valueDescriptions[value];
             if (data) {
                 title.textContent = data.title;
                 description.textContent = data.description;
@@ -977,7 +1035,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setupCartModal();
     initAOS();
 
-    setTimeout(() => {
+    setTimeout(function() {
         if (typeof AOS !== 'undefined') {
             AOS.refresh();
         }
