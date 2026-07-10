@@ -425,8 +425,9 @@ async function loadProducts() {
 
 // ===== GET FILTERED PRODUCTS =====
 function getFilteredProducts() {
-    if (currentCategory === 'all') {
-        return products;
+    // If no category is set, default to 'male'
+    if (!currentCategory || currentCategory === 'all') {
+        currentCategory = 'male';
     }
     return products.filter(function(p) { return p.category === currentCategory; });
 }
@@ -534,6 +535,9 @@ function updatePaginationButtons() {
 function setupCategoryTabs() {
     const tabs = document.querySelectorAll('.category-tab');
     if (!tabs.length) return;
+    
+    // Set default category to 'male' (first tab)
+    currentCategory = 'male';
     
     tabs.forEach(function(tab) {
         tab.addEventListener('click', function() {
