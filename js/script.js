@@ -7,7 +7,7 @@ let cart = [];
 
 // ===== SUPABASE CONFIGURATION =====
 // REPLACE WITH YOUR ACTUAL SUPABASE CREDENTIALS
-const SUPABASE_URL = 'https://kpnfylunzxrvxsymyrks.supabase.co/rest/v1/';
+const SUPABASE_URL = 'https://kpnfylunzxrvxsymyrks.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtwbmZ5bHVuenhydnhzeW15cmtzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM2NjgwNjksImV4cCI6MjA5OTI0NDA2OX0.oMitGZ7hif6rQsojuqfypRrRJHfTL1XmVo-Dx57GmFg';
 
 // Initialize Supabase
