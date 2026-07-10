@@ -4,6 +4,9 @@
 
 let products = [];
 let cart = [];
+let currentCategory = 'all';
+let currentPage = 1;
+const ITEMS_PER_PAGE = 6;
 
 // ===== SUPABASE CONFIGURATION =====
 // REPLACE WITH YOUR ACTUAL SUPABASE CREDENTIALS
@@ -408,7 +411,7 @@ async function loadProducts() {
             console.log('✅ Products seeded to Supabase');
         }
         
-        renderProducts(1);
+        renderProducts();
         setupPagination();
         setupDetailButtons();
         setupAddToCartButtons();
@@ -418,7 +421,7 @@ async function loadProducts() {
         console.error('Error loading products:', error);
         // Fallback to local data
         products = productData;
-        renderProducts(1);
+        renderProducts();
         setupPagination();
         setupDetailButtons();
         setupAddToCartButtons();
@@ -442,31 +445,52 @@ function setupRealTimeUpdates() {
         .subscribe();
 }
 
-// ===== CATEGORY PAGES =====
-const categoryMap = {
-    1: 'male',
-    2: 'female',
-    3: 'unisex'
-};
+// ===== GET FILTERED PRODUCTS =====
+function getFilteredProducts() {
+    if (currentCategory === 'all') {
+        return products;
+    }
+    return products.filter(function(p) { return p.category === currentCategory; });
+}
+
+// ===== GET PAGINATED PRODUCTS =====
+function getPaginatedProducts(filtered) {
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+    return filtered.slice(startIndex, endIndex);
+}
+
+// ===== GET TOTAL PAGES =====
+function getTotalPages(filtered) {
+    return Math.ceil(filtered.length / ITEMS_PER_PAGE);
+}
 
 // ===== RENDER PRODUCTS =====
-function renderProducts(page = 1) {
+function renderProducts() {
     const grid = document.getElementById('productGrid');
     if (!grid) return;
 
-    const category = categoryMap[page] || 'male';
-    const filtered = products.filter(function(p) { return p.category === category; });
+    const filtered = getFilteredProducts();
+    const totalPages = getTotalPages(filtered);
+    
+    // Reset to page 1 if current page exceeds total pages
+    if (currentPage > totalPages && totalPages > 0) {
+        currentPage = 1;
+    }
+    
+    const paginated = getPaginatedProducts(filtered);
 
-    if (!filtered || filtered.length === 0) {
+    if (!paginated || paginated.length === 0) {
         grid.innerHTML = `
             <div style="grid-column:1/-1; text-align:center; padding:60px 20px;">
                 <p style="color:#999; font-size:1.1rem;">No products found in this category</p>
             </div>
         `;
+        updatePaginationButtons(totalPages);
         return;
     }
 
-    grid.innerHTML = filtered.map(function(product) {
+    grid.innerHTML = paginated.map(function(product) {
         const isOutOfStock = product.inStock === false;
         
         return `
@@ -498,9 +522,67 @@ function renderProducts(page = 1) {
         </div>
     `}).join('');
 
+    // Update pagination
+    updatePaginationButtons(totalPages);
+    
     // Setup detail buttons
     setupDetailButtons();
     setupAddToCartButtons();
+}
+
+// ===== UPDATE PAGINATION BUTTONS =====
+function updatePaginationButtons(totalPages) {
+    const container = document.querySelector('.pagination-container');
+    if (!container) return;
+    
+    if (totalPages <= 1) {
+        container.style.display = 'none';
+        return;
+    }
+    
+    container.style.display = 'flex';
+    let buttonsHTML = '';
+    for (let i = 1; i <= totalPages; i++) {
+        buttonsHTML += `<button class="page-btn ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>`;
+    }
+    container.innerHTML = buttonsHTML;
+    
+    // Re-attach pagination events
+    container.querySelectorAll('.page-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            const page = parseInt(this.dataset.page);
+            if (page !== currentPage) {
+                currentPage = page;
+                renderProducts();
+                // Scroll to catalogue
+                document.getElementById('catalogue').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+}
+
+// ===== SETUP CATEGORY TABS =====
+function setupCategoryTabs() {
+    const tabs = document.querySelectorAll('.category-tab');
+    if (!tabs.length) return;
+    
+    tabs.forEach(function(tab) {
+        tab.addEventListener('click', function() {
+            // Remove active class from all tabs
+            tabs.forEach(function(t) { t.classList.remove('active'); });
+            this.classList.add('active');
+            
+            // Update current category
+            currentCategory = this.dataset.category;
+            currentPage = 1; // Reset to page 1
+            
+            // Re-render products
+            renderProducts();
+            
+            // Scroll to catalogue
+            document.getElementById('catalogue').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    });
 }
 
 // ===== SETUP ADD TO CART BUTTONS =====
@@ -687,16 +769,19 @@ function sendCartOrder() {
     closeCart();
 }
 
-// ===== SETUP PAGINATION =====
+// ===== SETUP PAGINATION (Legacy - kept for compatibility) =====
 function setupPagination() {
+    // This is now handled by renderProducts()
+    // Keep for compatibility with existing code
     var pageBtns = document.querySelectorAll('.page-btn');
     pageBtns.forEach(function(btn) {
         btn.addEventListener('click', function() {
-            pageBtns.forEach(function(b) { b.classList.remove('active'); });
-            this.classList.add('active');
             var page = parseInt(this.dataset.page);
-            renderProducts(page);
-            document.getElementById('catalogue').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            if (page !== currentPage) {
+                currentPage = page;
+                renderProducts();
+                document.getElementById('catalogue').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         });
     });
 }
@@ -1026,7 +1111,7 @@ function initAOS() {
 // ===== INITIALIZE =====
 document.addEventListener('DOMContentLoaded', function() {
     loadProducts();
-    setupPagination();
+    setupCategoryTabs();
     setupHamburger();
     setupActiveNav();
     setupContactForm();

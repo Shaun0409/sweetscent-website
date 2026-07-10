@@ -11,11 +11,11 @@
     "price100ml": "R450",
     "inStock": true,
     "sizes": [
-      { "size": "30ml", "price": "R150", "image": "images/products/Male/30ml/Most Wanted.png" },
-      { "size": "100ml", "price": "R450", "image": "images/products/Male/100ml/Most Wanted.png" }
+      { "size": "30ml", "price": "R150", "image": "/images/products/Male/30ml/Most-Wanted.png" },
+      { "size": "100ml", "price": "R450", "image": "/images/products/Male/100ml/Most-Wanted.png" }
     ],
     "icon": "fa-crown",
-    "image": "images/products/Male/100ml/Most Wanted.png"
+    "image": "/images/products/Male/100ml/Most-Wanted.png"
   },
   {
     "id": 2,
@@ -29,11 +29,11 @@
     "price100ml": "R450",
     "inStock": true,
     "sizes": [
-      { "size": "30ml", "price": "R150", "image": "images/products/Male/30ml/Dunhill Desire.png" },
-      { "size": "100ml", "price": "R450", "image": "images/products/Male/100ml/Dunhill Desire.png" }
+      { "size": "30ml", "price": "R150", "image": "/images/products/Male/30ml/Dunhill-Desire.png" },
+      { "size": "100ml", "price": "R450", "image": "/images/products/Male/100ml/Dunhill-Desire.png" }
     ],
     "icon": "fa-gem",
-    "image": "images/products/Male/100ml/Dunhill Desire.png"
+    "image": "/images/products/Male/100ml/Dunhill-Desire.png"
   },
   {
     "id": 3,
@@ -47,11 +47,11 @@
     "price100ml": "R450",
     "inStock": true,
     "sizes": [
-      { "size": "30ml", "price": "R150", "image": "images/products/Male/30ml/Scandal.png" },
-      { "size": "100ml", "price": "R450", "image": "images/products/Male/100ml/Scandal.png" }
+      { "size": "30ml", "price": "R150", "image": "/images/products/Male/30ml/Scandal.png" },
+      { "size": "100ml", "price": "R450", "image": "/images/products/Male/100ml/Scandal.png" }
     ],
     "icon": "fa-bolt",
-    "image": "images/products/Male/100ml/Scandal.png"
+    "image": "/images/products/Male/100ml/Scandal.png"
   },
   {
     "id": 4,
@@ -65,11 +65,11 @@
     "price100ml": "R450",
     "inStock": true,
     "sizes": [
-      { "size": "30ml", "price": "R150", "image": "images/products/Male/30ml/Invictus.png" },
-      { "size": "100ml", "price": "R450", "image": "images/products/Male/100ml/Invictus.png" }
+      { "size": "30ml", "price": "R150", "image": "/images/products/Male/30ml/Invictus.png" },
+      { "size": "100ml", "price": "R450", "image": "/images/products/Male/100ml/Invictus.png" }
     ],
     "icon": "fa-trophy",
-    "image": "images/products/Male/100ml/Invictus.png"
+    "image": "/images/products/Male/100ml/Invictus.png"
   },
   {
     "id": 5,
@@ -83,11 +83,11 @@
     "price100ml": "R450",
     "inStock": true,
     "sizes": [
-      { "size": "30ml", "price": "R150", "image": "images/products/Male/30ml/Bad.png" },
-      { "size": "100ml", "price": "R450", "image": "images/products/Male/100ml/Bad.png" }
+      { "size": "30ml", "price": "R150", "image": "/images/products/Male/30ml/Bad.png" },
+      { "size": "100ml", "price": "R450", "image": "/images/products/Male/100ml/Bad.png" }
     ],
     "icon": "fa-skull",
-    "image": "images/products/Male/100ml/Bad.png"
+    "image": "/images/products/Male/100ml/Bad.png"
   },
   {
     "id": 6,
@@ -101,11 +101,11 @@
     "price100ml": "R450",
     "inStock": true,
     "sizes": [
-      { "size": "30ml", "price": "R150", "image": "images/products/Male/30ml/Aventus.png" },
-      { "size": "100ml", "price": "R450", "image": "images/products/Male/100ml/Aventus.png" }
+      { "size": "30ml", "price": "R150", "image": "/images/products/Male/30ml/Aventus.png" },
+      { "size": "100ml", "price": "R450", "image": "/images/products/Male/100ml/Aventus.png" }
     ],
     "icon": "fa-fire",
-    "image": "images/products/Male/100ml/Aventus.png"
+    "image": "/images/products/Male/100ml/Aventus.png"
   },
   {
     "id": 7,
@@ -119,12 +119,12 @@
     "price100ml": "R450",
     "inStock": true,
     "sizes": [
-      { "size": "30ml", "price": "R150", "image": "images/products/Female/30ml/Jadore.png" },
-      { "size": "100ml", "price": "R450", "image": "images/products/Female/100ml/Jadore.png" }
+      { "size": "30ml", "price": "R150", "image": "/images/products/Female/30ml/Jadore.png" },
+      { "size": "100ml", "price": "R450", "image": "/images/products/Female/100ml/Jadore.png" }
     ],
     "icon": "fa-flower",
     "badge": "Bestseller",
-    "image": "images/products/Female/100ml/Jadore.png"
+    "image": "/images/products/Female/100ml/Jadore.png"
   },
   {
     "id": 8,
@@ -138,11 +138,11 @@
     "price100ml": "R450",
     "inStock": true,
     "sizes": [
-      { "size": "30ml", "price": "R150", "image": "images/products/Female/30ml/Contre-moi.png" },
-      { "size": "100ml", "price": "R450", "image": "images/products/Female/100ml/Contre-moi.png" }
+      { "size": "30ml", "price": "R150", "image": "/images/products/Female/30ml/Contre-Moi.png" },
+      { "size": "100ml", "price": "R450", "image": "/images/products/Female/100ml/Contre-Moi.png" }
     ],
     "icon": "fa-heart",
-    "image": "images/products/Female/100ml/Contre-moi.png"
+    "image": "/images/products/Female/100ml/Contre-Moi.png"
   },
   {
     "id": 9,
@@ -156,11 +156,11 @@
     "price100ml": "R450",
     "inStock": true,
     "sizes": [
-      { "size": "30ml", "price": "R150", "image": "images/products/Female/30ml/Coconut.png" },
-      { "size": "100ml", "price": "R450", "image": "images/products/Female/100ml/Coconut.png" }
+      { "size": "30ml", "price": "R150", "image": "/images/products/Female/30ml/Coconut.png" },
+      { "size": "100ml", "price": "R450", "image": "/images/products/Female/100ml/Coconut.png" }
     ],
     "icon": "fa-umbrella-beach",
-    "image": "images/products/Female/100ml/Coconut.png"
+    "image": "/images/products/Female/100ml/Coconut.png"
   },
   {
     "id": 10,
@@ -174,11 +174,11 @@
     "price100ml": "R450",
     "inStock": true,
     "sizes": [
-      { "size": "30ml", "price": "R150", "image": "images/products/Female/30ml/Delirious.png" },
-      { "size": "100ml", "price": "R450", "image": "images/products/Female/100ml/Delirious.png" }
+      { "size": "30ml", "price": "R150", "image": "/images/products/Female/30ml/Delirious.png" },
+      { "size": "100ml", "price": "R450", "image": "/images/products/Female/100ml/Delirious.png" }
     ],
     "icon": "fa-star",
-    "image": "images/products/Female/100ml/Delirious.png"
+    "image": "/images/products/Female/100ml/Delirious.png"
   },
   {
     "id": 11,
@@ -192,11 +192,11 @@
     "price100ml": "R450",
     "inStock": true,
     "sizes": [
-      { "size": "30ml", "price": "R150", "image": "images/products/Female/30ml/Mad Love.png" },
-      { "size": "100ml", "price": "R450", "image": "images/products/Female/100ml/Mad Love.png" }
+      { "size": "30ml", "price": "R150", "image": "/images/products/Female/30ml/Mad-Love.png" },
+      { "size": "100ml", "price": "R450", "image": "/images/products/Female/100ml/Mad-Love.png" }
     ],
     "icon": "fa-heartbeat",
-    "image": "images/products/Female/100ml/Mad Love.png"
+    "image": "/images/products/Female/100ml/Mad-Love.png"
   },
   {
     "id": 12,
@@ -210,11 +210,11 @@
     "price100ml": "R450",
     "inStock": true,
     "sizes": [
-      { "size": "30ml", "price": "R150", "image": "images/products/Female/30ml/Marshmallow.png" },
-      { "size": "100ml", "price": "R450", "image": "images/products/Female/100ml/Marshmallow.png" }
+      { "size": "30ml", "price": "R150", "image": "/images/products/Female/30ml/Marshmallow.png" },
+      { "size": "100ml", "price": "R450", "image": "/images/products/Female/100ml/Marshmallow.png" }
     ],
     "icon": "fa-candy-cane",
-    "image": "images/products/Female/100ml/Marshmallow.png"
+    "image": "/images/products/Female/100ml/Marshmallow.png"
   },
   {
     "id": 13,
@@ -228,11 +228,11 @@
     "price100ml": "",
     "inStock": true,
     "sizes": [
-      { "size": "30ml", "price": "R180", "image": "images/products/Unisex/phantom-nights.jpeg" }
+      { "size": "30ml", "price": "R180", "image": "/images/products/Unisex/Phantom-Nights.png" }
     ],
     "icon": "fa-ghost",
     "badge": "Premium",
-    "image": "images/products/Unisex/phantom-nights.jpeg"
+    "image": "/images/products/Unisex/Phantom-Nights.png"
   },
   {
     "id": 14,
@@ -246,11 +246,11 @@
     "price100ml": "",
     "inStock": true,
     "sizes": [
-      { "size": "30ml", "price": "R180", "image": "images/products/Unisex/oud-ispahan.jpg" }
+      { "size": "30ml", "price": "R180", "image": "/images/products/Unisex/Oud-Ispahan.png" }
     ],
     "icon": "fa-tree",
     "badge": "Premium",
-    "image": "images/products/Unisex/oud-ispahan.jpg"
+    "image": "/images/products/Unisex/Oud-Ispahan.png"
   },
   {
     "id": 15,
@@ -264,11 +264,11 @@
     "price100ml": "",
     "inStock": true,
     "sizes": [
-      { "size": "30ml", "price": "R180", "image": "images/products/Unisex/after-dark.png" }
+      { "size": "30ml", "price": "R180", "image": "/images/products/Unisex/After-Dark.png" }
     ],
     "icon": "fa-moon",
     "badge": "Premium",
-    "image": "images/products/Unisex/after-dark.png"
+    "image": "/images/products/Unisex/After-Dark.png"
   },
   {
     "id": 16,
@@ -282,11 +282,11 @@
     "price100ml": "",
     "inStock": true,
     "sizes": [
-      { "size": "30ml", "price": "R180", "image": "images/products/Unisex/vanilla-sex.jpeg" }
+      { "size": "30ml", "price": "R180", "image": "/images/products/Unisex/Vanilla-Sex.png" }
     ],
     "icon": "fa-pepper-hot",
     "badge": "Premium",
-    "image": "images/products/Unisex/vanilla-sex.jpeg"
+    "image": "/images/products/Unisex/Vanilla-Sex.png"
   },
   {
     "id": 17,
@@ -300,11 +300,11 @@
     "price100ml": "",
     "inStock": true,
     "sizes": [
-      { "size": "30ml", "price": "R180", "image": "images/products/Unisex/fresh-neroli.jpeg" }
+      { "size": "30ml", "price": "R180", "image": "/images/products/Unisex/Fresh-Neroli.png" }
     ],
     "icon": "fa-sun",
     "badge": "Premium",
-    "image": "images/products/Unisex/fresh-neroli.jpeg"
+    "image": "/images/products/Unisex/Fresh-Neroli.png"
   },
   {
     "id": 18,
@@ -318,11 +318,11 @@
     "price100ml": "",
     "inStock": true,
     "sizes": [
-      { "size": "30ml", "price": "R180", "image": "images/products/Unisex/hibiscus-Garden.jpeg" }
+      { "size": "30ml", "price": "R180", "image": "/images/products/Unisex/Hibiscus-Garden.png" }
     ],
     "icon": "fa-leaf",
     "badge": "Premium",
-    "image": "images/products/Unisex/hibiscus-garden.jpeg"
+    "image": "/images/products/Unisex/Hibiscus-Garden.png"
   },
   {
     "id": 19,
@@ -336,11 +336,11 @@
     "price100ml": "",
     "inStock": true,
     "sizes": [
-      { "size": "30ml", "price": "R150", "image": "images/products/Unisex/vanilla-nude.jpeg" }
+      { "size": "30ml", "price": "R150", "image": "/images/products/Unisex/Vanilla-Nude.png" }
     ],
     "icon": "fa-ice-cream",
     "badge": "Premium",
-    "image": "images/products/Unisex/vanilla-nude.jpeg"
+    "image": "/images/products/Unisex/Vanilla-Nude.png"
   },
   {
     "id": 20,
@@ -354,10 +354,10 @@
     "price100ml": "",
     "inStock": true,
     "sizes": [
-      { "size": "30ml", "price": "R180", "image": "images/products/Unisex/crystal-rouge.png" }
+      { "size": "30ml", "price": "R180", "image": "/images/products/Unisex/Crystal-Rouge.png" }
     ],
     "icon": "fa-gem",
     "badge": "Premium",
-    "image": "images/products/Unisex/crystal-rouge.png"
+    "image": "/images/products/Unisex/Crystal-Rouge.png"
   }
 ]
