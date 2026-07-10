@@ -3,6 +3,7 @@
 // ============================================
 
 let products = [];
+let cart = [];
 
 // ===== PRODUCTS DATA =====
 const productData = [
@@ -15,12 +16,14 @@ const productData = [
         inspired: 'Azzaro Wanted',
         notes: '🍋 Lemon • 🌿 Ginger • 🫚 Cardamom • 🌲 Juniper Berries • 🍦 Tonka Bean • 🌱 Vetiver • 🪵 Amberwood',
         displayPrice: 'R150',
+        price30ml: 'R150',
+        price100ml: 'R450',
+        inStock: true,
         sizes: [
             { size: '30ml', price: 'R150', image: 'images/products/Male/30ml/Most Wanted.png' },
             { size: '100ml', price: 'R450', image: 'images/products/Male/100ml/Most Wanted.png' }
         ],
         icon: 'fa-crown',
-        // badge: 'Bestseller',
         image: 'images/products/Male/100ml/Most Wanted.png'
     },
     {
@@ -31,12 +34,14 @@ const productData = [
         inspired: 'Dunhill Desire Red',
         notes: '🍎 Apple • 🌸 Orange Blossom • 🍊 Bergamot • 🌹 Rose • 🌿 Patchouli • 🍦 Vanilla • 🤍 Musk',
         displayPrice: 'R150',
+        price30ml: 'R150',
+        price100ml: 'R450',
+        inStock: true,
         sizes: [
             { size: '30ml', price: 'R150', image: 'images/products/Male/30ml/Dunhill Desire.png' },
             { size: '100ml', price: 'R450', image: 'images/products/Male/100ml/Dunhill Desire.png' }
         ],
         icon: 'fa-gem',
-        badge: '',
         image: 'images/products/Male/100ml/Dunhill Desire.png'
     },
     {
@@ -47,12 +52,14 @@ const productData = [
         inspired: 'Jean Paul Gaultier Scandal Pour Homme',
         notes: '🍊 Mandarin Orange • 🌿 Clary Sage • 🍬 Caramel • 🍦 Tonka Bean • 🌱 Vetiver',
         displayPrice: 'R150',
+        price30ml: 'R150',
+        price100ml: 'R450',
+        inStock: true,
         sizes: [
             { size: '30ml', price: 'R150', image: 'images/products/Male/30ml/Scandal.png' },
             { size: '100ml', price: 'R450', image: 'images/products/Male/100ml/Scandal.png' }
         ],
         icon: 'fa-bolt',
-        badge: '',
         image: 'images/products/Male/100ml/Scandal.png'
     },
     {
@@ -63,12 +70,14 @@ const productData = [
         inspired: 'Paco Rabanne Invictus',
         notes: '🍊 Grapefruit • 🌊 Marine Notes • 🌿 Bay Leaf • 🌼 Jasmine • 🪵 Guaiac Wood • ✨ Ambergris',
         displayPrice: 'R150',
+        price30ml: 'R150',
+        price100ml: 'R450',
+        inStock: true,
         sizes: [
             { size: '30ml', price: 'R150', image: 'images/products/Male/30ml/Invictus.png' },
             { size: '100ml', price: 'R450', image: 'images/products/Male/100ml/Invictus.png' }
         ],
         icon: 'fa-trophy',
-        badge: '',
         image: 'images/products/Male/100ml/Invictus.png'
     },
     {
@@ -79,12 +88,14 @@ const productData = [
         inspired: 'Diesel Bad',
         notes: '🍋 Bergamot • 💜 Lavender • 🫚 Cardamom • 🐟 Caviar Accord • 🚬 Tobacco • 🪵 Woody Notes',
         displayPrice: 'R150',
+        price30ml: 'R150',
+        price100ml: 'R450',
+        inStock: true,
         sizes: [
             { size: '30ml', price: 'R150', image: 'images/products/Male/30ml/Bad.png' },
             { size: '100ml', price: 'R450', image: 'images/products/Male/100ml/Bad.png' }
         ],
         icon: 'fa-skull',
-        badge: '',
         image: 'images/products/Male/100ml/Bad.png'
     },
     {
@@ -95,12 +106,14 @@ const productData = [
         inspired: 'Creed Aventus',
         notes: '🍍 Pineapple • 🍋 Bergamot • 🫐 Blackcurrant • 🌳 Birch • 🌿 Patchouli • 🍃 Oakmoss • 🤍 Musk',
         displayPrice: 'R150',
+        price30ml: 'R150',
+        price100ml: 'R450',
+        inStock: true,
         sizes: [
             { size: '30ml', price: 'R150', image: 'images/products/Male/30ml/Aventus.png' },
             { size: '100ml', price: 'R450', image: 'images/products/Male/100ml/Aventus.png' }
         ],
         icon: 'fa-fire',
-        badge: '',
         image: 'images/products/Male/100ml/Aventus.png'
     },
 
@@ -113,6 +126,9 @@ const productData = [
         inspired: 'Dior J\'adore',
         notes: '🍐 Pear • 🍈 Melon • 🌸 Magnolia • 🌼 Jasmine • 🌹 Rose • 🍑 Peach • 🍦 Vanilla • 🤍 Musk',
         displayPrice: 'R150',
+        price30ml: 'R150',
+        price100ml: 'R450',
+        inStock: true,
         sizes: [
             { size: '30ml', price: 'R150', image: 'images/products/Female/30ml/Jadore.png' },
             { size: '100ml', price: 'R450', image: 'images/products/Female/100ml/Jadore.png' }
@@ -129,12 +145,14 @@ const productData = [
         inspired: 'Louis Vuitton Contre Moi',
         notes: '🍦 Vanilla • 🌸 Orange Blossom • 🌺 Magnolia • 🌹 Rose • 🍫 Cocoa',
         displayPrice: 'R150',
+        price30ml: 'R150',
+        price100ml: 'R450',
+        inStock: true,
         sizes: [
             { size: '30ml', price: 'R150', image: 'images/products/Female/30ml/Contre-moi.png' },
             { size: '100ml', price: 'R450', image: 'images/products/Female/100ml/Contre-moi.png' }
         ],
         icon: 'fa-heart',
-        badge: '',
         image: 'images/products/Female/100ml/Contre-moi.png'
     },
     {
@@ -145,12 +163,14 @@ const productData = [
         inspired: 'Chanel Coco Mademoiselle',
         notes: '🍊 Orange • 🍋 Bergamot • 🌹 Rose • 🌼 Jasmine • 🌿 Patchouli • 🍦 Vanilla • 🤍 White Musk',
         displayPrice: 'R150',
+        price30ml: 'R150',
+        price100ml: 'R450',
+        inStock: true,
         sizes: [
             { size: '30ml', price: 'R150', image: 'images/products/Female/30ml/Coconut.png' },
             { size: '100ml', price: 'R450', image: 'images/products/Female/100ml/Coconut.png' }
         ],
         icon: 'fa-umbrella-beach',
-        badge: '',
         image: 'images/products/Female/100ml/Coconut.png'
     },
     {
@@ -161,12 +181,14 @@ const productData = [
         inspired: 'Katy Perry Mad Love',
         notes: '🍏 Apple Sorbet • 🍓 Strawberry • 🌼 Jasmine • 🌸 Peony • 🥥 Coconut • 🪵 Sandalwood',
         displayPrice: 'R150',
+        price30ml: 'R150',
+        price100ml: 'R450',
+        inStock: true,
         sizes: [
             { size: '30ml', price: 'R150', image: 'images/products/Female/30ml/Delirious.png' },
             { size: '100ml', price: 'R450', image: 'images/products/Female/100ml/Delirious.png' }
         ],
         icon: 'fa-star',
-        badge: '',
         image: 'images/products/Female/100ml/Delirious.png'
     },
     {
@@ -177,12 +199,14 @@ const productData = [
         inspired: 'Katy Perry Mad Love',
         notes: '🍏 Apple Sorbet • 🍓 Strawberry • 🌼 Jasmine • 🌸 Peony • 🥥 Coconut • 🪵 Sandalwood',
         displayPrice: 'R150',
+        price30ml: 'R150',
+        price100ml: 'R450',
+        inStock: true,
         sizes: [
             { size: '30ml', price: 'R150', image: 'images/products/Female/30ml/Mad Love.png' },
             { size: '100ml', price: 'R450', image: 'images/products/Female/100ml/Mad Love.png' }
         ],
         icon: 'fa-heartbeat',
-        badge: '',
         image: 'images/products/Female/100ml/Mad Love.png'
     },
     {
@@ -193,17 +217,19 @@ const productData = [
         inspired: 'Kilian Love, Don\'t Be Shy',
         notes: '🍊 Neroli • 🍋 Bergamot • 🌸 Orange Blossom • 🌺 Honeysuckle • 🍬 Marshmallow • 🍦 Vanilla • 🤍 Musk',
         displayPrice: 'R150',
+        price30ml: 'R150',
+        price100ml: 'R450',
+        inStock: true,
         sizes: [
             { size: '30ml', price: 'R150', image: 'images/products/Female/30ml/Marshmallow.png' },
             { size: '100ml', price: 'R450', image: 'images/products/Female/100ml/Marshmallow.png' }
         ],
         icon: 'fa-candy-cane',
-        badge: '',
         image: 'images/products/Female/100ml/Marshmallow.png'
     },
 
     // ===== UNISEX FRAGRANCES =====
-     {
+    {
         id: 13,
         name: 'Phantom Nights',
         category: 'unisex',
@@ -211,6 +237,9 @@ const productData = [
         inspired: 'Black Phantom',
         notes: '🥃 Rum • ☕ Coffee • 🍫 Dark Chocolate • 🍮 Caramel • 🌾 Sugar Cane • 🪵 Sandalwood',
         displayPrice: 'R180',
+        price30ml: 'R180',
+        price100ml: '',
+        inStock: true,
         sizes: [
             { size: '30ml', price: 'R180', image: 'images/products/Unisex/phantom-nights.jpeg' }
         ],
@@ -218,8 +247,6 @@ const productData = [
         badge: 'Premium',
         image: 'images/products/Unisex/phantom-nights.jpeg'
     },
-
-   
     {
         id: 14,
         name: 'Oud Ispahan',
@@ -228,6 +255,9 @@ const productData = [
         inspired: 'Oud Ispahan',
         notes: '🪵 Oud • 🌹 Rose • ✨ Labdanum • 🪵 Sandalwood • 🌿 Patchouli',
         displayPrice: 'R180',
+        price30ml: 'R180',
+        price100ml: '',
+        inStock: true,
         sizes: [
             { size: '30ml', price: 'R180', image: 'images/products/Unisex/oud-ispahan.jpg' }
         ],
@@ -243,6 +273,9 @@ const productData = [
         inspired: 'Montale Intense Café',
         notes: '☕ Coffee • 🌹 Rose • 🍦 Vanilla • 🤍 White Musk • ✨ Amber',
         displayPrice: 'R180',
+        price30ml: 'R180',
+        price100ml: '',
+        inStock: true,
         sizes: [
             { size: '30ml', price: 'R180', image: 'images/products/Unisex/after-dark.png' }
         ],
@@ -250,8 +283,7 @@ const productData = [
         badge: 'Premium',
         image: 'images/products/Unisex/after-dark.png'
     },
-
-     {
+    {
         id: 16,
         name: 'Vanilla Sex',
         category: 'unisex',
@@ -259,6 +291,9 @@ const productData = [
         inspired: 'Tom Ford Vanilla Sex',
         notes: '🍦 Vanilla Absolute • 🍦 Tonka Bean • 🪵 Sandalwood • 🌰 Almond',
         displayPrice: 'R180',
+        price30ml: 'R180',
+        price100ml: '',
+        inStock: true,
         sizes: [
             { size: '30ml', price: 'R180', image: 'images/products/Unisex/vanilla-sex.jpeg' }
         ],
@@ -266,9 +301,6 @@ const productData = [
         badge: 'Premium',
         image: 'images/products/Unisex/vanilla-sex.jpeg'
     },
-
-     
-   
     {
         id: 17,
         name: 'Fresh Neroli',
@@ -277,6 +309,9 @@ const productData = [
         inspired: 'Tom Ford Neroli Portofino',
         notes: '🌼 Neroli • 🍋 Bergamot • 🍋 Lemon • 🌸 Orange Blossom • 💜 Lavender • ✨ Amber',
         displayPrice: 'R180',
+        price30ml: 'R180',
+        price100ml: '',
+        inStock: true,
         sizes: [
             { size: '30ml', price: 'R180', image: 'images/products/Unisex/fresh-neroli.jpeg' }
         ],
@@ -284,7 +319,6 @@ const productData = [
         badge: 'Premium',
         image: 'images/products/Unisex/fresh-neroli.jpeg'
     },
-
     {
         id: 18,
         name: 'Hibiscus Garden',
@@ -293,6 +327,9 @@ const productData = [
         inspired: 'Hibiscus Mahajád',
         notes: '🌺 Hibiscus • 🌹 Rose • 🌿 Mint • 🫐 Blackcurrant • 👜 Leather • 🍦 Vanilla',
         displayPrice: 'R180',
+        price30ml: 'R180',
+        price100ml: '',
+        inStock: true,
         sizes: [
             { size: '30ml', price: 'R180', image: 'images/products/Unisex/hibiscus-Garden.jpeg' }
         ],
@@ -300,7 +337,6 @@ const productData = [
         badge: 'Premium',
         image: 'images/products/Unisex/hibiscus-garden.jpeg'
     },
-
     {
         id: 19,
         name: 'Vanilla Nude',
@@ -309,6 +345,9 @@ const productData = [
         inspired: 'Calvin Klein Nude Vanilla',
         notes: '🍦 Vanilla • 🌼 Jasmine • 🌲 Cedarwood • 🤍 Musk • ✨ Amber',
         displayPrice: 'R150',
+        price30ml: 'R150',
+        price100ml: '',
+        inStock: true,
         sizes: [
             { size: '30ml', price: 'R150', image: 'images/products/Unisex/vanilla-nude.jpeg' }
         ],
@@ -316,7 +355,6 @@ const productData = [
         badge: 'Premium',
         image: 'images/products/Unisex/vanilla-nude.jpeg'
     },
-
     {
         id: 20,
         name: 'Crystal Rouge',
@@ -325,6 +363,9 @@ const productData = [
         inspired: 'Baccarat Rouge 540',
         notes: '✨ Saffron • 🌼 Jasmine • 🪵 Amberwood • ✨ Ambergris • 🌲 Cedarwood',
         displayPrice: 'R180',
+        price30ml: 'R180',
+        price100ml: '',
+        inStock: true,
         sizes: [
             { size: '30ml', price: 'R180', image: 'images/products/Unisex/crystal-rouge.png' }
         ],
@@ -337,14 +378,22 @@ const productData = [
 // ===== LOAD PRODUCTS =====
 function loadProducts() {
     products = productData;
-    renderProducts('male');
+    renderProducts(1);
 }
 
+// ===== CATEGORY PAGES =====
+const categoryMap = {
+    1: 'male',
+    2: 'female',
+    3: 'unisex'
+};
+
 // ===== RENDER PRODUCTS =====
-function renderProducts(category = 'male') {
+function renderProducts(page = 1) {
     const grid = document.getElementById('productGrid');
     if (!grid) return;
 
+    const category = categoryMap[page] || 'male';
     const filtered = products.filter(p => p.category === category);
 
     if (!filtered || filtered.length === 0) {
@@ -356,11 +405,15 @@ function renderProducts(category = 'male') {
         return;
     }
 
-    grid.innerHTML = filtered.map(product => `
+    grid.innerHTML = filtered.map(product => {
+        const isOutOfStock = product.inStock === false;
+        
+        return `
         <div class="product-card" data-aos="fade-up" data-aos-delay="${Math.random() * 200}" data-product-id="${product.id}">
             ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ''}
-
-            <div class="product-image" style="cursor:pointer;">
+            ${isOutOfStock ? `<div class="out-of-stock-badge">Out of Stock</div>` : ''}
+            
+            <div class="product-image" style="cursor:pointer; ${isOutOfStock ? 'opacity:0.7;' : ''}">
                 <img src="${product.image}" alt="${product.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
                 <i class="fas ${product.icon}" style="display:none;"></i>
                 <div class="price-bubble">From ${product.displayPrice}</div>
@@ -369,13 +422,222 @@ function renderProducts(category = 'male') {
             <h3 class="product-name">${product.name}</h3>
             <p class="product-inspired">Inspired by: ${product.inspired}</p>
 
-            <button class="btn-whatsapp btn-detail" data-product-id="${product.id}" style="margin-top:auto; width:100%; justify-content:center; font-size:0.84rem; padding:11px 20px;">
-                <i class="fas fa-info-circle"></i> View Details
-            </button>
+            ${isOutOfStock ? `
+                <button class="btn-out-of-stock" disabled style="margin-top:auto; width:100%; justify-content:center; font-size:0.84rem; padding:11px 20px; background:#ccc; color:#666; border:none; border-radius:50px; cursor:not-allowed;">
+                    <i class="fas fa-times-circle"></i> Out of Stock
+                </button>
+            ` : `
+                <button class="btn-whatsapp btn-detail" data-product-id="${product.id}" style="margin-top:auto; width:100%; justify-content:center; font-size:0.84rem; padding:11px 20px;">
+                    <i class="fas fa-info-circle"></i> View Details
+                </button>
+                <button class="btn-add-cart" data-product-id="${product.id}" style="margin-top:8px; width:100%; justify-content:center; font-size:0.8rem; padding:8px 16px; background:#2F3E2F; color:white; border:none; border-radius:50px; cursor:pointer; transition:all 0.3s ease;">
+                    <i class="fas fa-cart-plus"></i> Add to Cart
+                </button>
+            `}
         </div>
-    `).join('');
+    `}).join('');
 
+    // Setup detail buttons
     setupDetailButtons();
+    setupAddToCartButtons();
+}
+
+// ===== SETUP ADD TO CART BUTTONS =====
+function setupAddToCartButtons() {
+    document.querySelectorAll('.btn-add-cart').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const productId = parseInt(this.dataset.productId);
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                addToCart(product);
+            }
+        });
+    });
+}
+
+// ===== CART FUNCTIONS =====
+function addToCart(product) {
+    const existing = cart.find(item => item.id === product.id);
+    if (existing) {
+        existing.quantity += 1;
+    } else {
+        cart.push({ ...product, quantity: 1, selectedSize: product.sizes[0] });
+    }
+    updateCartUI();
+    showCartNotification(`${product.name} added to cart!`);
+}
+
+function removeFromCart(productId) {
+    cart = cart.filter(item => item.id !== productId);
+    updateCartUI();
+}
+
+function updateCartQuantity(productId, quantity) {
+    const item = cart.find(item => item.id === productId);
+    if (item) {
+        if (quantity <= 0) {
+            removeFromCart(productId);
+            return;
+        }
+        item.quantity = quantity;
+        updateCartUI();
+    }
+}
+
+function getCartTotal() {
+    let total = 0;
+    cart.forEach(item => {
+        const price = parseInt(item.selectedSize.price.replace('R', ''));
+        total += price * item.quantity;
+    });
+    return total;
+}
+
+function updateCartUI() {
+    const countEl = document.getElementById('cartCount');
+    const itemsEl = document.getElementById('cartItems');
+    const totalEl = document.getElementById('cartTotal');
+    
+    if (countEl) {
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        countEl.textContent = totalItems;
+    }
+    
+    if (itemsEl) {
+        if (cart.length === 0) {
+            itemsEl.innerHTML = '<p class="cart-empty">Your cart is empty.</p>';
+        } else {
+            itemsEl.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <div class="cart-item-info">
+                        <span class="cart-item-name">${item.name}</span>
+                        <span class="cart-item-size">${item.selectedSize.size}</span>
+                        <span class="cart-item-price">${item.selectedSize.price}</span>
+                    </div>
+                    <div class="cart-item-actions">
+                        <button class="cart-qty-btn" onclick="updateCartQuantity(${item.id}, ${item.quantity - 1})">-</button>
+                        <span class="cart-item-qty">${item.quantity}</span>
+                        <button class="cart-qty-btn" onclick="updateCartQuantity(${item.id}, ${item.quantity + 1})">+</button>
+                        <button class="cart-remove-btn" onclick="removeFromCart(${item.id})"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>
+            `).join('');
+        }
+    }
+    
+    if (totalEl) {
+        totalEl.textContent = `R${getCartTotal()}`;
+    }
+}
+
+function showCartNotification(message) {
+    // Simple toast notification
+    const toast = document.createElement('div');
+    toast.style.cssText = `
+        position: fixed;
+        bottom: 100px;
+        right: 30px;
+        background: #2F3E2F;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 10px;
+        font-family: 'Arial', sans-serif;
+        font-size: 0.9rem;
+        z-index: 9999;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        animation: slideUp 0.4s ease;
+        max-width: 300px;
+    `;
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transition = 'opacity 0.3s ease';
+        setTimeout(() => toast.remove(), 300);
+    }, 2500);
+}
+
+// ===== CART MODAL =====
+function setupCartModal() {
+    const cartBtn = document.getElementById('cartBtn');
+    const cartOverlay = document.getElementById('cartOverlay');
+    const cartClose = document.getElementById('cartClose');
+    const checkoutBtn = document.getElementById('cartCheckout');
+    
+    if (cartBtn) {
+        cartBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            cartOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    }
+    
+    if (cartClose) {
+        cartClose.addEventListener('click', closeCart);
+    }
+    
+    if (cartOverlay) {
+        cartOverlay.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeCart();
+            }
+        });
+    }
+    
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeCart();
+        }
+    });
+    
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (cart.length === 0) {
+                alert('Your cart is empty. Add some products first!');
+                return;
+            }
+            sendCartOrder();
+        });
+    }
+}
+
+function closeCart() {
+    const cartOverlay = document.getElementById('cartOverlay');
+    cartOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+function sendCartOrder() {
+    let message = `Hello Sweet Scent%0A%0AI'd like to place an order.%0A%0A--- ORDER SUMMARY ---%0A`;
+    let total = 0;
+    
+    cart.forEach((item, index) => {
+        const price = parseInt(item.selectedSize.price.replace('R', ''));
+        const subtotal = price * item.quantity;
+        total += subtotal;
+        message += `%0A${index + 1}. ${item.name}%0A   Size: ${item.selectedSize.size}%0A   Quantity: ${item.quantity}%0A   Price: ${item.selectedSize.price}%0A   Subtotal: R${subtotal}%0A`;
+    });
+    
+    message += `%0A--- TOTAL: R${total} ---%0A%0ACustomer Details:%0AName: %0AContact Number: %0ADelivery method: (Uber Courier / Paxi / Collection)%0A%0AAdditional Notes:%0A%0APlease let me know the total amount and payment details.%0A%0AThank you.`;
+    
+    window.open(`https://wa.me/27622102873?text=${message}`, '_blank');
+    closeCart();
+}
+
+// ===== SETUP PAGINATION =====
+function setupPagination() {
+    const pageBtns = document.querySelectorAll('.page-btn');
+    pageBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            pageBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            const page = parseInt(this.dataset.page);
+            renderProducts(page);
+            document.getElementById('catalogue').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    });
 }
 
 // ===== DETAIL BUTTONS =====
@@ -447,9 +709,14 @@ function openProductModal(product) {
         
         <p class="modal-total-price">Total: <strong id="modalTotalPrice">${defaultSize.price}</strong></p>
         
-        <a href="#" id="modalWhatsAppBtn" class="btn-whatsapp modal-whatsapp-btn">
-            <i class="fab fa-whatsapp"></i> Order via WhatsApp
-        </a>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center;">
+            <button class="btn-whatsapp modal-add-to-cart-btn" id="modalAddToCartBtn" style="flex:1; min-width:140px; justify-content:center;">
+                <i class="fas fa-cart-plus"></i> Add to Cart
+            </button>
+            <button class="btn-whatsapp modal-whatsapp-btn" id="modalWhatsAppBtn" style="flex:1; min-width:140px; justify-content:center;">
+                <i class="fab fa-whatsapp"></i> Order Now
+            </button>
+        </div>
     `;
     
     modal.classList.add('active');
@@ -461,6 +728,7 @@ function openProductModal(product) {
     const totalPriceDisplay = document.getElementById('modalTotalPrice');
     const quantitySelect = document.getElementById('modalQuantity');
     const whatsappBtn = document.getElementById('modalWhatsAppBtn');
+    const addToCartBtn = document.getElementById('modalAddToCartBtn');
     
     let selectedSize = defaultSize;
     let selectedPrice = defaultPrice;
@@ -470,8 +738,7 @@ function openProductModal(product) {
         const total = selectedPrice * quantity;
         totalPriceDisplay.textContent = `R${total}`;
         
-        // Updated WhatsApp message with quantity and total
-        const message = `Hello Sweet Scent%0A%0AI’d like to place an order.%0A%0AProduct: ${product.name}%0ASize: ${selectedSize.size}%0AQuantity: ${quantity}%0ATotal: R${total}%0AName: %0A%0APlease let me know the total amount and payment details.%0A%0AThank you.`;
+        const message = `Hello Sweet Scent%0A%0AI'd like to place an order.%0A%0AProduct: ${product.name}%0ASize: ${selectedSize.size}%0AQuantity: ${quantity}%0ATotal: R${total}%0AName: %0A%0APlease let me know the total amount and payment details.%0A%0AThank you.`;
         whatsappBtn.href = `https://wa.me/27622102873?text=${message}`;
     }
     
@@ -491,15 +758,26 @@ function openProductModal(product) {
             selectedSize = product.sizes.find(s => s.size === size);
             selectedPrice = parseInt(price.replace('R', ''));
             
-            // Update image
             productImage.src = image;
-            
-            // Update price and WhatsApp link
             updatePriceAndImage();
         });
     });
     
     quantitySelect.addEventListener('change', updatePriceAndImage);
+    
+    // Add to Cart from Modal
+    addToCartBtn.addEventListener('click', function() {
+        const quantity = parseInt(quantitySelect.value);
+        const existing = cart.find(item => item.id === product.id);
+        if (existing) {
+            existing.quantity += quantity;
+        } else {
+            cart.push({ ...product, quantity: quantity, selectedSize: selectedSize });
+        }
+        updateCartUI();
+        showCartNotification(`${product.name} added to cart!`);
+        closeModal();
+    });
     
     // Initial update
     updatePriceAndImage();
@@ -512,23 +790,46 @@ function closeModal() {
     document.body.style.overflow = '';
 }
 
-// ===== TAB SWITCHING =====
-function setupTabs() {
-    const tabs = document.querySelectorAll('.tab-btn');
+// ===== CLOSE MODAL EVENTS =====
+function setupModalEvents() {
+    const modal = document.getElementById('productModal');
+    const closeBtn = document.getElementById('modalClose');
+    
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeModal();
+        }
+    });
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeModal();
+        }
+    });
+}
 
-    tabs.forEach(tab => {
-        tab.addEventListener('click', function() {
-            tabs.forEach(t => t.classList.remove('active'));
-            this.classList.add('active');
+// ===== CONTACT FORM =====
+function setupContactForm() {
+    const form = document.getElementById('contactForm');
+    if (!form) return;
 
-            const category = this.dataset.category;
-            renderProducts(category);
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
 
-            const grid = document.getElementById('productGrid');
-            if (grid) {
-                grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        });
+        const name = document.getElementById('contactName').value.trim();
+        const phone = document.getElementById('contactPhone').value.trim();
+        const message = document.getElementById('contactMessage').value.trim();
+
+        if (!name || !phone || !message) {
+            alert('Please fill in all fields');
+            return;
+        }
+
+        const whatsappMessage = `Hi Sweet Scent!%0A%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0AMessage: ${encodeURIComponent(message)}`;
+        window.open(`https://wa.me/27622102873?text=${whatsappMessage}`, '_blank');
+
+        form.reset();
+        alert('Thank you! Your message has been sent via WhatsApp.');
     });
 }
 
@@ -587,51 +888,6 @@ function setupActiveNav() {
     });
 }
 
-// ===== CONTACT FORM =====
-function setupContactForm() {
-    const form = document.getElementById('contactForm');
-    if (!form) return;
-
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        const name = document.getElementById('contactName').value.trim();
-        const phone = document.getElementById('contactPhone').value.trim();
-        const message = document.getElementById('contactMessage').value.trim();
-
-        if (!name || !phone || !message) {
-            alert('Please fill in all fields');
-            return;
-        }
-
-        const whatsappMessage = `Hi Sweet Scent!%0A%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0AMessage: ${encodeURIComponent(message)}`;
-        window.open(`https://wa.me/27622102873?text=${whatsappMessage}`, '_blank');
-
-        form.reset();
-        alert('Thank you! Your message has been sent via WhatsApp.');
-    });
-}
-
-// ===== MODAL CLOSE EVENTS =====
-function setupModalEvents() {
-    const modal = document.getElementById('productModal');
-    const closeBtn = document.getElementById('modalClose');
-    
-    closeBtn.addEventListener('click', closeModal);
-    
-    modal.addEventListener('click', function(e) {
-        if (e.target === this) {
-            closeModal();
-        }
-    });
-    
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            closeModal();
-        }
-    });
-}
-
 // ===== VALUE POPUP =====
 function setupValuePopup() {
     const popup = document.getElementById('valuePopup');
@@ -639,11 +895,10 @@ function setupValuePopup() {
     const title = document.getElementById('valuePopupTitle');
     const description = document.getElementById('valuePopupDescription');
     
-    // Value descriptions
     const valueDescriptions = {
         quality: {
             title: 'Quality',
-            description: 'We never compromise on quality. Every fragrance is crafted with precision, using premium ingredients to ensure a long-lasting, experience that you can trust.'
+            description: 'We never compromise on quality. Every fragrance is crafted with precision, using premium ingredients to ensure a long-lasting experience that you can trust.'
         },
         affordability: {
             title: 'Affordability',
@@ -655,7 +910,7 @@ function setupValuePopup() {
         },
         community: {
             title: 'Community',
-            description: 'Sweet Scent is built on community. We support local entrepreneurs and give back to the communities that have supported our growth from day one.'
+            description: 'Sweet Scent is built on community. We believe in creating meaningful connections and serving the people who make our journey possible.'
         },
         integrity: {
             title: 'Integrity',
@@ -667,7 +922,6 @@ function setupValuePopup() {
         }
     };
     
-    // Click handlers for value tags
     document.querySelectorAll('.value-tag').forEach(tag => {
         tag.addEventListener('click', function() {
             const value = this.dataset.value;
@@ -681,32 +935,23 @@ function setupValuePopup() {
         });
     });
     
-    // Close popup
     function closePopup() {
         popup.classList.remove('active');
         document.body.style.overflow = '';
     }
     
     closeBtn.addEventListener('click', closePopup);
-    
     popup.addEventListener('click', function(e) {
         if (e.target === this) {
             closePopup();
         }
     });
-    
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
             closePopup();
         }
     });
 }
-
-// Add to initialization
-document.addEventListener('DOMContentLoaded', function() {
-    // ... existing code ...
-    setupValuePopup();
-});
 
 // ===== INITIALIZE AOS =====
 function initAOS() {
@@ -723,11 +968,13 @@ function initAOS() {
 // ===== INITIALIZE =====
 document.addEventListener('DOMContentLoaded', function() {
     loadProducts();
-    setupTabs();
+    setupPagination();
     setupHamburger();
     setupActiveNav();
     setupContactForm();
     setupModalEvents();
+    setupValuePopup();
+    setupCartModal();
     initAOS();
 
     setTimeout(() => {

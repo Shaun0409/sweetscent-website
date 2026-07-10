@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweet Scent · Admin Dashboard</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #F5F3EF;
+            color: #1A1A1A;
+            padding: 20px;
+        }
+
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #FFFFFF;
+            border-radius: 18px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+            padding: 40px;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #F0EDE8;
+            margin-bottom: 30px;
+        }
+
+        .admin-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #2F3E2F;
+        }
+
+        .admin-name span {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: #9CAF88;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        .admin-badge {
+            background: #2F3E2F;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .admin-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: #2F3E2F;
+            margin-bottom: 8px;
+        }
+
+        .admin-subtitle {
+            color: #999;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        thead {
+            background: #F5F3EF;
+        }
+
+        th {
+            text-align: left;
+            padding: 14px 16px;
+            font-weight: 600;
+            color: #2F3E2F;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #F0EDE8;
+            vertical-align: middle;
+        }
+
+        tr:hover td {
+            background: #FAF8F5;
+        }
+
+        .product-cell {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .product-thumb {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: #F5F3EF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .product-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .product-thumb i {
+            font-size: 1.2rem;
+            color: #9CAF88;
+        }
+
+        .product-name-text {
+            font-weight: 600;
+            color: #1A1A1A;
+        }
+
+        .product-category-tag {
+            display: inline-block;
+            background: #E6EDE0;
+            padding: 2px 10px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #2F3E2F;
+        }
+
+        .price-input {
+            width: 90px;
+            padding: 6px 10px;
+            border: 1.5px solid #E0DDD8;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-family: 'Inter', sans-serif;
+            background: #FAF8F5;
+            transition: border-color 0.3s ease;
+        }
+
+        .price-input:focus {
+            outline: none;
+            border-color: #9CAF88;
+            background: #FFFFFF;
+        }
+
+        .toggle-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toggle {
+            position: relative;
+            width: 44px;
+            height: 24px;
+            cursor: pointer;
+        }
+
+        .toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #ddd;
+            border-radius: 24px;
+            transition: 0.3s ease;
+        }
+
+        .toggle-slider::before {
+            content: '';
+            position: absolute;
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background: white;
+            border-radius: 50%;
+            transition: 0.3s ease;
+        }
+
+        .toggle input:checked + .toggle-slider {
+            background: #2F3E2F;
+        }
+
+        .toggle input:checked + .toggle-slider::before {
+            transform: translateX(20px);
+        }
+
+        .toggle-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .toggle-label.in-stock {
+            color: #27ae60;
+        }
+
+        .toggle-label.out-of-stock {
+            color: #E74C3C;
+        }
+
+        .save-btn {
+            background: #2F3E2F;
+            color: white;
+            border: none;
+            padding: 14px 40px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .save-btn:hover {
+            background: #3C2F2F;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(47, 62, 47, 0.25);
+        }
+
+        .save-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .status-message {
+            display: inline-block;
+            margin-left: 20px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .status-message.success {
+            background: #E8F5E9;
+            color: #27ae60;
+        }
+
+        .status-message.error {
+            background: #FFEBEE;
+            color: #E74C3C;
+        }
+
+        .status-message.hidden {
+            display: none;
+        }
+
+        .admin-footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #F0EDE8;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #999;
+            font-size: 0.85rem;
+        }
+
+        .admin-footer a {
+            color: #2F3E2F;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .admin-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #F0EDE8;
+            border-top-color: #2F3E2F;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .instruction-note {
+            background: #FFF8E1;
+            border: 1px solid #FFD54F;
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin-bottom: 25px;
+            font-size: 0.9rem;
+            color: #6D5B00;
+        }
+
+        .instruction-note i {
+            margin-right: 10px;
+            color: #FFB300;
+        }
+
+        .instruction-note strong {
+            color: #4A4200;
+        }
+
+        @media (max-width: 768px) {
+            .admin-container {
+                padding: 20px;
+            }
+
+            .admin-name {
+                font-size: 1.6rem;
+            }
+
+            .admin-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px 10px;
+            }
+
+            .price-input {
+                width: 70px;
+                padding: 4px 8px;
+                font-size: 0.75rem;
+            }
+
+            .toggle-wrapper {
+                gap: 6px;
+            }
+
+            .save-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .admin-footer {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .admin-container {
+                padding: 15px;
+            }
+
+            .product-thumb {
+                width: 30px;
+                height: 30px;
+            }
+
+            .product-name-text {
+                font-size: 0.8rem;
+            }
+
+            .price-input {
+                width: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Header with Name -->
+        <div class="admin-header">
+            <div>
+                <div class="admin-name">
+                    Ntokozo Manyike
+                    <span>Sweet Scent · Admin Dashboard</span>
+                </div>
+            </div>
+            <div class="admin-badge">
+                <i class="fas fa-shield-alt"></i> Admin
+            </div>
+        </div>
+
+        <div class="admin-title">📦 Manage Products</div>
+        <div class="admin-subtitle">Update stock status and pricing for your fragrance collection</div>
+
+        <div class="instruction-note">
+            <i class="fas fa-info-circle"></i>
+            <strong>How it works:</strong> Update prices and stock status below, then click "Save Changes" to download an updated <strong>products.json</strong> file. 
+            Upload this file to your CMS or replace the product data in your <strong>script.js</strong> file to update the live site.
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Category</th>
+                        <th>Price (30ml)</th>
+                        <th>Price (100ml)</th>
+                        <th>Stock</th>
+                    </tr>
+                </thead>
+                <tbody id="productTableBody">
+                    <tr>
+                        <td colspan="5" style="text-align:center; padding:40px;">
+                            <div class="loading-spinner"></div> Loading products...
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div style="display:flex; align-items:center; flex-wrap:wrap;">
+            <button class="save-btn" id="saveChanges">
+                <i class="fas fa-save"></i> Save Changes
+            </button>
+            <span class="status-message hidden" id="statusMessage"></span>
+        </div>
+
+        <div class="admin-footer">
+            <span>&copy; 2026 Sweet Scent. All rights reserved.</span>
+            <a href="/" target="_blank"><i class="fas fa-eye"></i> View Website</a>
+        </div>
+    </div>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>
