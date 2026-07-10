@@ -23,7 +23,7 @@ const productData = [
         description: 'A bold and energetic fragrance with a fresh, spicy, and woody character. Perfect for the confident man who likes to stand out.',
         inspired: 'Azzaro Wanted',
         notes: '🍋 Lemon • 🌿 Ginger • 🫚 Cardamom • 🌲 Juniper Berries • 🍦 Tonka Bean • 🌱 Vetiver • 🪵 Amberwood',
-        displayPrice: 'R150',
+        displayprice: 'R150',
         price30ml: 'R150',
         price100ml: 'R450',
         inStock: true,
