@@ -753,19 +753,19 @@ function closeCart() {
 }
 
 function sendCartOrder() {
-    var message = 'Hello Sweet Scent%0A%0AI\'d like to place an order.%0A%0A--- ORDER SUMMARY ---%0A';
-    var total = 0;
+    let message = `Hello Sweet Scent%0A%0AI'd like to place an order.%0A%0A--- ORDER SUMMARY ---%0A`;
+    let total = 0;
     
-    cart.forEach(function(item, index) {
-        var price = parseInt(item.selectedSize.price.replace('R', ''));
-        var subtotal = price * item.quantity;
+    cart.forEach((item, index) => {
+        const price = parseInt(item.selectedSize.price.replace('R', ''));
+        const subtotal = price * item.quantity;
         total += subtotal;
-        message += '%0A' + (index + 1) + '. ' + item.name + '%0A   Size: ' + item.selectedSize.size + '%0A   Quantity: ' + item.quantity + '%0A   Price: ' + item.selectedSize.price + '%0A   Subtotal: R' + subtotal + '%0A';
+        message += `%0A${index + 1}. ${item.name}%0A   Size: ${item.selectedSize.size}%0A   Quantity: ${item.quantity}%0A   Price: ${item.selectedSize.price}%0A   Subtotal: R${subtotal}%0A`;
     });
     
-    message += '%0A--- TOTAL: R' + total + ' ---%0A%0ACustomer Details:%0AName: %0AContact Number: %0ADelivery method: (Uber Courier / Paxi / Collection)%0A%0AAdditional Notes:%0A%0APlease let me know the total amount and payment details.%0A%0AThank you.';
+    message += `%0A--- TOTAL: R${total} ---%0A%0APlease let me know the total amount and payment details.%0A%0AThank you.`;
     
-    window.open('https://wa.me/27622102873?text=' + message, '_blank');
+    window.open(`https://wa.me/27622102873?text=${message}`, '_blank');
     closeCart();
 }
 
