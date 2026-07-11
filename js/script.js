@@ -703,7 +703,7 @@ function openProductModal(product) {
         var total = selectedPrice * quantity;
         totalPriceDisplay.textContent = 'R' + total;
         
-        var message = 'Hello Sweet Scent%0A%0AI\'d like to place an order.%0A%0AProduct: ' + product.name + '%0ASize: ' + selectedSize.size + '%0AQuantity: ' + quantity + '%0ATotal: R' + total + '%0A%0AThank you.';
+        var message = 'Hello Sweet Scent%0A%0AI\'d like to place an order.%0A%0AProduct: ' + product.name + '%0ASize: ' + selectedSize.size + '%0AQuantity: ' + quantity + '%0ATotal: R' + total + 'g%0A%0AThank you.';
         whatsappBtn.href = 'https://wa.me/27622102873?text=' + message;
     }
     
