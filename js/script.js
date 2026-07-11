@@ -703,7 +703,7 @@ function openProductModal(product) {
         var total = selectedPrice * quantity;
         totalPriceDisplay.textContent = 'R' + total;
         
-        var message = 'Hello Sweet Scent%0A%0AI\'d like to place an order.%0A%0AProduct: ' + product.name + '%0ASize: ' + selectedSize.size + '%0AQuantity: ' + quantity + '%0ATotal: R' + total + 'g%0A%0AThank you.';
+        var message = 'Hello Sweet Scent%0A%0AI\'d like to place an order.%0A%0AProduct: ' + product.name + '%0ASize: ' + selectedSize.size + '%0AQuantity: ' + quantity + '%0ATotal: R' + total + '%0A%0AThank you.';
         whatsappBtn.href = 'https://wa.me/27622102873?text=' + message;
     }
     
@@ -911,7 +911,7 @@ function sendCartOrder() {
         message += `%0A${index + 1}. ${item.name}%0A   Size: ${item.selectedSize.size}%0A   Quantity: ${item.quantity}%0A   Price: ${item.selectedSize.price}%0A   Subtotal: R${subtotal}%0A`;
     });
     
-    message += `%0A--- TOTAL: R${total} ---%0A%0APlease let me know the total amount and payment details.%0A%0AThank you.`;
+    message += `%0A--- TOTAL: R${total} ---%0A%0AThank you.`;
     
     window.open(`https://wa.me/27622102873?text=${message}`, '_blank');
     closeCart();
