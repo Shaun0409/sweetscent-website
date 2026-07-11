@@ -621,41 +621,32 @@ function setupDetailButtons() {
     });
 }
 
-// ===== OPEN PRODUCT MODAL (With Cart Inside) =====
+// ===== OPEN PRODUCT MODAL =====
 function openProductModal(product) {
     var modal = document.getElementById('productModal');
     var content = document.getElementById('modalContent');
     
-    var defaultSize = product.sizes && product.sizes.length > 0 ? product.sizes[0] : { size: '30ml', price: product.displayPrice || 'R150', image: product.image || '' };
-    var defaultPrice = parseInt(String(defaultSize.price).replace('R', ''));
+    var defaultSize = product.sizes[0];
+    var defaultPrice = parseInt(defaultSize.price.replace('R', ''));
     
-    var sizeButtonsHTML = '';
-    if (product.sizes && product.sizes.length > 0) {
-        sizeButtonsHTML = product.sizes.map(function(size, index) {
-            return `
-                <button class="modal-size-btn ${index === 0 ? 'active' : ''}" data-size="${size.size}" data-price="${size.price}" data-image="${size.image}">
-                    ${size.size} · ${size.price}
-                </button>
-            `;
-        }).join('');
-    } else {
-        sizeButtonsHTML = `
-            <button class="modal-size-btn active" data-size="30ml" data-price="${product.displayPrice || 'R150'}" data-image="${product.image || ''}">
-                30ml · ${product.displayPrice || 'R150'}
+    var sizeButtonsHTML = product.sizes.map(function(size, index) {
+        return `
+            <button class="modal-size-btn ${index === 0 ? 'active' : ''}" data-size="${size.size}" data-price="${size.price}" data-image="${size.image}">
+                ${size.size} · ${size.price}
             </button>
         `;
-    }
+    }).join('');
     
     content.innerHTML = `
         <div class="modal-product-image-wrapper">
-            <img src="${defaultSize.image || product.image || 'images/placeholder.png'}" alt="${product.name}" class="modal-product-image" id="modalProductImage" onerror="this.style.display='none'">
+            <img src="${defaultSize.image}" alt="${product.name}" class="modal-product-image" id="modalProductImage" onerror="this.style.display='none'">
         </div>
         <h2 class="modal-product-name">${product.name}</h2>
-        <p class="modal-product-inspired">Inspired by: ${product.inspired || 'Iconic Scent'}</p>
-        <p class="modal-product-description">${product.description || 'A premium fragrance crafted with care.'}</p>
+        <p class="modal-product-inspired">Inspired by: ${product.inspired}</p>
+        <p class="modal-product-description">${product.description}</p>
         <div class="modal-product-notes">
             <span class="modal-notes-label">Notes:</span>
-            <span class="modal-notes-text">${product.notes || 'A beautiful blend of premium ingredients.'}</span>
+            <span class="modal-notes-text">${product.notes}</span>
         </div>
         
         <div class="modal-size-selector">
@@ -672,22 +663,21 @@ function openProductModal(product) {
             </select>
         </div>
         
-        <p class="modal-total-price">Total: <strong id="modalTotalPrice">${defaultSize.price || product.displayPrice || 'R150'}</strong></p>
+        <p class="modal-total-price">Total: <strong id="modalTotalPrice">${defaultSize.price}</strong></p>
         
         <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center;">
-            <button class="btn-whatsapp modal-add-to-cart-btn" id="modalAddToCartBtn" style="flex:1; min-width:140px; justify-content:center; background:#2F3E2F !important; color:white !important;">
+            <button class="btn-whatsapp modal-add-to-cart-btn" id="modalAddToCartBtn" style="flex:1; min-width:140px; justify-content:center;">
                 <i class="fas fa-cart-plus"></i> Add to Cart
             </button>
-            <button class="btn-whatsapp modal-whatsapp-btn" id="modalWhatsAppBtn" style="flex:1; min-width:140px; justify-content:center;">
+            <a href="#" class="btn-whatsapp modal-whatsapp-btn" id="modalWhatsAppBtn" style="flex:1; min-width:140px; justify-content:center; text-decoration:none;">
                 <i class="fab fa-whatsapp"></i> Order Now
-            </button>
+            </a>
         </div>
     `;
     
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
     
-    // Setup modal interactions
     var sizeButtons = document.querySelectorAll('.modal-size-btn');
     var productImage = document.getElementById('modalProductImage');
     var totalPriceDisplay = document.getElementById('modalTotalPrice');
@@ -703,8 +693,18 @@ function openProductModal(product) {
         var total = selectedPrice * quantity;
         totalPriceDisplay.textContent = 'R' + total;
         
-        var message = 'Hello Sweet Scent%0A%0AI\'d like to place an order.%0A%0AProduct: ' + product.name + '%0ASize: ' + selectedSize.size + '%0AQuantity: ' + quantity + '%0ATotal: R' + total + '%0A%0AThank you.';
+        var message = 'Hello Sweet Scent%0A%0AI\'d like to place an order.%0A%0A--- ORDER SUMMARY ---%0A';
+        message += '%0AProduct: ' + product.name;
+        message += '%0ASize: ' + selectedSize.size;
+        message += '%0AQuantity: ' + quantity;
+        message += '%0ATotal: R' + total;
+        message += '%0A%0APlease confirm my order and send me your payment details.%0A%0AThank you.';
+        
         whatsappBtn.href = 'https://wa.me/27622102873?text=' + message;
+    }
+    
+    function updatePriceAndImage() {
+        updateWhatsAppLink();
     }
     
     sizeButtons.forEach(function(btn) {
@@ -716,18 +716,15 @@ function openProductModal(product) {
             var price = this.dataset.price;
             var image = this.dataset.image;
             
-            selectedSize = product.sizes ? product.sizes.find(function(s) { return s.size === size; }) : { size: size, price: price, image: image };
-            if (!selectedSize) {
-                selectedSize = { size: size, price: price, image: image };
-            }
-            selectedPrice = parseInt(String(price).replace('R', ''));
+            selectedSize = product.sizes.find(function(s) { return s.size === size; });
+            selectedPrice = parseInt(price.replace('R', ''));
             
-            productImage.src = image || product.image || 'images/placeholder.png';
-            updateWhatsAppLink();
+            productImage.src = image;
+            updatePriceAndImage();
         });
     });
     
-    quantitySelect.addEventListener('change', updateWhatsAppLink);
+    quantitySelect.addEventListener('change', updatePriceAndImage);
     
     addToCartBtn.addEventListener('click', function() {
         var quantity = parseInt(quantitySelect.value);
@@ -735,20 +732,14 @@ function openProductModal(product) {
         if (existing) {
             existing.quantity += quantity;
         } else {
-            cart.push({ 
-                id: product.id,
-                name: product.name,
-                quantity: quantity, 
-                selectedSize: selectedSize,
-                image: product.image || ''
-            });
+            cart.push({ ...product, quantity: quantity, selectedSize: selectedSize });
         }
         updateCartUI();
         showCartNotification(product.name + ' added to cart!');
         closeModal();
     });
     
-    updateWhatsAppLink();
+    updatePriceAndImage();
 }
 
 // ===== CLOSE MODAL =====
@@ -911,7 +902,7 @@ function sendCartOrder() {
         message += `%0A${index + 1}. ${item.name}%0A   Size: ${item.selectedSize.size}%0A   Quantity: ${item.quantity}%0A   Price: ${item.selectedSize.price}%0A   Subtotal: R${subtotal}%0A`;
     });
     
-    message += `%0A--- TOTAL: R${total} ---%0A%0AThank you.`;
+    message += `%0A--- TOTAL: R${total} ---%0A%0APlease confirm my order and send me your payment details.%0A%0AThank you.`;
     
     window.open(`https://wa.me/27622102873?text=${message}`, '_blank');
     closeCart();
