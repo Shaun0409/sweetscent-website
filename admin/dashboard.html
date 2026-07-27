@@ -1518,43 +1518,103 @@
                 if (error) throw error;
                 
                 analyticsData = data || [];
+                
+                // Calculate daily stats (will handle empty data)
                 calculateDailyStats();
+                
+                // Update distributor dropdown
                 await updateDistributorDropdown();
+                
+                // Render everything
                 renderAnalyticsSummary();
                 renderSalesChart();
                 renderTopDistributors();
                 renderAnalyticsTable();
                 
                 console.log('✅ Analytics loaded:', analyticsData.length, 'records');
+                
             } catch (error) {
                 console.error('Error loading analytics:', error);
                 document.querySelector('#analyticsSummaryGrid').innerHTML = `
-                    <div class="summary-item" style="grid-column:1/-1; text-align:center; color:#E74C3C;">
-                        <i class="fas fa-exclamation-circle"></i> Error loading analytics: ${error.message}
+                    <div class="summary-item" style="grid-column:1/-1; text-align:center; color:#E74C3C; padding:30px;">
+                        <i class="fas fa-exclamation-circle" style="font-size:1.5rem; display:block; margin-bottom:10px;"></i>
+                        Error loading analytics: ${error.message}
+                        <br><br>
+                        <button onclick="loadAnalytics()" style="padding:8px 24px; background:#2F3E2F; color:white; border:none; border-radius:6px; cursor:pointer;">
+                            <i class="fas fa-sync"></i> Retry
+                        </button>
                     </div>
                 `;
             }
         }
 
+        // COMPLETE calculateDailyStats with placeholder data
         function calculateDailyStats() {
             const stats = {};
-            analyticsData.forEach(record => {
-                const date = new Date(record.used_at).toLocaleDateString();
-                if (!stats[date]) {
-                    stats[date] = { date: date, orders: 0, total: 0, codes: new Set() };
+            
+            // If no data, create placeholder data for the last 7 days
+            if (!analyticsData || analyticsData.length === 0) {
+                // Generate 7 days of empty data
+                for (let i = 6; i >= 0; i--) {
+                    const date = new Date();
+                    date.setDate(date.getDate() - i);
+                    const dateStr = date.toLocaleDateString();
+                    stats[dateStr] = {
+                        date: dateStr,
+                        orders: 0,
+                        total: 0,
+                        codes: new Set()
+                    };
                 }
-                stats[date].orders += 1;
-                stats[date].total += record.order_total || 0;
-                if (record.promo_code_id) stats[date].codes.add(record.promo_code_id);
-            });
+            } else {
+                // Process real data
+                analyticsData.forEach(record => {
+                    const date = new Date(record.used_at).toLocaleDateString();
+                    if (!stats[date]) {
+                        stats[date] = {
+                            date: date,
+                            orders: 0,
+                            total: 0,
+                            codes: new Set()
+                        };
+                    }
+                    stats[date].orders += 1;
+                    stats[date].total += record.order_total || 0;
+                    if (record.promo_code_id) {
+                        stats[date].codes.add(record.promo_code_id);
+                    }
+                });
+                
+                // Fill in missing dates in the last 30 days
+                const today = new Date();
+                for (let i = 29; i >= 0; i--) {
+                    const date = new Date(today);
+                    date.setDate(date.getDate() - i);
+                    const dateStr = date.toLocaleDateString();
+                    if (!stats[dateStr]) {
+                        stats[dateStr] = {
+                            date: dateStr,
+                            orders: 0,
+                            total: 0,
+                            codes: new Set()
+                        };
+                    }
+                }
+            }
             
             dailyStats = Object.values(stats).map(s => ({
                 ...s,
                 unique_codes: s.codes.size,
                 avg_order: s.orders > 0 ? s.total / s.orders : 0
             }));
+            
+            // Sort by date
             dailyStats.sort((a, b) => new Date(a.date) - new Date(b.date));
-            if (dailyStats.length > 30) dailyStats = dailyStats.slice(-30);
+            
+            // Keep last 30 days for chart
+            if (dailyStats.length > 30) {
+                dailyStats = dailyStats.slice(-30);
+            }
         }
 
         async function updateDistributorDropdown() {
@@ -1599,34 +1659,100 @@
             `;
         }
 
+        // Helper function to check if date is a weekend
+        function isWeekendDate(dateStr) {
+            try {
+                const date = new Date(dateStr);
+                const day = date.getDay();
+                return day === 0 || day === 6;
+            } catch (e) {
+                return false;
+            }
+        }
+
+        // Helper function to format date label
+        function formatDateLabel(dateStr) {
+            try {
+                const date = new Date(dateStr);
+                const today = new Date();
+                const yesterday = new Date(today);
+                yesterday.setDate(yesterday.getDate() - 1);
+                
+                if (date.toDateString() === today.toDateString()) {
+                    return 'Today';
+                } else if (date.toDateString() === yesterday.toDateString()) {
+                    return 'Yesterday';
+                } else {
+                    return date.toLocaleDateString('en-ZA', { 
+                        month: 'short', 
+                        day: 'numeric' 
+                    });
+                }
+            } catch (e) {
+                return dateStr;
+            }
+        }
+
         function renderSalesChart() {
             const chartContainer = document.getElementById('salesChart');
             const labelsContainer = document.getElementById('salesChartLabels');
             if (!chartContainer || !labelsContainer) return;
             
-            if (dailyStats.length === 0) {
-                chartContainer.innerHTML = `<div style="width:100%; text-align:center; color:#999; padding:20px;">No data available for this period</div>`;
+            // Check if there's data
+            if (!dailyStats || dailyStats.length === 0) {
+                chartContainer.innerHTML = `
+                    <div style="width:100%; text-align:center; color:#999; padding:30px 20px; display:flex; flex-direction:column; align-items:center; gap:12px;">
+                        <i class="fas fa-chart-line" style="font-size:2.5rem; color:#ddd;"></i>
+                        <div>
+                            <div style="font-size:1rem; font-weight:500; color:#666;">No sales data available</div>
+                            <small style="font-size:0.8rem; color:#999;">Sales data will appear once customers complete orders with promo codes</small>
+                        </div>
+                        <button onclick="loadAnalytics()" style="padding:6px 20px; background:#2F3E2F; color:white; border:none; border-radius:6px; cursor:pointer; font-size:0.8rem;">
+                            <i class="fas fa-sync"></i> Refresh
+                        </button>
+                    </div>
+                `;
+                labelsContainer.innerHTML = '';
                 return;
             }
             
-            const maxValue = Math.max(...dailyStats.map(d => d.total), 1);
+            // Find max value for scaling
+            const maxValue = Math.max(...dailyStats.map(d => d.total || 0), 1);
             const barHeight = 150;
+            const today = new Date().toLocaleDateString();
             
+            // Build chart bars
             chartContainer.innerHTML = dailyStats.map(day => {
-                const height = (day.total / maxValue) * barHeight;
-                const isToday = day.date === new Date().toLocaleDateString();
+                const height = Math.max((day.total / maxValue) * barHeight, 4);
+                const isToday = day.date === today;
+                const isWeekend = isWeekendDate(day.date);
+                
                 return `
-                    <div style="flex:1; display:flex; flex-direction:column; align-items:center;">
-                        <div style="height:${barHeight}px; display:flex; align-items:flex-end; width:100%;">
-                            <div style="width:100%; height:${height}px; background:${isToday ? '#2F3E2F' : '#9CAF88'}; border-radius:4px 4px 0 0; min-height:2px; transition:height 0.5s ease; position:relative;">
-                                <span style="position:absolute; top:-18px; left:50%; transform:translateX(-50%); font-size:0.55rem; color:#666; white-space:nowrap;">R${day.total.toFixed(0)}</span>
+                    <div style="flex:1; display:flex; flex-direction:column; align-items:center; min-width:20px;">
+                        <div style="height:${barHeight}px; display:flex; align-items:flex-end; width:100%; position:relative;">
+                            <div style="width:100%; height:${height}px; background:${isToday ? '#2F3E2F' : isWeekend ? '#C9B8A8' : '#9CAF88'}; 
+                                border-radius:4px 4px 0 0; min-height:2px; transition:height 0.6s ease; position:relative;
+                                box-shadow: ${isToday ? '0 2px 8px rgba(47,62,47,0.3)' : 'none'};">
+                                ${day.total > 0 ? `
+                                    <span style="position:absolute; top:-20px; left:50%; transform:translateX(-50%); 
+                                        font-size:0.55rem; color:#666; white-space:nowrap; font-weight:600;">
+                                        R${day.total.toFixed(0)}
+                                    </span>
+                                ` : ''}
+                                ${isToday ? `
+                                    <span style="position:absolute; bottom:-18px; left:50%; transform:translateX(-50%); 
+                                        font-size:0.5rem; color:#2F3E2F; font-weight:700; text-transform:uppercase; white-space:nowrap;">
+                                        Today
+                                    </span>
+                                ` : ''}
                             </div>
+                        </div>
+                        <div style="font-size:0.55rem; color:#999; margin-top:4px; text-align:center; width:100%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+                            ${formatDateLabel(day.date)}
                         </div>
                     </div>
                 `;
             }).join('');
-            
-            labelsContainer.innerHTML = dailyStats.map(day => `<span style="flex:1; text-align:center;">${day.date}</span>`).join('');
         }
 
         function renderTopDistributors() {

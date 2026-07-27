@@ -520,6 +520,9 @@
                             <div class="promo-applied-badge">
                                 <i class="fas fa-check-circle"></i>
                                 <span>Promo code applied!</span>
+                                <button onclick="clearPromoCode()" style="margin-left:auto; background:transparent; border:none; color:#E74C3C; cursor:pointer; font-size:0.8rem;">
+                                    <i class="fas fa-times"></i> Remove
+                                </button>
                             </div>
                             <div class="promo-detail">
                                 <span class="promo-label">Distributor:</span>
@@ -528,6 +531,10 @@
                             <div class="promo-detail">
                                 <span class="promo-label">Code:</span>
                                 <span id="promoCodeDisplay" class="promo-value code-highlight"></span>
+                            </div>
+                            <div class="promo-detail">
+                                <span class="promo-label">Discount:</span>
+                                <span id="promoDiscountValue" class="promo-value" style="color:#27ae60;"></span>
                             </div>
                             <small class="promo-note">Your support helps our distributors grow! 🌱</small>
                         </div>
