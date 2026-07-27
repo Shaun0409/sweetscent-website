@@ -1693,67 +1693,116 @@
             }
         }
 
-        function renderSalesChart() {
-            const chartContainer = document.getElementById('salesChart');
-            const labelsContainer = document.getElementById('salesChartLabels');
-            if (!chartContainer || !labelsContainer) return;
-            
-            // Check if there's data
-            if (!dailyStats || dailyStats.length === 0) {
-                chartContainer.innerHTML = `
-                    <div style="width:100%; text-align:center; color:#999; padding:30px 20px; display:flex; flex-direction:column; align-items:center; gap:12px;">
-                        <i class="fas fa-chart-line" style="font-size:2.5rem; color:#ddd;"></i>
-                        <div>
-                            <div style="font-size:1rem; font-weight:500; color:#666;">No sales data available</div>
-                            <small style="font-size:0.8rem; color:#999;">Sales data will appear once customers complete orders with promo codes</small>
-                        </div>
-                        <button onclick="loadAnalytics()" style="padding:6px 20px; background:#2F3E2F; color:white; border:none; border-radius:6px; cursor:pointer; font-size:0.8rem;">
-                            <i class="fas fa-sync"></i> Refresh
-                        </button>
+function renderSalesChart() {
+    const chartContainer = document.getElementById('salesChart');
+    const labelsContainer = document.getElementById('salesChartLabels');
+    if (!chartContainer || !labelsContainer) return;
+    
+    // Check if there's data
+    if (!dailyStats || dailyStats.length === 0) {
+        chartContainer.innerHTML = `
+            <div style="width:100%; text-align:center; color:#999; padding:30px 20px; display:flex; flex-direction:column; align-items:center; gap:12px;">
+                <i class="fas fa-chart-line" style="font-size:2.5rem; color:#ddd;"></i>
+                <div>
+                    <div style="font-size:1rem; font-weight:500; color:#666;">No sales data available</div>
+                    <small style="font-size:0.8rem; color:#999;">Sales data will appear once customers complete orders with promo codes</small>
+                </div>
+                <button onclick="loadAnalytics()" style="padding:6px 20px; background:#2F3E2F; color:white; border:none; border-radius:6px; cursor:pointer; font-size:0.8rem;">
+                    <i class="fas fa-sync"></i> Refresh
+                </button>
+            </div>
+        `;
+        labelsContainer.innerHTML = '';
+        return;
+    }
+    
+    // Group daily data into months
+    const monthlyData = groupByMonth(dailyStats);
+    
+    // If we have too many months, show only the last 12
+    let displayData = monthlyData;
+    if (monthlyData.length > 12) {
+        displayData = monthlyData.slice(-12);
+    }
+    
+    // Find max value for scaling
+    const maxValue = Math.max(...displayData.map(d => d.total || 0), 1);
+    const barHeight = 150;
+    
+    // Build chart bars
+    chartContainer.innerHTML = displayData.map((month, index) => {
+        const height = Math.max((month.total / maxValue) * barHeight, 4);
+        const isCurrentMonth = month.isCurrentMonth;
+        
+        return `
+            <div style="flex:1; display:flex; flex-direction:column; align-items:center; min-width:30px;">
+                <div style="height:${barHeight}px; display:flex; align-items:flex-end; width:100%; position:relative;">
+                    <div style="width:100%; height:${height}px; background:${isCurrentMonth ? '#2F3E2F' : '#9CAF88'}; 
+                        border-radius:4px 4px 0 0; min-height:2px; transition:height 0.6s ease; position:relative;
+                        box-shadow: ${isCurrentMonth ? '0 2px 8px rgba(47,62,47,0.3)' : 'none'};">
+                        ${month.total > 0 ? `
+                            <span style="position:absolute; top:-20px; left:50%; transform:translateX(-50%); 
+                                font-size:0.55rem; color:#666; white-space:nowrap; font-weight:600;">
+                                R${month.total.toFixed(0)}
+                            </span>
+                        ` : ''}
+                        ${isCurrentMonth ? `
+                            <span style="position:absolute; bottom:-18px; left:50%; transform:translateX(-50%); 
+                                font-size:0.5rem; color:#2F3E2F; font-weight:700; text-transform:uppercase; white-space:nowrap;">
+                                Current
+                            </span>
+                        ` : ''}
                     </div>
-                `;
-                labelsContainer.innerHTML = '';
-                return;
+                </div>
+                <div style="font-size:0.6rem; color:#999; margin-top:6px; text-align:center; width:100%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+                    ${month.label}
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+// Helper function to group daily stats by month
+function groupByMonth(dailyStats) {
+    const months = {};
+    
+    dailyStats.forEach(day => {
+        try {
+            const date = new Date(day.date);
+            const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+            const monthLabel = date.toLocaleDateString('en-ZA', { month: 'short', year: 'numeric' });
+            
+            if (!months[monthKey]) {
+                months[monthKey] = {
+                    key: monthKey,
+                    label: monthLabel,
+                    total: 0,
+                    orders: 0,
+                    date: date,
+                    isCurrentMonth: false
+                };
             }
-            
-            // Find max value for scaling
-            const maxValue = Math.max(...dailyStats.map(d => d.total || 0), 1);
-            const barHeight = 150;
-            const today = new Date().toLocaleDateString();
-            
-            // Build chart bars
-            chartContainer.innerHTML = dailyStats.map(day => {
-                const height = Math.max((day.total / maxValue) * barHeight, 4);
-                const isToday = day.date === today;
-                const isWeekend = isWeekendDate(day.date);
-                
-                return `
-                    <div style="flex:1; display:flex; flex-direction:column; align-items:center; min-width:20px;">
-                        <div style="height:${barHeight}px; display:flex; align-items:flex-end; width:100%; position:relative;">
-                            <div style="width:100%; height:${height}px; background:${isToday ? '#2F3E2F' : isWeekend ? '#C9B8A8' : '#9CAF88'}; 
-                                border-radius:4px 4px 0 0; min-height:2px; transition:height 0.6s ease; position:relative;
-                                box-shadow: ${isToday ? '0 2px 8px rgba(47,62,47,0.3)' : 'none'};">
-                                ${day.total > 0 ? `
-                                    <span style="position:absolute; top:-20px; left:50%; transform:translateX(-50%); 
-                                        font-size:0.55rem; color:#666; white-space:nowrap; font-weight:600;">
-                                        R${day.total.toFixed(0)}
-                                    </span>
-                                ` : ''}
-                                ${isToday ? `
-                                    <span style="position:absolute; bottom:-18px; left:50%; transform:translateX(-50%); 
-                                        font-size:0.5rem; color:#2F3E2F; font-weight:700; text-transform:uppercase; white-space:nowrap;">
-                                        Today
-                                    </span>
-                                ` : ''}
-                            </div>
-                        </div>
-                        <div style="font-size:0.55rem; color:#999; margin-top:4px; text-align:center; width:100%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
-                            ${formatDateLabel(day.date)}
-                        </div>
-                    </div>
-                `;
-            }).join('');
+            months[monthKey].total += day.total || 0;
+            months[monthKey].orders += day.orders || 0;
+        } catch (e) {
+            console.error('Error processing date:', day.date, e);
         }
+    });
+    
+    // Sort by month
+    const result = Object.values(months).sort((a, b) => a.date - b.date);
+    
+    // Mark current month
+    const now = new Date();
+    const currentMonthKey = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+    result.forEach(month => {
+        if (month.key === currentMonthKey) {
+            month.isCurrentMonth = true;
+        }
+    });
+    
+    return result;
+}
 
         function renderTopDistributors() {
             const container = document.getElementById('topDistributorsList');
