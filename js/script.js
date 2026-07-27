@@ -6,6 +6,7 @@ let products = [];
 let cart = [];
 let currentCategory = 'all';
 let currentPage = 1;
+let appliedPromoCode = null;
 const ITEMS_PER_PAGE = 6;
 
 // ===== SUPABASE CONFIGURATION =====
@@ -891,6 +892,8 @@ function closeCart() {
     document.body.style.overflow = '';
 }
 
+
+// Update the sendCartOrder function to include promo code
 function sendCartOrder() {
     let message = `Hello Sweet Scent%0A%0AI'd like to place an order.%0A%0A--- ORDER SUMMARY ---%0A`;
     let total = 0;
@@ -902,7 +905,15 @@ function sendCartOrder() {
         message += `%0A${index + 1}. ${item.name}%0A   Size: ${item.selectedSize.size}%0A   Quantity: ${item.quantity}%0A   Price: ${item.selectedSize.price}%0A   Subtotal: R${subtotal}%0A`;
     });
     
-    message += `%0A--- TOTAL: R${total} ---%0A%0APlease confirm my order and send me your payment details.%0A%0AThank you.`;
+    message += `%0A--- TOTAL: R${total} ---`;
+    
+    // Add promo code if applied
+    if (appliedPromoCode) {
+        message += `%0A%0A🎟️ Promo Code: ${appliedPromoCode.code}`;
+        message += `%0A👤 Distributor: ${appliedPromoCode.distributor_name}`;
+    }
+    
+    message += `%0A%0APlease confirm my order and send me your payment details.%0A%0AThank you.`;
     
     window.open(`https://wa.me/27622102873?text=${message}`, '_blank');
     closeCart();
@@ -1082,6 +1093,155 @@ function setupModalEvents() {
     });
 }
 
+// Toggle promo input visibility
+function togglePromoInput() {
+    const area = document.getElementById('promoInputArea');
+    const btn = document.getElementById('promoToggleBtn');
+    if (area.style.display === 'none') {
+        area.style.display = 'block';
+        btn.classList.add('active');
+    } else {
+        area.style.display = 'none';
+        btn.classList.remove('active');
+    }
+}
+
+// Validate a promo code
+async function validatePromoCode(code) {
+    try {
+        const cleanCode = code.toUpperCase().trim();
+        
+        const { data, error } = await supabaseClient
+            .from('promo_codes')
+            .select('*')
+            .eq('code', cleanCode)
+            .eq('is_active', true)
+            .single();
+        
+        if (error || !data) {
+            return { valid: false, message: 'Invalid promo code. Please check and try again.' };
+        }
+        
+        return { 
+            valid: true, 
+            data: data,
+            message: `✅ Code "${cleanCode}" applied!`
+        };
+    } catch (error) {
+        console.error('Error validating promo code:', error);
+        return { valid: false, message: 'Error validating code. Please try again.' };
+    }
+}
+
+// Apply promo code
+async function applyPromoCode() {
+    const input = document.getElementById('promoCodeInput');
+    const status = document.getElementById('promoCodeStatus');
+    const code = input.value.trim();
+    
+    if (!code) {
+        status.innerHTML = '⚠️ Please enter a promo code';
+        status.className = 'promo-status error';
+        return;
+    }
+    
+    status.innerHTML = '⏳ Checking code...';
+    status.className = 'promo-status loading';
+    
+    const result = await validatePromoCode(code);
+    
+    if (result.valid) {
+        appliedPromoCode = result.data;
+        status.innerHTML = `✅ ${result.message}`;
+        status.className = 'promo-status success';
+        input.disabled = true;
+        document.getElementById('promoApplyBtn').disabled = true;
+        document.getElementById('promoApplyBtn').textContent = 'Applied ✓';
+        
+        // Store in session
+        sessionStorage.setItem('promoCode', code.toUpperCase());
+        sessionStorage.setItem('promoCodeId', result.data.id);
+        
+        // Show applied info
+        document.getElementById('promoAppliedInfo').style.display = 'block';
+        document.getElementById('promoDistributorName').textContent = result.data.distributor_name;
+        document.getElementById('promoCodeDisplay').textContent = code.toUpperCase();
+        
+        // Record usage
+        await recordPromoUsage(result.data.id);
+        
+    } else {
+        status.innerHTML = `❌ ${result.message}`;
+        status.className = 'promo-status error';
+        appliedPromoCode = null;
+    }
+}
+
+// Record promo code usage
+async function recordPromoUsage(promoCodeId) {
+    try {
+        const productIds = cart.map(item => item.id);
+        const total = getCartTotal();
+        let sessionId = sessionStorage.getItem('sessionId');
+        if (!sessionId) {
+            sessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substring(7);
+            sessionStorage.setItem('sessionId', sessionId);
+        }
+        
+        const { error } = await supabaseClient
+            .from('promo_code_usage')
+            .insert({
+                promo_code_id: promoCodeId,
+                session_id: sessionId,
+                order_total: total,
+                product_ids: productIds,
+                used_at: new Date().toISOString()
+            });
+        
+        if (error) throw error;
+        
+        // Update usage count
+        await supabaseClient
+            .from('promo_codes')
+            .update({ usage_count: supabaseClient.raw('usage_count + 1') })
+            .eq('id', promoCodeId);
+        
+        console.log('✅ Promo usage recorded');
+        
+    } catch (error) {
+        console.error('Error recording promo usage:', error);
+    }
+}
+
+// Setup promo code button
+function setupPromoCodeButton() {
+    const applyBtn = document.getElementById('promoApplyBtn');
+    if (applyBtn) {
+        applyBtn.addEventListener('click', applyPromoCode);
+    }
+    
+    const input = document.getElementById('promoCodeInput');
+    if (input) {
+        input.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                applyPromoCode();
+            }
+        });
+    }
+    
+    // Check if promo code was previously applied (session)
+    const savedCode = sessionStorage.getItem('promoCode');
+    if (savedCode) {
+        const input = document.getElementById('promoCodeInput');
+        if (input) {
+            input.value = savedCode;
+            // Auto-apply after a short delay
+            setTimeout(applyPromoCode, 500);
+        }
+    }
+}
+
 // ===== INITIALIZE =====
 document.addEventListener('DOMContentLoaded', function() {
     loadProducts();
@@ -1092,6 +1252,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setupModalEvents();
     setupValuePopup();
     setupCartModal();
+    setupPromoCodeButton();
     
     // Initialize AOS
     if (typeof AOS !== 'undefined') {
@@ -1103,3 +1264,4 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+

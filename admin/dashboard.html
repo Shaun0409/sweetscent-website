@@ -43,6 +43,8 @@
             padding-bottom: 30px;
             border-bottom: 2px solid #F0EDE8;
             margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .admin-name {
@@ -89,6 +91,58 @@
         @keyframes pulse {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.6; }
+        }
+
+        /* Tabs */
+        .admin-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #F0EDE8;
+            padding-bottom: 0;
+            flex-wrap: wrap;
+        }
+
+        .admin-tab-btn {
+            padding: 12px 28px;
+            background: transparent;
+            border: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #999;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            font-family: 'Inter', sans-serif;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+        }
+
+        .admin-tab-btn:hover {
+            color: #2F3E2F;
+        }
+
+        .admin-tab-btn.active {
+            color: #2F3E2F;
+            border-bottom-color: #2F3E2F;
+        }
+
+        .admin-tab-btn i {
+            margin-right: 8px;
+        }
+
+        .admin-tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .admin-tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .admin-title {
@@ -308,6 +362,48 @@
             transform: none;
         }
 
+        .btn-sm {
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-sm:hover {
+            transform: translateY(-1px);
+        }
+
+        .btn-danger {
+            background: #E74C3C;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #C0392B;
+        }
+
+        .btn-success {
+            background: #27ae60;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #1E8449;
+        }
+
+        .btn-warning {
+            background: #F39C12;
+            color: white;
+        }
+
+        .btn-warning:hover {
+            background: #D68910;
+        }
+
         .status-message {
             display: inline-block;
             margin-left: 20px;
@@ -366,6 +462,190 @@
             to { transform: rotate(360deg); }
         }
 
+        /* Promo Code Styles */
+        .promo-form-container {
+            background: #F8F7F4;
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-bottom: 30px;
+            border: 1px solid #F0EDE8;
+        }
+
+        .promo-form-container h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            color: #2F3E2F;
+            margin-bottom: 18px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            margin-bottom: 16px;
+        }
+
+        .form-row.three-col {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #2F3E2F;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 10px 14px;
+            border: 1.5px solid #E0DDD8;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.3s ease;
+            background: #FFFFFF;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #9CAF88;
+        }
+
+        .form-group small {
+            font-size: 0.7rem;
+            color: #999;
+            margin-top: 4px;
+        }
+
+        .input-with-button {
+            display: flex;
+            gap: 8px;
+        }
+
+        .input-with-button input {
+            flex: 1;
+        }
+
+        .input-with-button .btn-sm {
+            padding: 10px 16px;
+            background: #9CAF88;
+            color: white;
+            white-space: nowrap;
+        }
+
+        .input-with-button .btn-sm:hover {
+            background: #2F3E2F;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 12px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .badge-success {
+            background: #E8F5E9;
+            color: #27ae60;
+        }
+
+        .badge-muted {
+            background: #F5F3EF;
+            color: #999;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 3px 12px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .status-badge.active {
+            background: #E8F5E9;
+            color: #27ae60;
+        }
+
+        .status-badge.inactive {
+            background: #FFEBEE;
+            color: #E74C3C;
+        }
+
+        /* Summary Grid */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .summary-item {
+            background: #F8F7F4;
+            border-radius: 10px;
+            padding: 16px 20px;
+            border: 1px solid #F0EDE8;
+            text-align: center;
+        }
+
+        .summary-label {
+            display: block;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #999;
+            font-weight: 600;
+        }
+
+        .summary-value {
+            display: block;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #2F3E2F;
+            margin-top: 4px;
+        }
+
+        .summary-sub {
+            display: block;
+            font-size: 0.75rem;
+            color: #999;
+            margin-top: 2px;
+        }
+
+        .promo-performance {
+            margin-top: 20px;
+        }
+
+        .promo-performance h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            color: #2F3E2F;
+            margin-bottom: 16px;
+        }
+
+        .promo-code-cell {
+            font-weight: 700;
+            color: #2F3E2F;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 1px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
         @media (max-width: 768px) {
             .admin-container { padding: 20px; }
             .admin-name { font-size: 1.6rem; }
@@ -376,6 +656,13 @@
             .toggle-wrapper { gap: 6px; }
             .save-btn { width: 100%; justify-content: center; }
             .admin-footer { flex-direction: column; gap: 10px; text-align: center; }
+            .form-row { grid-template-columns: 1fr; }
+            .form-row.three-col { grid-template-columns: 1fr; }
+            .admin-tab-btn { padding: 10px 16px; font-size: 0.85rem; }
+            .promo-form-container { padding: 18px; }
+            .summary-grid { grid-template-columns: 1fr; }
+            .action-buttons { flex-direction: column; }
+            .action-buttons .btn-sm { width: 100%; }
         }
 
         @media (max-width: 480px) {
@@ -402,46 +689,162 @@
             </div>
         </div>
 
-        <div class="admin-title">📦 Manage Products</div>
-        <div class="admin-subtitle">Update stock status and pricing — changes save instantly to the live website.</div>
-
-        <div class="instruction-note">
-            <i class="fas fa-bolt"></i>
-            <strong>Auto-Sync Enabled:</strong> Changes are saved instantly to Supabase and the website updates automatically.
-            <span style="display:block; margin-top:8px; font-size:0.85rem;">
-                <i class="fas fa-check-circle" style="color:#27ae60;"></i> No manual file uploads needed!
-            </span>
-        </div>
-
-        <div class="table-wrapper">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Product</th>
-                        <th>Category</th>
-                        <th>Price (30ml)</th>
-                        <th>Price (100ml)</th>
-                        <th>Stock</th>
-                    </tr>
-                </thead>
-                <tbody id="productTableBody">
-                    <tr>
-                        <td colspan="5" style="text-align:center; padding:40px;">
-                            <div class="loading-spinner"></div> Loading products...
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <div style="display:flex; align-items:center; flex-wrap:wrap; gap:15px;">
-            <button class="save-btn" id="saveChanges">
-                <i class="fas fa-save"></i> Save Changes
+        <!-- Tabs -->
+        <div class="admin-tabs">
+            <button class="admin-tab-btn active" data-tab="products">
+                <i class="fas fa-box"></i> Products
             </button>
-            <span class="status-message hidden" id="statusMessage"></span>
-            <span style="font-size:0.85rem; color:#999;">
-                <i class="fas fa-cloud-upload-alt" style="color:#27ae60;"></i> Auto-sync to Supabase
-            </span>
+            <button class="admin-tab-btn" data-tab="promocodes">
+                <i class="fas fa-ticket-alt"></i> Promo Codes
+            </button>
+            <button class="admin-tab-btn" data-tab="analytics">
+                <i class="fas fa-chart-bar"></i> Analytics
+            </button>
+        </div>
+
+        <!-- Products Tab -->
+        <div class="admin-tab-content active" id="tab-products">
+            <div class="admin-title">📦 Manage Products</div>
+            <div class="admin-subtitle">Update stock status and pricing — changes save instantly to the live website.</div>
+
+            <div class="instruction-note">
+                <i class="fas fa-bolt"></i>
+                <strong>Auto-Sync Enabled:</strong> Changes are saved instantly to Supabase and the website updates automatically.
+                <span style="display:block; margin-top:8px; font-size:0.85rem;">
+                    <i class="fas fa-check-circle" style="color:#27ae60;"></i> No manual file uploads needed!
+                </span>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Category</th>
+                            <th>Price (30ml)</th>
+                            <th>Price (100ml)</th>
+                            <th>Stock</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productTableBody">
+                        <tr>
+                            <td colspan="5" style="text-align:center; padding:40px;">
+                                <div class="loading-spinner"></div> Loading products...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="display:flex; align-items:center; flex-wrap:wrap; gap:15px;">
+                <button class="save-btn" id="saveChanges">
+                    <i class="fas fa-save"></i> Save Changes
+                </button>
+                <span class="status-message hidden" id="statusMessage"></span>
+                <span style="font-size:0.85rem; color:#999;">
+                    <i class="fas fa-cloud-upload-alt" style="color:#27ae60;"></i> Auto-sync to Supabase
+                </span>
+            </div>
+        </div>
+
+        <!-- Promo Codes Tab -->
+        <div class="admin-tab-content" id="tab-promocodes">
+            <div class="admin-title">🎟️ Promo Code Management</div>
+            <div class="admin-subtitle">Create and manage distributor promo codes. Track usage and performance.</div>
+
+            <!-- Create Promo Code Form -->
+            <div class="promo-form-container">
+                <h3>➕ Create New Promo Code</h3>
+                <form id="promoForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Code <span style="color:#E74C3C;">*</span></label>
+                            <div class="input-with-button">
+                                <input type="text" id="promoCodeInput" placeholder="e.g., JOHN10" required style="text-transform:uppercase;">
+                                <button type="button" id="generateCodeBtn" class="btn-sm" style="background:#9CAF88; color:white;">🔄 Generate</button>
+                            </div>
+                            <small>Auto-generates from distributor name</small>
+                        </div>
+                        <div class="form-group">
+                            <label>Distributor Name <span style="color:#E74C3C;">*</span></label>
+                            <input type="text" id="promoDistributorInput" placeholder="Full name" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="tel" id="promoPhoneInput" placeholder="e.g., 082 123 4567">
+                        </div>
+                        <div class="form-group">
+                            <label>Customer Discount %</label>
+                            <input type="number" id="promoDiscountInput" placeholder="10" min="0" max="100">
+                            <small>Percentage off for customers</small>
+                        </div>
+                        <div class="form-group">
+                            <label>Distributor Commission %</label>
+                            <input type="number" id="promoCommissionInput" placeholder="5" min="0" max="100">
+                            <small>Distributor's cut</small>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-bottom:16px;">
+                        <label>Notes (Optional)</label>
+                        <input type="text" id="promoNotesInput" placeholder="Internal notes about this distributor">
+                    </div>
+                    <button type="submit" class="btn-primary" style="padding:12px 32px; font-size:0.95rem;">
+                        <i class="fas fa-plus-circle"></i> Create Promo Code
+                    </button>
+                </form>
+            </div>
+
+            <!-- Promo Code Performance -->
+            <div class="promo-performance">
+                <h3>📊 Promo Code Performance</h3>
+                
+                <!-- Summary Cards -->
+                <div id="promoSummary" class="summary-grid">
+                    <!-- Rendered by JavaScript -->
+                </div>
+                
+                <!-- Table -->
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Code</th>
+                                <th>Distributor</th>
+                                <th>Phone</th>
+                                <th>Discount</th>
+                                <th>Commission</th>
+                                <th>Uses</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="promoCodeTableBody">
+                            <!-- Rendered by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Analytics Tab -->
+        <div class="admin-tab-content" id="tab-analytics">
+            <div class="admin-title">📈 Analytics</div>
+            <div class="admin-subtitle">Track performance and trends across your product catalogue.</div>
+            
+            <div class="instruction-note">
+                <i class="fas fa-chart-line"></i>
+                <strong>Coming Soon:</strong> Advanced analytics including sales trends, distributor performance, and customer insights.
+            </div>
+            
+            <div style="text-align:center; padding:60px 20px; color:#999;">
+                <i class="fas fa-chart-pie" style="font-size:3rem; color:#9CAF88; margin-bottom:16px;"></i>
+                <h3 style="color:#2F3E2F; margin-bottom:8px;">Analytics Dashboard</h3>
+                <p>Detailed analytics and reporting will be available in the next update.</p>
+                <p style="font-size:0.85rem; margin-top:8px;">Track distributor performance, top products, and more.</p>
+            </div>
         </div>
 
         <div class="admin-footer">
@@ -452,14 +855,12 @@
 
     <script>
         // ============================================
-        // SUPABASE CONFIGURATION - FIXED
+        // SUPABASE CONFIGURATION
         // ============================================
         
-        // ✅ FIX: Use const for Supabase client
         const SUPABASE_URL = 'https://kpnfylunzxrvxsymyrks.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtwbmZ5bHVuenhydnhzeW15cmtzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM2NjgwNjksImV4cCI6MjA5OTI0NDA2OX0.oMitGZ7hif6rQsojuqfypRrRJHfTL1XmVo-Dx57GmFg';
 
-        // ✅ FIX: Check if supabase already exists in window
         const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
             auth: {
                 autoRefreshToken: true,
@@ -468,16 +869,52 @@
         });
 
         // ============================================
-        // STATE MANAGEMENT
+        // STATE
         // ============================================
 
         let products = [];
+        let promoCodes = [];
         let changesMade = false;
         let autoSaveTimeout = null;
         let isSaving = false;
 
         // ============================================
-        // SEED DATA (Fixed paths)
+        // TAB MANAGEMENT
+        // ============================================
+
+        function setupTabs() {
+            const tabs = document.querySelectorAll('.admin-tab-btn');
+            const contents = {
+                products: document.getElementById('tab-products'),
+                promocodes: document.getElementById('tab-promocodes'),
+                analytics: document.getElementById('tab-analytics')
+            };
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Update tab buttons
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update content
+                    const tabName = this.dataset.tab;
+                    Object.keys(contents).forEach(key => {
+                        contents[key].classList.remove('active');
+                    });
+                    if (contents[tabName]) {
+                        contents[tabName].classList.add('active');
+                    }
+                    
+                    // Load data if needed
+                    if (tabName === 'promocodes') {
+                        loadPromoCodes();
+                    }
+                });
+            });
+        }
+
+        // ============================================
+        // PRODUCTS - SEED DATA
         // ============================================
         
         const seedProducts = [
@@ -848,7 +1285,7 @@
         ];
 
         // ============================================
-        // UTILITY FUNCTIONS
+        // PRODUCT FUNCTIONS
         // ============================================
 
         function escapeHtml(text) {
@@ -871,11 +1308,6 @@
             return isNaN(num) ? null : num;
         }
 
-        // ============================================
-        // DATABASE OPERATIONS
-        // ============================================
-
-        // ✅ FIX: Use supabaseClient instead of supabase
         async function ensureTableExists() {
             try {
                 const { error } = await supabaseClient
@@ -944,10 +1376,6 @@
             }
         }
 
-        // ============================================
-        // RENDER PRODUCTS
-        // ============================================
-
         function renderProducts() {
             const tbody = document.getElementById('productTableBody');
             
@@ -1015,10 +1443,6 @@
             attachEventListeners();
         }
 
-        // ============================================
-        // EVENT LISTENERS
-        // ============================================
-
         function attachEventListeners() {
             document.querySelectorAll('.stock-toggle').forEach(toggle => {
                 const newToggle = toggle.cloneNode(true);
@@ -1058,10 +1482,6 @@
             });
         }
 
-        // ============================================
-        // CHANGE TRACKING WITH AUTO-SAVE
-        // ============================================
-
         function markChanges() {
             changesMade = true;
             updateStatusMessage('✏️ Unsaved changes...', '');
@@ -1074,12 +1494,7 @@
             }, 3000);
         }
 
-        // ============================================
-        // REAL-TIME UPDATES
-        // ============================================
-
         function setupRealTimeUpdates() {
-            // ✅ FIX: Use supabaseClient
             const channel = supabaseClient
                 .channel('products-changes')
                 .on('postgres_changes', 
@@ -1108,10 +1523,6 @@
             window._supabaseChannel = channel;
         }
 
-        // ============================================
-        // STATUS MESSAGE
-        // ============================================
-
         function updateStatusMessage(message, type) {
             const el = document.getElementById('statusMessage');
             if (!message) { 
@@ -1121,10 +1532,6 @@
             el.textContent = message;
             el.className = `status-message ${type}`;
         }
-
-        // ============================================
-        // SAVE CHANGES
-        // ============================================
 
         async function saveChanges() {
             if (isSaving) return;
@@ -1172,7 +1579,6 @@
                     });
                 });
 
-                // ✅ FIX: Use supabaseClient
                 const { error } = await supabaseClient
                     .from('products')
                     .upsert(updatedProducts, { 
@@ -1199,10 +1605,6 @@
             }
         }
 
-        // ============================================
-        // SETUP
-        // ============================================
-
         function setupSaveButton() {
             document.getElementById('saveChanges').addEventListener('click', function() {
                 if (changesMade && !isSaving) {
@@ -1215,12 +1617,262 @@
         }
 
         // ============================================
+        // PROMO CODE FUNCTIONS
+        // ============================================
+
+        async function loadPromoCodes() {
+            const tbody = document.getElementById('promoCodeTableBody');
+            
+            try {
+                const { data, error } = await supabaseClient
+                    .from('promo_codes')
+                    .select('*')
+                    .order('usage_count', { ascending: false });
+                
+                if (error) throw error;
+                
+                promoCodes = data || [];
+                renderPromoCodes(promoCodes);
+                
+            } catch (error) {
+                console.error('Error loading promo codes:', error);
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="9" style="text-align:center; padding:40px; color:#E74C3C;">
+                            <i class="fas fa-exclamation-circle"></i> Error loading promo codes
+                            <br><small style="color:#999;">${error.message}</small>
+                        </td>
+                    </tr>
+                `;
+            }
+        }
+
+        function renderPromoCodes(codes) {
+            const tbody = document.getElementById('promoCodeTableBody');
+            
+            if (!codes || codes.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="9" style="text-align:center; padding:40px; color:#999;">
+                            <i class="fas fa-ticket-alt"></i> No promo codes created yet.
+                            <br><small>Create your first promo code using the form above.</small>
+                        </td>
+                    </tr>
+                `;
+                updatePromoSummary([]);
+                return;
+            }
+            
+            tbody.innerHTML = codes.map((code, index) => `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td><span class="promo-code-cell">${escapeHtml(code.code)}</span></td>
+                    <td><strong>${escapeHtml(code.distributor_name)}</strong></td>
+                    <td>${code.distributor_phone || '—'}</td>
+                    <td>${code.discount_percentage || 0}%</td>
+                    <td>${code.commission_percentage || 0}%</td>
+                    <td>
+                        <span class="badge ${code.usage_count > 0 ? 'badge-success' : 'badge-muted'}">
+                            ${code.usage_count || 0}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="status-badge ${code.is_active ? 'active' : 'inactive'}">
+                            ${code.is_active ? '✅ Active' : '❌ Inactive'}
+                        </span>
+                    </td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="btn-sm ${code.is_active ? 'btn-warning' : 'btn-success'}" onclick="togglePromoCode('${code.id}')">
+                                ${code.is_active ? 'Disable' : 'Enable'}
+                            </button>
+                            <button class="btn-sm btn-danger" onclick="deletePromoCode('${code.id}')">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+            
+            updatePromoSummary(codes);
+        }
+
+        function updatePromoSummary(codes) {
+            const summary = document.getElementById('promoSummary');
+            if (!summary) return;
+            
+            const totalUses = codes.reduce((sum, c) => sum + (c.usage_count || 0), 0);
+            const activeCodes = codes.filter(c => c.is_active).length;
+            const topDistributor = codes.length > 0 ? 
+                codes.reduce((a, b) => (a.usage_count || 0) > (b.usage_count || 0) ? a : b) : 
+                null;
+            
+            summary.innerHTML = `
+                <div class="summary-item">
+                    <span class="summary-label">Total Codes</span>
+                    <span class="summary-value">${codes.length}</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Active Codes</span>
+                    <span class="summary-value">${activeCodes}</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Total Uses</span>
+                    <span class="summary-value">${totalUses}</span>
+                </div>
+                ${topDistributor ? `
+                    <div class="summary-item">
+                        <span class="summary-label">🏆 Top Distributor</span>
+                        <span class="summary-value">${escapeHtml(topDistributor.distributor_name)}</span>
+                        <span class="summary-sub">${topDistributor.usage_count || 0} uses · ${topDistributor.discount_percentage || 0}% discount</span>
+                    </div>
+                ` : ''}
+            `;
+        }
+
+        async function createPromoCode(event) {
+            event.preventDefault();
+            
+            const code = document.getElementById('promoCodeInput').value.toUpperCase().trim();
+            const distributor = document.getElementById('promoDistributorInput').value.trim();
+            const phone = document.getElementById('promoPhoneInput').value.trim();
+            const discount = parseInt(document.getElementById('promoDiscountInput').value) || 0;
+            const commission = parseInt(document.getElementById('promoCommissionInput').value) || 0;
+            const notes = document.getElementById('promoNotesInput').value.trim();
+            
+            if (!code || !distributor) {
+                alert('Please fill in the Code and Distributor Name fields');
+                return;
+            }
+            
+            // Check if code already exists
+            try {
+                const { data: existing, error: checkError } = await supabaseClient
+                    .from('promo_codes')
+                    .select('code')
+                    .eq('code', code)
+                    .single();
+                
+                if (existing) {
+                    alert(`❌ Code "${code}" already exists. Please use a different code.`);
+                    return;
+                }
+            } catch (error) {
+                // Code doesn't exist, proceed
+            }
+            
+            try {
+                const { data, error } = await supabaseClient
+                    .from('promo_codes')
+                    .insert({
+                        code: code,
+                        distributor_name: distributor,
+                        distributor_phone: phone || null,
+                        discount_percentage: discount,
+                        commission_percentage: commission,
+                        notes: notes || null,
+                        is_active: true,
+                        usage_count: 0
+                    });
+                
+                if (error) throw error;
+                
+                alert(`✅ Promo code "${code}" created successfully for ${distributor}!`);
+                document.getElementById('promoForm').reset();
+                loadPromoCodes();
+                
+            } catch (error) {
+                console.error('Error creating promo code:', error);
+                alert(`❌ Error: ${error.message}`);
+            }
+        }
+
+        async function togglePromoCode(id) {
+            try {
+                const { data, error } = await supabaseClient
+                    .from('promo_codes')
+                    .select('is_active, code')
+                    .eq('id', id)
+                    .single();
+                
+                if (error) throw error;
+                
+                const newStatus = !data.is_active;
+                const { error: updateError } = await supabaseClient
+                    .from('promo_codes')
+                    .update({ is_active: newStatus })
+                    .eq('id', id);
+                
+                if (updateError) throw updateError;
+                
+                console.log(`✅ Promo code ${data.code} ${newStatus ? 'enabled' : 'disabled'}`);
+                loadPromoCodes();
+                
+            } catch (error) {
+                console.error('Error toggling promo code:', error);
+                alert(`❌ Error: ${error.message}`);
+            }
+        }
+
+        async function deletePromoCode(id) {
+            if (!confirm('Are you sure you want to delete this promo code? This cannot be undone.')) return;
+            
+            try {
+                const { error } = await supabaseClient
+                    .from('promo_codes')
+                    .delete()
+                    .eq('id', id);
+                
+                if (error) throw error;
+                
+                console.log('✅ Promo code deleted');
+                loadPromoCodes();
+                
+            } catch (error) {
+                console.error('Error deleting promo code:', error);
+                alert(`❌ Error: ${error.message}`);
+            }
+        }
+
+        function generatePromoCode() {
+            const name = document.getElementById('promoDistributorInput').value.trim();
+            if (!name) {
+                alert('Please enter the distributor name first to generate a code');
+                return;
+            }
+            
+            // Take first 4 letters of name, uppercase
+            const prefix = name.substring(0, 4).toUpperCase();
+            const random = Math.floor(Math.random() * 100);
+            const code = prefix + random;
+            
+            document.getElementById('promoCodeInput').value = code;
+        }
+
+        function setupPromoCodeForm() {
+            const form = document.getElementById('promoForm');
+            if (form) {
+                form.addEventListener('submit', createPromoCode);
+            }
+            
+            const generateBtn = document.getElementById('generateCodeBtn');
+            if (generateBtn) {
+                generateBtn.addEventListener('click', generatePromoCode);
+            }
+        }
+
+        // ============================================
         // INITIALIZE
         // ============================================
 
         document.addEventListener('DOMContentLoaded', function() {
+            setupTabs();
             loadProducts();
             setupSaveButton();
+            setupPromoCodeForm();
+            
+            // Load promo codes if tab is active by default
+            loadPromoCodes();
             
             window.addEventListener('beforeunload', function(e) {
                 if (changesMade) {

@@ -3326,3 +3326,242 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
         padding: 6px 0;
     }
 }
+
+/* =====================================================
+   PROMO CODE STYLES
+   ===================================================== */
+
+.cart-promo-section {
+    margin: 16px 0 20px;
+    padding: 14px 16px;
+    background: #F8F7F4;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--line);
+}
+
+.promo-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.promo-toggle i:first-child {
+    color: #9CAF88;
+    font-size: 1.1rem;
+}
+
+.promo-toggle span {
+    font-weight: 500;
+    color: #2F3E2F;
+    flex: 1;
+    font-size: 0.9rem;
+}
+
+.promo-toggle-btn {
+    background: none;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    padding: 4px 8px;
+    transition: transform 0.3s ease;
+    font-size: 1rem;
+}
+
+.promo-toggle-btn.active {
+    transform: rotate(180deg);
+}
+
+.promo-input-area {
+    margin-top: 14px;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.promo-input-group {
+    display: flex;
+    gap: 10px;
+}
+
+.promo-input-group input {
+    flex: 1;
+    padding: 10px 14px;
+    border: 1.5px solid var(--line);
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    background: #FFFFFF;
+    transition: border-color 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Inter', sans-serif;
+}
+
+.promo-input-group input:focus {
+    outline: none;
+    border-color: #9CAF88;
+}
+
+.promo-input-group input:disabled {
+    background: #F5F3EF;
+    color: #999;
+}
+
+.promo-input-group .btn-primary {
+    padding: 10px 20px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    background: #2F3E2F;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.promo-input-group .btn-primary:hover {
+    background: #3C2F2F;
+    transform: translateY(-2px);
+}
+
+.promo-input-group .btn-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.promo-status {
+    margin-top: 10px;
+    font-size: 0.85rem;
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+}
+
+.promo-status.loading {
+    color: #9CAF88;
+    background: #F5F3EF;
+}
+
+.promo-status.success {
+    color: #27ae60;
+    background: #E8F5E9;
+}
+
+.promo-status.error {
+    color: #E74C3C;
+    background: #FFEBEE;
+}
+
+.promo-applied-info {
+    margin-top: 12px;
+    padding: 14px 16px;
+    background: #E8F5E9;
+    border-radius: var(--radius-sm);
+    border: 1px solid #81C784;
+    animation: slideDown 0.3s ease;
+}
+
+.promo-applied-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #27ae60;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+}
+
+.promo-applied-badge i {
+    font-size: 1.1rem;
+}
+
+.promo-detail {
+    display: flex;
+    gap: 8px;
+    font-size: 0.85rem;
+    padding: 2px 0;
+}
+
+.promo-label {
+    color: #666;
+    min-width: 80px;
+    font-weight: 500;
+}
+
+.promo-value {
+    color: #2F3E2F;
+    font-weight: 500;
+}
+
+.code-highlight {
+    background: #FFFFFF;
+    padding: 2px 10px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    border: 1px solid #81C784;
+}
+
+.promo-note {
+    display: block;
+    margin-top: 8px;
+    color: #666;
+    font-size: 0.78rem;
+    font-style: italic;
+}
+
+.promo-help {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.78rem;
+    color: #999;
+}
+
+.promo-help i {
+    color: #9CAF88;
+    font-size: 0.9rem;
+}
+
+/* Mobile styles for promo section */
+@media (max-width: 480px) {
+    .cart-promo-section {
+        padding: 12px 14px;
+    }
+    
+    .promo-input-group {
+        flex-direction: column;
+    }
+    
+    .promo-input-group .btn-primary {
+        width: 100%;
+        justify-content: center;
+        padding: 12px 20px;
+    }
+    
+    .promo-detail {
+        flex-direction: column;
+        gap: 2px;
+    }
+    
+    .promo-label {
+        min-width: auto;
+    }
+    
+    .promo-toggle span {
+        font-size: 0.85rem;
+    }
+    
+    .promo-status {
+        font-size: 0.8rem;
+        padding: 6px 10px;
+    }
+}
