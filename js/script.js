@@ -7,6 +7,7 @@ let cart = [];
 let currentCategory = 'all';
 let currentPage = 1;
 let appliedPromoCode = null;
+let discountApplied = 0;
 const ITEMS_PER_PAGE = 6;
 
 // ===== SUPABASE CONFIGURATION =====
@@ -813,8 +814,42 @@ function updateCartUI() {
         }
     }
     
-    if (totalEl) {
-        totalEl.textContent = 'R' + getCartTotal();
+    // Update total with any applied discount
+    updateCartTotalDisplay(totalEl);
+}
+
+// Update cart total display with discount if applied
+function updateCartTotalDisplay(totalEl) {
+    if (!totalEl) return;
+    
+    const total = getCartTotal();
+    const discountDisplay = document.getElementById('promoDiscountDisplay');
+    
+    if (appliedPromoCode && discountApplied > 0) {
+        const discountedTotal = total - discountApplied;
+        totalEl.innerHTML = `
+            <span style="text-decoration:line-through; color:#999; font-size:0.8rem;">
+                R${total.toFixed(2)}
+            </span>
+            <span style="color:#27ae60; font-weight:700;">
+                R${discountedTotal.toFixed(2)}
+            </span>
+        `;
+        
+        if (discountDisplay) {
+            discountDisplay.style.display = 'block';
+            discountDisplay.innerHTML = `
+                <div class="discount-badge">
+                    <i class="fas fa-tags"></i>
+                    You save <strong>R${discountApplied.toFixed(2)}</strong> with this promo code! 🎉
+                </div>
+            `;
+        }
+    } else {
+        totalEl.textContent = `R${total.toFixed(2)}`;
+        if (discountDisplay) {
+            discountDisplay.style.display = 'none';
+        }
     }
 }
 
@@ -892,8 +927,7 @@ function closeCart() {
     document.body.style.overflow = '';
 }
 
-
-// Update the sendCartOrder function to include promo code
+// Send cart order with promo code
 function sendCartOrder() {
     let message = `Hello Sweet Scent%0A%0AI'd like to place an order.%0A%0A--- ORDER SUMMARY ---%0A`;
     let total = 0;
@@ -905,12 +939,21 @@ function sendCartOrder() {
         message += `%0A${index + 1}. ${item.name}%0A   Size: ${item.selectedSize.size}%0A   Quantity: ${item.quantity}%0A   Price: ${item.selectedSize.price}%0A   Subtotal: R${subtotal}%0A`;
     });
     
-    message += `%0A--- TOTAL: R${total} ---`;
-    
-    // Add promo code if applied
-    if (appliedPromoCode) {
+    // Calculate final total with discount
+    let finalTotal = total;
+    if (appliedPromoCode && discountApplied > 0) {
+        finalTotal = total - discountApplied;
+        message += `%0A--- SUBTOTAL: R${total} ---`;
+        message += `%0A🎟️ Promo Code: ${appliedPromoCode.code}`;
+        message += `%0A👤 Distributor: ${appliedPromoCode.distributor_name}`;
+        message += `%0A💰 Discount: ${appliedPromoCode.discount_percentage}% (-R${discountApplied.toFixed(2)})`;
+        message += `%0A--- FINAL TOTAL: R${finalTotal.toFixed(2)} ---`;
+    } else if (appliedPromoCode) {
+        message += `%0A--- TOTAL: R${total} ---`;
         message += `%0A%0A🎟️ Promo Code: ${appliedPromoCode.code}`;
         message += `%0A👤 Distributor: ${appliedPromoCode.distributor_name}`;
+    } else {
+        message += `%0A--- TOTAL: R${total} ---`;
     }
     
     message += `%0A%0APlease confirm my order and send me your payment details.%0A%0AThank you.`;
@@ -1093,6 +1136,10 @@ function setupModalEvents() {
     });
 }
 
+// ============================================
+// PROMO CODE FUNCTIONS
+// ============================================
+
 // Toggle promo input visibility
 function togglePromoInput() {
     const area = document.getElementById('promoInputArea');
@@ -1133,7 +1180,7 @@ async function validatePromoCode(code) {
     }
 }
 
-// Apply promo code
+// Apply promo code with automatic discount
 async function applyPromoCode() {
     const input = document.getElementById('promoCodeInput');
     const status = document.getElementById('promoCodeStatus');
@@ -1152,6 +1199,14 @@ async function applyPromoCode() {
     
     if (result.valid) {
         appliedPromoCode = result.data;
+        
+        // Calculate discount
+        const discountPercent = result.data.discount_percentage || 0;
+        const total = getCartTotal();
+        const discountAmount = total * (discountPercent / 100);
+        discountApplied = discountAmount;
+        const discountedTotal = total - discountAmount;
+        
         status.innerHTML = `✅ ${result.message}`;
         status.className = 'promo-status success';
         input.disabled = true;
@@ -1161,11 +1216,31 @@ async function applyPromoCode() {
         // Store in session
         sessionStorage.setItem('promoCode', code.toUpperCase());
         sessionStorage.setItem('promoCodeId', result.data.id);
+        sessionStorage.setItem('discountApplied', discountAmount);
         
         // Show applied info
         document.getElementById('promoAppliedInfo').style.display = 'block';
         document.getElementById('promoDistributorName').textContent = result.data.distributor_name;
         document.getElementById('promoCodeDisplay').textContent = code.toUpperCase();
+        
+        // Show discount display
+        const discountDisplay = document.getElementById('promoDiscountDisplay');
+        if (discountDisplay) {
+            if (discountPercent > 0) {
+                discountDisplay.style.display = 'block';
+                discountDisplay.innerHTML = `
+                    <div class="discount-badge">
+                        <i class="fas fa-tags"></i>
+                        ${discountPercent}% off - You save <strong>R${discountAmount.toFixed(2)}</strong>
+                    </div>
+                `;
+            } else {
+                discountDisplay.style.display = 'none';
+            }
+        }
+        
+        // Update cart total with discount
+        updateCartUI();
         
         // Record usage
         await recordPromoUsage(result.data.id);
@@ -1174,6 +1249,7 @@ async function applyPromoCode() {
         status.innerHTML = `❌ ${result.message}`;
         status.className = 'promo-status error';
         appliedPromoCode = null;
+        discountApplied = 0;
     }
 }
 
@@ -1188,6 +1264,7 @@ async function recordPromoUsage(promoCodeId) {
             sessionStorage.setItem('sessionId', sessionId);
         }
         
+        // Record usage
         const { error } = await supabaseClient
             .from('promo_code_usage')
             .insert({
@@ -1200,10 +1277,18 @@ async function recordPromoUsage(promoCodeId) {
         
         if (error) throw error;
         
-        // Update usage count
+        // Update usage count - FIXED: Get current count first
+        const { data: currentData } = await supabaseClient
+            .from('promo_codes')
+            .select('usage_count')
+            .eq('id', promoCodeId)
+            .single();
+        
+        const newCount = (currentData?.usage_count || 0) + 1;
+        
         await supabaseClient
             .from('promo_codes')
-            .update({ usage_count: supabaseClient.raw('usage_count + 1') })
+            .update({ usage_count: newCount })
             .eq('id', promoCodeId);
         
         console.log('✅ Promo usage recorded');
@@ -1211,6 +1296,28 @@ async function recordPromoUsage(promoCodeId) {
     } catch (error) {
         console.error('Error recording promo usage:', error);
     }
+}
+
+// Clear promo code
+function clearPromoCode() {
+    appliedPromoCode = null;
+    discountApplied = 0;
+    document.getElementById('promoCodeInput').value = '';
+    document.getElementById('promoCodeInput').disabled = false;
+    document.getElementById('promoApplyBtn').disabled = false;
+    document.getElementById('promoApplyBtn').textContent = 'Apply';
+    document.getElementById('promoCodeStatus').className = 'promo-status';
+    document.getElementById('promoCodeStatus').textContent = '';
+    document.getElementById('promoAppliedInfo').style.display = 'none';
+    document.getElementById('promoDiscountDisplay').style.display = 'none';
+    
+    // Remove from session
+    sessionStorage.removeItem('promoCode');
+    sessionStorage.removeItem('promoCodeId');
+    sessionStorage.removeItem('discountApplied');
+    
+    // Update cart total
+    updateCartUI();
 }
 
 // Setup promo code button
@@ -1264,4 +1371,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-
