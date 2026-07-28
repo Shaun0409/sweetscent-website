@@ -20,7 +20,372 @@ const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // ===== PRODUCT DATA (Fallback/Seed) =====
 const productData = [
-    // ... (keep your existing productData)
+    // ===== MALE FRAGRANCES ======
+    {
+        id: 1,
+        name: 'Most Wanted',
+        category: 'male',
+        description: 'A bold and energetic fragrance with a fresh, spicy, and woody character. Perfect for the confident man who likes to stand out.',
+        inspired: 'Azzaro Wanted',
+        notes: '🍋 Lemon • 🌿 Ginger • 🫚 Cardamom • 🌲 Juniper Berries • 🍦 Tonka Bean • 🌱 Vetiver • 🪵 Amberwood',
+        displayPrice: 'R150',
+        price30ml: 'R150',
+        price100ml: 'R450',
+        inStock: true,
+        sizes: [
+            { size: '30ml', price: 'R150', image: '/images/products/Male/30ml/Most Wanted.png' },
+            { size: '100ml', price: 'R450', image: '/images/products/Male/100ml/Most Wanted.png' }
+        ],
+        icon: 'fa-crown',
+        image: '/images/products/Male/100ml/Most Wanted.png'
+    },
+    {
+        id: 2,
+        name: 'Dunhill Desire',
+        category: 'male',
+        description: 'A warm, fruity, and seductive fragrance that balances sweetness with masculine depth.',
+        inspired: 'Dunhill Desire Red',
+        notes: '🍎 Apple • 🌸 Orange Blossom • 🍊 Bergamot • 🌹 Rose • 🌿 Patchouli • 🍦 Vanilla • 🤍 Musk',
+        displayPrice: 'R150',
+        price30ml: 'R150',
+        price100ml: 'R450',
+        inStock: true,
+        sizes: [
+            { size: '30ml', price: 'R150', image: '/images/products/Male/30ml/Dunhill Desire.png' },
+            { size: '100ml', price: 'R450', image: '/images/products/Male/100ml/Dunhill Desire.png' }
+        ],
+        icon: 'fa-gem',
+        image: '/images/products/Male/100ml/Dunhill Desire.png'
+    },
+    {
+        id: 3,
+        name: 'Scandal',
+        category: 'male',
+        description: 'A rich and modern fragrance with sweet caramel notes blended with fresh aromatics and woody accords.',
+        inspired: 'Jean Paul Gaultier Scandal Pour Homme',
+        notes: '🍊 Mandarin Orange • 🌿 Clary Sage • 🍬 Caramel • 🍦 Tonka Bean • 🌱 Vetiver',
+        displayPrice: 'R150',
+        price30ml: 'R150',
+        price100ml: 'R450',
+        inStock: true,
+        sizes: [
+            { size: '30ml', price: 'R150', image: '/images/products/Male/30ml/Scandal.png' },
+            { size: '100ml', price: 'R450', image: '/images/products/Male/100ml/Scandal.png' }
+        ],
+        icon: 'fa-bolt',
+        image: '/images/products/Male/100ml/Scandal.png'
+    },
+    {
+        id: 4,
+        name: 'Invictus',
+        category: 'male',
+        description: 'A fresh aquatic fragrance with a sporty and masculine edge, designed for winners.',
+        inspired: 'Paco Rabanne Invictus',
+        notes: '🍊 Grapefruit • 🌊 Marine Notes • 🌿 Bay Leaf • 🌼 Jasmine • 🪵 Guaiac Wood • ✨ Ambergris',
+        displayPrice: 'R150',
+        price30ml: 'R150',
+        price100ml: 'R450',
+        inStock: true,
+        sizes: [
+            { size: '30ml', price: 'R150', image: '/images/products/Male/30ml/Invictus.png' },
+            { size: '100ml', price: 'R450', image: '/images/products/Male/100ml/Invictus.png' }
+        ],
+        icon: 'fa-trophy',
+        image: '/images/products/Male/100ml/Invictus.png'
+    },
+    {
+        id: 5,
+        name: 'Bad',
+        category: 'male',
+        description: 'A daring and sophisticated scent combining freshness, spice, and smoky warmth.',
+        inspired: 'Diesel Bad',
+        notes: '🍋 Bergamot • 💜 Lavender • 🫚 Cardamom • 🐟 Caviar Accord • 🚬 Tobacco • 🪵 Woody Notes',
+        displayPrice: 'R150',
+        price30ml: 'R150',
+        price100ml: 'R450',
+        inStock: true,
+        sizes: [
+            { size: '30ml', price: 'R150', image: '/images/products/Male/30ml/Bad.png' },
+            { size: '100ml', price: 'R450', image: '/images/products/Male/100ml/Bad.png' }
+        ],
+        icon: 'fa-skull',
+        image: '/images/products/Male/100ml/Bad.png'
+    },
+    {
+        id: 6,
+        name: 'Aventus',
+        category: 'male',
+        description: 'A powerful and iconic fragrance known for its fresh fruity opening and smoky woody dry-down.',
+        inspired: 'Creed Aventus',
+        notes: '🍍 Pineapple • 🍋 Bergamot • 🫐 Blackcurrant • 🌳 Birch • 🌿 Patchouli • 🍃 Oakmoss • 🤍 Musk',
+        displayPrice: 'R150',
+        price30ml: 'R150',
+        price100ml: 'R450',
+        inStock: true,
+        sizes: [
+            { size: '30ml', price: 'R150', image: '/images/products/Male/30ml/Aventus.png' },
+            { size: '100ml', price: 'R450', image: '/images/products/Male/100ml/Aventus.png' }
+        ],
+        icon: 'fa-fire',
+        image: '/images/products/Male/100ml/Aventus.png'
+    },
+
+    // ===== FEMALE FRAGRANCES =====
+    {
+        id: 7,
+        name: "J'adore",
+        category: 'female',
+        description: 'An elegant floral fragrance that feels feminine, radiant, and luxurious.',
+        inspired: 'Dior J\'adore',
+        notes: '🍐 Pear • 🍈 Melon • 🌸 Magnolia • 🌼 Jasmine • 🌹 Rose • 🍑 Peach • 🍦 Vanilla • 🤍 Musk',
+        displayPrice: 'R150',
+        price30ml: 'R150',
+        price100ml: 'R450',
+        inStock: true,
+        sizes: [
+            { size: '30ml', price: 'R150', image: '/images/products/Female/30ml/Jadore.png' },
+            { size: '100ml', price: 'R450', image: '/images/products/Female/100ml/Jadore.png' }
+        ],
+        icon: 'fa-flower',
+        badge: 'Bestseller',
+        image: '/images/products/Female/100ml/Jadore.png'
+    },
+    {
+        id: 8,
+        name: 'Contre Moi',
+        category: 'female',
+        description: 'A soft and sensual vanilla fragrance with delicate floral touches.',
+        inspired: 'Louis Vuitton Contre Moi',
+        notes: '🍦 Vanilla • 🌸 Orange Blossom • 🌺 Magnolia • 🌹 Rose • 🍫 Cocoa',
+        displayPrice: 'R150',
+        price30ml: 'R150',
+        price100ml: 'R450',
+        inStock: true,
+        sizes: [
+            { size: '30ml', price: 'R150', image: '/images/products/Female/30ml/Contre-moi.png' },
+            { size: '100ml', price: 'R450', image: '/images/products/Female/100ml/Contre-moi.png' }
+        ],
+        icon: 'fa-heart',
+        image: '/images/products/Female/100ml/Contre-moi.png'
+    },
+    {
+        id: 9,
+        name: 'Coconut',
+        category: 'female',
+        description: 'A timeless fragrance that is fresh, elegant, and effortlessly sophisticated.',
+        inspired: 'Chanel Coco Mademoiselle',
+        notes: '🍊 Orange • 🍋 Bergamot • 🌹 Rose • 🌼 Jasmine • 🌿 Patchouli • 🍦 Vanilla • 🤍 White Musk',
+        displayPrice: 'R150',
+        price30ml: 'R150',
+        price100ml: 'R450',
+        inStock: true,
+        sizes: [
+            { size: '30ml', price: 'R150', image: '/images/products/Female/30ml/Coconut.png' },
+            { size: '100ml', price: 'R450', image: '/images/products/Female/100ml/Coconut.png' }
+        ],
+        icon: 'fa-umbrella-beach',
+        image: '/images/products/Female/100ml/Coconut.png'
+    },
+    {
+        id: 10,
+        name: 'Delirious',
+        category: 'female',
+        description: 'A playful and youthful fragrance bursting with fruity sweetness and soft florals.',
+        inspired: 'Katy Perry Mad Love',
+        notes: '🍏 Apple Sorbet • 🍓 Strawberry • 🌼 Jasmine • 🌸 Peony • 🥥 Coconut • 🪵 Sandalwood',
+        displayPrice: 'R150',
+        price30ml: 'R150',
+        price100ml: 'R450',
+        inStock: true,
+        sizes: [
+            { size: '30ml', price: 'R150', image: '/images/products/Female/30ml/Delirious.png' },
+            { size: '100ml', price: 'R450', image: '/images/products/Female/100ml/Delirious.png' }
+        ],
+        icon: 'fa-star',
+        image: '/images/products/Female/100ml/Delirious.png'
+    },
+    {
+        id: 11,
+        name: 'Mad Love',
+        category: 'female',
+        description: 'A playful and youthful fragrance bursting with fruity sweetness and soft florals.',
+        inspired: 'Katy Perry Mad Love',
+        notes: '🍏 Apple Sorbet • 🍓 Strawberry • 🌼 Jasmine • 🌸 Peony • 🥥 Coconut • 🪵 Sandalwood',
+        displayPrice: 'R150',
+        price30ml: 'R150',
+        price100ml: 'R450',
+        inStock: true,
+        sizes: [
+            { size: '30ml', price: 'R150', image: '/images/products/Female/30ml/Mad Love.png' },
+            { size: '100ml', price: 'R450', image: '/images/products/Female/100ml/Mad Love.png' }
+        ],
+        icon: 'fa-heartbeat',
+        image: '/images/products/Female/100ml/Mad Love.png'
+    },
+    {
+        id: 12,
+        name: 'Marshmallow',
+        category: 'female',
+        description: 'A sweet and addictive fragrance with fluffy marshmallow and creamy vanilla accords.',
+        inspired: 'Kilian Love, Don\'t Be Shy',
+        notes: '🍊 Neroli • 🍋 Bergamot • 🌸 Orange Blossom • 🌺 Honeysuckle • 🍬 Marshmallow • 🍦 Vanilla • 🤍 Musk',
+        displayPrice: 'R150',
+        price30ml: 'R150',
+        price100ml: 'R450',
+        inStock: true,
+        sizes: [
+            { size: '30ml', price: 'R150', image: '/images/products/Female/30ml/Marshmallow.png' },
+            { size: '100ml', price: 'R450', image: '/images/products/Female/100ml/Marshmallow.png' }
+        ],
+        icon: 'fa-candy-cane',
+        image: '/images/products/Female/100ml/Marshmallow.png'
+    },
+
+    // ===== UNISEX FRAGRANCES =====
+    {
+        id: 13,
+        name: 'Phantom Nights',
+        category: 'unisex',
+        description: 'A dark and mysterious fragrance with sweet gourmand notes and rich depth.',
+        inspired: 'Black Phantom',
+        notes: '🥃 Rum • ☕ Coffee • 🍫 Dark Chocolate • 🍮 Caramel • 🌾 Sugar Cane • 🪵 Sandalwood',
+        displayPrice: 'R180',
+        price30ml: 'R180',
+        price100ml: '',
+        inStock: true,
+        sizes: [
+            { size: '30ml', price: 'R180', image: '/images/products/Unisex/phantom-nights.jpeg' }
+        ],
+        icon: 'fa-ghost',
+        badge: 'Premium',
+        image: '/images/products/Unisex/phantom-nights.jpeg'
+    },
+    {
+        id: 14,
+        name: 'Oud Ispahan',
+        category: 'unisex',
+        description: 'A luxurious oriental fragrance combining rich oud and velvety rose.',
+        inspired: 'Oud Ispahan',
+        notes: '🪵 Oud • 🌹 Rose • ✨ Labdanum • 🪵 Sandalwood • 🌿 Patchouli',
+        displayPrice: 'R180',
+        price30ml: 'R180',
+        price100ml: '',
+        inStock: true,
+        sizes: [
+            { size: '30ml', price: 'R180', image: '/images/products/Unisex/oud-ispahan.jpg' }
+        ],
+        icon: 'fa-tree',
+        badge: 'Premium',
+        image: '/images/products/Unisex/oud-ispahan.jpg'
+    },
+    {
+        id: 15,
+        name: 'After Dark',
+        category: 'unisex',
+        description: 'A deliciously comforting fragrance where fresh coffee meets creamy vanilla and rose.',
+        inspired: 'Montale Intense Café',
+        notes: '☕ Coffee • 🌹 Rose • 🍦 Vanilla • 🤍 White Musk • ✨ Amber',
+        displayPrice: 'R180',
+        price30ml: 'R180',
+        price100ml: '',
+        inStock: true,
+        sizes: [
+            { size: '30ml', price: 'R180', image: '/images/products/Unisex/after-dark.png' }
+        ],
+        icon: 'fa-moon',
+        badge: 'Premium',
+        image: '/images/products/Unisex/after-dark.png'
+    },
+    {
+        id: 16,
+        name: 'Vanilla Sex',
+        category: 'unisex',
+        description: 'A luxurious vanilla fragrance with creamy, warm, and sensual character.',
+        inspired: 'Tom Ford Vanilla Sex',
+        notes: '🍦 Vanilla Absolute • 🍦 Tonka Bean • 🪵 Sandalwood • 🌰 Almond',
+        displayPrice: 'R180',
+        price30ml: 'R180',
+        price100ml: '',
+        inStock: true,
+        sizes: [
+            { size: '30ml', price: 'R180', image: '/images/products/Unisex/vanilla-sex.jpeg' }
+        ],
+        icon: 'fa-pepper-hot',
+        badge: 'Premium',
+        image: '/images/products/Unisex/vanilla-sex.jpeg'
+    },
+    {
+        id: 17,
+        name: 'Fresh Neroli',
+        category: 'unisex',
+        description: 'A crisp and refreshing fragrance inspired by the Mediterranean coastline.',
+        inspired: 'Tom Ford Neroli Portofino',
+        notes: '🌼 Neroli • 🍋 Bergamot • 🍋 Lemon • 🌸 Orange Blossom • 💜 Lavender • ✨ Amber',
+        displayPrice: 'R180',
+        price30ml: 'R180',
+        price100ml: '',
+        inStock: true,
+        sizes: [
+            { size: '30ml', price: 'R180', image: '/images/products/Unisex/fresh-neroli.jpeg' }
+        ],
+        icon: 'fa-sun',
+        badge: 'Premium',
+        image: '/images/products/Unisex/fresh-neroli.jpeg'
+    },
+    {
+        id: 18,
+        name: 'Hibiscus Garden',
+        category: 'unisex',
+        description: 'A vibrant and exotic fragrance blending florals, fruits, and warm undertones.',
+        inspired: 'Hibiscus Mahajád',
+        notes: '🌺 Hibiscus • 🌹 Rose • 🌿 Mint • 🫐 Blackcurrant • 👜 Leather • 🍦 Vanilla',
+        displayPrice: 'R180',
+        price30ml: 'R180',
+        price100ml: '',
+        inStock: true,
+        sizes: [
+            { size: '30ml', price: 'R180', image: '/images/products/Unisex/hibiscus-garden.jpeg' }
+        ],
+        icon: 'fa-leaf',
+        badge: 'Premium',
+        image: '/images/products/Unisex/hibiscus-garden.jpeg'
+    },
+    {
+        id: 19,
+        name: 'Vanilla Nude',
+        category: 'unisex',
+        description: 'A smooth and comforting fragrance with warm vanilla and soft musky notes.',
+        inspired: 'Calvin Klein Nude Vanilla',
+        notes: '🍦 Vanilla • 🌼 Jasmine • 🌲 Cedarwood • 🤍 Musk • ✨ Amber',
+        displayPrice: 'R150',
+        price30ml: 'R150',
+        price100ml: '',
+        inStock: true,
+        sizes: [
+            { size: '30ml', price: 'R150', image: '/images/products/Unisex/vanilla-nude.jpeg' }
+        ],
+        icon: 'fa-ice-cream',
+        badge: 'Premium',
+        image: '/images/products/Unisex/vanilla-nude.jpeg'
+    },
+    {
+        id: 20,
+        name: 'Crystal Rouge',
+        category: 'unisex',
+        description: 'An iconic fragrance known for its airy sweetness, elegance, and exceptional longevity.',
+        inspired: 'Baccarat Rouge 540',
+        notes: '✨ Saffron • 🌼 Jasmine • 🪵 Amberwood • ✨ Ambergris • 🌲 Cedarwood',
+        displayPrice: 'R180',
+        price30ml: 'R180',
+        price100ml: '',
+        inStock: true,
+        sizes: [
+            { size: '30ml', price: 'R180', image: '/images/products/Unisex/crystal-rouge.png' }
+        ],
+        icon: 'fa-gem',
+        badge: 'Premium',
+        image: '/images/products/Unisex/crystal-rouge.png'
+    }
 ];
 
 // ===== LOAD PRODUCTS =====
@@ -221,7 +586,7 @@ function setupDetailButtons() {
     });
 }
 
-// ===== OPEN PRODUCT MODAL =====
+// ===== OPEN PRODUCT MODAL (WITH PROMO CODE SUPPORT) =====
 function openProductModal(product) {
     var modal = document.getElementById('productModal');
     var content = document.getElementById('modalContent');
@@ -263,6 +628,37 @@ function openProductModal(product) {
             </select>
         </div>
         
+        <!-- PROMO CODE SECTION IN MODAL -->
+        <div class="modal-promo-section" style="margin:10px 0; padding:10px 12px; background:#F8F7F4; border-radius:8px; border:1px solid #F0EDE8;">
+            <div class="promo-toggle" onclick="toggleModalPromo()" style="cursor:pointer; display:flex; align-items:center; gap:8px;">
+                <i class="fas fa-ticket-alt" style="color:#9CAF88;"></i>
+                <span style="font-size:0.85rem; font-weight:500; color:#2F3E2F;">Have a promo code?</span>
+                <button class="promo-toggle-btn" id="modalPromoToggleBtn" style="background:none; border:none; color:#999; cursor:pointer; transition:transform 0.3s ease; margin-left:auto;">
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+            </div>
+            
+            <div class="modal-promo-input" id="modalPromoInputArea" style="display:none; margin-top:8px;">
+                <div style="display:flex; gap:8px;">
+                    <input type="text" id="modalPromoCodeInput" placeholder="Enter promo code" style="flex:1; padding:8px 12px; border:1.5px solid #E0DDD8; border-radius:8px; font-size:0.85rem; text-transform:uppercase;">
+                    <button class="btn-primary" id="modalPromoApplyBtn" style="padding:8px 16px; font-size:0.8rem; white-space:nowrap;">Apply</button>
+                </div>
+                <div id="modalPromoStatus" class="promo-status" style="margin-top:6px; font-size:0.8rem;"></div>
+                <div id="modalPromoAppliedInfo" style="display:none; margin-top:6px; padding:8px 12px; background:#E8F5E9; border-radius:6px; border:1px solid #81C784;">
+                    <div style="display:flex; align-items:center; gap:6px; color:#27ae60; font-weight:600; font-size:0.85rem;">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Promo code applied!</span>
+                    </div>
+                    <div style="font-size:0.8rem; color:#2F3E2F; margin-top:2px;">
+                        <span style="color:#666;">Distributor:</span> <span id="modalPromoDistributor" style="font-weight:500;"></span>
+                    </div>
+                    <div style="font-size:0.8rem; color:#2F3E2F;">
+                        <span style="color:#666;">Code:</span> <span id="modalPromoCodeDisplay" style="font-weight:700; background:#fff; padding:0 6px; border-radius:4px;"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         <p class="modal-total-price">Total: <strong id="modalTotalPrice">${defaultSize.price}</strong></p>
         
         <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center;">
@@ -287,26 +683,128 @@ function openProductModal(product) {
     
     var selectedSize = defaultSize;
     var selectedPrice = defaultPrice;
+    var modalPromoCode = null;
+    var modalDiscount = 0;
+    
+    // Modal promo functions
+    function toggleModalPromo() {
+        const area = document.getElementById('modalPromoInputArea');
+        const btn = document.getElementById('modalPromoToggleBtn');
+        if (!area || !btn) return;
+        
+        if (area.style.display === 'none') {
+            area.style.display = 'block';
+            btn.querySelector('i').style.transform = 'rotate(180deg)';
+        } else {
+            area.style.display = 'none';
+            btn.querySelector('i').style.transform = 'rotate(0deg)';
+        }
+    }
+    
+    async function applyModalPromo() {
+        const input = document.getElementById('modalPromoCodeInput');
+        const status = document.getElementById('modalPromoStatus');
+        const code = input.value.trim();
+        
+        if (!code) {
+            status.innerHTML = '⚠️ Please enter a promo code';
+            status.className = 'promo-status error';
+            return;
+        }
+        
+        status.innerHTML = '⏳ Checking code...';
+        status.className = 'promo-status loading';
+        
+        try {
+            const cleanCode = code.toUpperCase().trim();
+            const { data, error } = await supabaseClient
+                .from('promo_codes')
+                .select('*')
+                .eq('code', cleanCode)
+                .eq('is_active', true)
+                .single();
+            
+            if (error || !data) {
+                status.innerHTML = '❌ Invalid promo code';
+                status.className = 'promo-status error';
+                return;
+            }
+            
+            modalPromoCode = data;
+            const discountPercent = data.discount_percentage || 0;
+            modalDiscount = selectedPrice * parseInt(quantitySelect.value) * (discountPercent / 100);
+            
+            status.innerHTML = `✅ Code "${cleanCode}" applied! ${discountPercent}% off`;
+            status.className = 'promo-status success';
+            input.disabled = true;
+            document.getElementById('modalPromoApplyBtn').disabled = true;
+            document.getElementById('modalPromoApplyBtn').textContent = 'Applied ✓';
+            
+            document.getElementById('modalPromoAppliedInfo').style.display = 'block';
+            document.getElementById('modalPromoDistributor').textContent = data.distributor_name;
+            document.getElementById('modalPromoCodeDisplay').textContent = cleanCode;
+            
+            updateModalTotal();
+            updateWhatsAppLink();
+            
+        } catch (error) {
+            console.error('Error validating promo code:', error);
+            status.innerHTML = '❌ Error validating code';
+            status.className = 'promo-status error';
+        }
+    }
+    
+    function updateModalTotal() {
+        var quantity = parseInt(quantitySelect.value);
+        var total = selectedPrice * quantity;
+        
+        if (modalPromoCode && modalDiscount > 0) {
+            var discountedTotal = total - modalDiscount;
+            totalPriceDisplay.innerHTML = `
+                <span style="text-decoration:line-through; color:#999; font-size:0.8rem;">R${total}</span>
+                <span style="color:#27ae60; font-weight:700;">R${discountedTotal.toFixed(2)}</span>
+                <span style="font-size:0.7rem; color:#27ae60; display:block;">(${modalPromoCode.discount_percentage}% off - Save R${modalDiscount.toFixed(2)})</span>
+            `;
+        } else {
+            totalPriceDisplay.textContent = 'R' + total;
+        }
+    }
     
     function updateWhatsAppLink() {
         var quantity = parseInt(quantitySelect.value);
         var total = selectedPrice * quantity;
-        totalPriceDisplay.textContent = 'R' + total;
+        var finalTotal = total;
+        var discountText = '';
+        
+        if (modalPromoCode && modalDiscount > 0) {
+            finalTotal = total - modalDiscount;
+            discountText = `%0A🎟️ Promo Code: ${modalPromoCode.code} (${modalPromoCode.discount_percentage}% off - R${modalDiscount.toFixed(2)} saved)%0A👤 Distributor: ${modalPromoCode.distributor_name}`;
+        }
         
         var message = 'Hello Sweet Scent%0A%0AI\'d like to place an order.%0A%0A--- ORDER SUMMARY ---%0A';
         message += '%0AProduct: ' + product.name;
         message += '%0ASize: ' + selectedSize.size;
         message += '%0AQuantity: ' + quantity;
-        message += '%0ATotal: R' + total;
+        message += '%0ATotal: R' + finalTotal.toFixed(2);
+        if (modalPromoCode && modalDiscount > 0) {
+            message += '%0AOriginal Price: R' + total;
+        }
+        message += discountText;
         message += '%0A%0APlease confirm my order and send me your payment details.%0A%0AThank you.';
         
         whatsappBtn.href = 'https://wa.me/27622102873?text=' + message;
     }
     
-    function updatePriceAndImage() {
-        updateWhatsAppLink();
-    }
+    // Setup modal promo listeners
+    document.getElementById('modalPromoApplyBtn').addEventListener('click', applyModalPromo);
+    document.getElementById('modalPromoCodeInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            applyModalPromo();
+        }
+    });
     
+    // Update price when size or quantity changes
     sizeButtons.forEach(function(btn) {
         btn.addEventListener('click', function() {
             sizeButtons.forEach(function(b) { b.classList.remove('active'); });
@@ -319,12 +817,27 @@ function openProductModal(product) {
             selectedSize = product.sizes.find(function(s) { return s.size === size; });
             selectedPrice = parseInt(price.replace('R', ''));
             
+            // Reset modal promo when size changes
+            modalPromoCode = null;
+            modalDiscount = 0;
+            document.getElementById('modalPromoCodeInput').disabled = false;
+            document.getElementById('modalPromoCodeInput').value = '';
+            document.getElementById('modalPromoApplyBtn').disabled = false;
+            document.getElementById('modalPromoApplyBtn').textContent = 'Apply';
+            document.getElementById('modalPromoStatus').className = 'promo-status';
+            document.getElementById('modalPromoStatus').textContent = '';
+            document.getElementById('modalPromoAppliedInfo').style.display = 'none';
+            
             productImage.src = image;
-            updatePriceAndImage();
+            updateModalTotal();
+            updateWhatsAppLink();
         });
     });
     
-    quantitySelect.addEventListener('change', updatePriceAndImage);
+    quantitySelect.addEventListener('change', function() {
+        updateModalTotal();
+        updateWhatsAppLink();
+    });
     
     addToCartBtn.addEventListener('click', function() {
         var quantity = parseInt(quantitySelect.value);
@@ -339,7 +852,8 @@ function openProductModal(product) {
         closeModal();
     });
     
-    updatePriceAndImage();
+    updateModalTotal();
+    updateWhatsAppLink();
 }
 
 // ===== CLOSE MODAL =====
@@ -746,19 +1260,36 @@ function setupModalEvents() {
 }
 
 // ============================================
-// PROMO CODE FUNCTIONS - FIXED
+// PROMO CODE FUNCTIONS
 // ============================================
 
-// Toggle promo input visibility
+// Toggle cart promo input visibility
 function togglePromoInput() {
     const area = document.getElementById('promoInputArea');
     const btn = document.getElementById('promoToggleBtn');
+    if (!area || !btn) return;
+    
     if (area.style.display === 'none') {
         area.style.display = 'block';
         btn.classList.add('active');
     } else {
         area.style.display = 'none';
         btn.classList.remove('active');
+    }
+}
+
+// Toggle modal promo input visibility
+function toggleModalPromo() {
+    const area = document.getElementById('modalPromoInputArea');
+    const btn = document.getElementById('modalPromoToggleBtn');
+    if (!area || !btn) return;
+    
+    if (area.style.display === 'none') {
+        area.style.display = 'block';
+        btn.querySelector('i').style.transform = 'rotate(180deg)';
+    } else {
+        area.style.display = 'none';
+        btn.querySelector('i').style.transform = 'rotate(0deg)';
     }
 }
 
@@ -789,7 +1320,7 @@ async function validatePromoCode(code) {
     }
 }
 
-// Apply promo code with automatic discount
+// Apply promo code with automatic discount (Cart)
 async function applyPromoCode() {
     const input = document.getElementById('promoCodeInput');
     const status = document.getElementById('promoCodeStatus');
@@ -820,7 +1351,6 @@ async function applyPromoCode() {
         const total = getCartTotal();
         const discountAmount = total * (discountPercent / 100);
         discountApplied = discountAmount;
-        const discountedTotal = total - discountAmount;
         
         status.innerHTML = `✅ ${result.message}`;
         status.className = 'promo-status success';
@@ -859,8 +1389,6 @@ async function applyPromoCode() {
         // Update cart total with discount
         updateCartUI();
         
-        // ✅ REMOVED: Usage recording moved to sendCartOrder()
-        // Only show notification, don't record yet
         showCartNotification(`✅ Promo code "${code}" applied! ${discountPercent}% off!`);
         
     } else {
@@ -872,7 +1400,7 @@ async function applyPromoCode() {
     }
 }
 
-// Record promo code usage - NOW CALLED FROM sendCartOrder()
+// Record promo code usage - CALLED FROM sendCartOrder()
 async function recordPromoUsage(promoCodeId, originalTotal, finalTotal) {
     try {
         const productIds = cart.map(item => item.id);
@@ -918,7 +1446,7 @@ async function recordPromoUsage(promoCodeId, originalTotal, finalTotal) {
     }
 }
 
-// Clear promo code - FIXED to work properly
+// Clear promo code
 function clearPromoCode() {
     appliedPromoCode = null;
     discountApplied = 0;
@@ -996,7 +1524,6 @@ function setupPromoCodeButton() {
                 input.value = savedCode;
                 // Auto-apply after a short delay
                 setTimeout(function() {
-                    // Re-apply the promo to show the discount
                     applyPromoCode();
                 }, 500);
             }

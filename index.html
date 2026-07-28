@@ -496,7 +496,7 @@
                 <p class="cart-empty">Your cart is empty.</p>
             </div>
             <div class="cart-footer">
-                <!-- PROMO CODE SECTION -->
+                <!-- PROMO CODE SECTION - COMPACT -->
                 <div class="cart-promo-section">
                     <div class="promo-toggle" onclick="togglePromoInput()">
                         <i class="fas fa-ticket-alt"></i>
@@ -504,15 +504,12 @@
                         <button class="promo-toggle-btn" id="promoToggleBtn">
                             <i class="fas fa-chevron-down"></i>
                         </button>
-                        <div id="promoDiscountDisplay" style="display:none; margin:8px 0;">
-                            <!-- Rendered by JavaScript -->
-                        </div>
                     </div>
                     
                     <div class="promo-input-area" id="promoInputArea" style="display:none;">
                         <div class="promo-input-group">
-                            <input type="text" id="promoCodeInput" placeholder="Enter your promo code" maxlength="20" autocomplete="off" style="text-transform:uppercase;">
-                            <button class="btn-primary" id="promoApplyBtn" style="padding:10px 20px; font-size:0.85rem;">Apply</button>
+                            <input type="text" id="promoCodeInput" placeholder="Enter promo code" maxlength="20" autocomplete="off" style="text-transform:uppercase;">
+                            <button class="btn-primary" id="promoApplyBtn" style="padding:10px 16px; font-size:0.8rem; white-space:nowrap;">Apply</button>
                         </div>
                         <div id="promoCodeStatus" class="promo-status"></div>
                         
@@ -520,7 +517,7 @@
                             <div class="promo-applied-badge">
                                 <i class="fas fa-check-circle"></i>
                                 <span>Promo code applied!</span>
-                                <button onclick="clearPromoCode()" style="margin-left:auto; background:transparent; border:none; color:#E74C3C; cursor:pointer; font-size:0.8rem;">
+                                <button onclick="clearPromoCode()" style="margin-left:auto; background:transparent; border:none; color:#E74C3C; cursor:pointer; font-size:0.75rem;">
                                     <i class="fas fa-times"></i> Remove
                                 </button>
                             </div>
@@ -546,11 +543,13 @@
                     </div>
                 </div>
 
+                <div id="promoDiscountDisplay" style="display:none;"></div>
+                
                 <div class="cart-total">
                     <span>Total:</span>
                     <span id="cartTotal">R0</span>
                 </div>
-                <a href="#" id="cartCheckout" class="btn-whatsapp" style="width:100%; justify-content:center;">
+                <a href="#" id="cartCheckout" class="btn-whatsapp" style="width:100%; justify-content:center; padding:12px;">
                     <i class="fab fa-whatsapp"></i> Checkout on WhatsApp
                 </a>
             </div>
