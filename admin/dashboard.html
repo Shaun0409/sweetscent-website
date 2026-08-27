@@ -821,9 +821,126 @@
                 grid-template-columns: 1fr;
             }
         }
+        /* ===== PIN LOCK SCREEN ===== */
+        #pinLockScreen {
+            position: fixed;
+            inset: 0;
+            background: #1A1A1A;
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pin-lock-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 40px 36px;
+            width: 100%;
+            max-width: 320px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        }
+
+        .pin-lock-card i.fa-lock {
+            font-size: 1.8rem;
+            color: #9CAF88;
+            margin-bottom: 14px;
+        }
+
+        .pin-lock-card h2 {
+            font-size: 1.2rem;
+            color: #1A1A1A;
+            margin-bottom: 6px;
+        }
+
+        .pin-lock-card p {
+            font-size: 0.85rem;
+            color: #999;
+            margin-bottom: 24px;
+        }
+
+        .pin-digits {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .pin-digit {
+            width: 48px;
+            height: 56px;
+            border: 2px solid #EAE6DE;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1A1A1A;
+            outline: none;
+            transition: border-color 0.15s ease;
+        }
+
+        .pin-digit:focus {
+            border-color: #9CAF88;
+        }
+
+        .pin-lock-card.error .pin-digit {
+            border-color: #E74C3C;
+            animation: pinShake 0.35s ease;
+        }
+
+        @keyframes pinShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-6px); }
+            75% { transform: translateX(6px); }
+        }
+
+        .pin-error-text {
+            font-size: 0.8rem;
+            color: #E74C3C;
+            min-height: 18px;
+            margin-bottom: 12px;
+        }
+
+        .pin-unlock-btn {
+            width: 100%;
+            padding: 12px;
+            background: #9CAF88;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.15s ease;
+        }
+
+        .pin-unlock-btn:hover {
+            background: #86A374;
+        }
+
+        #dashboardContent {
+            display: none;
+        }
     </style>
 </head>
 <body>
+    <div id="pinLockScreen">
+        <div class="pin-lock-card" id="pinLockCard">
+            <i class="fas fa-lock"></i>
+            <h2>Enter PIN</h2>
+            <p>Enter your PIN to access the dashboard</p>
+            <div class="pin-digits">
+                <input type="password" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="pin-digit" data-pin-index="0" autocomplete="off">
+                <input type="password" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="pin-digit" data-pin-index="1" autocomplete="off">
+                <input type="password" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="pin-digit" data-pin-index="2" autocomplete="off">
+                <input type="password" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="pin-digit" data-pin-index="3" autocomplete="off">
+            </div>
+            <div class="pin-error-text" id="pinErrorText"></div>
+            <button class="pin-unlock-btn" id="pinUnlockBtn">Unlock</button>
+        </div>
+    </div>
+    <div id="dashboardContent">
     <div class="admin-container">
         <!-- Header -->
         <div class="admin-header">
@@ -1068,6 +1185,7 @@
             <span>&copy; 2026 Sweet Scent. All rights reserved.</span>
             <a href="/" target="_blank"><i class="fas fa-eye"></i> View Website</a>
         </div>
+    </div>
     </div>
 
     <script>
@@ -2118,10 +2236,83 @@ function groupByMonth(dailyStats) {
         }
 
         // ============================================
+        // PIN LOCK
+        // ============================================
+
+        const PIN_HASH = 'fd99ea8de5c1b77b3dfd90e448d9e7af26df565bc17ee10d0dad9267f13d6def';
+
+        async function sha256Hex(text) {
+            const enc = new TextEncoder().encode(text);
+            const buf = await crypto.subtle.digest('SHA-256', enc);
+            return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        function setupPinLock() {
+            const digits = Array.from(document.querySelectorAll('.pin-digit'));
+            const card = document.getElementById('pinLockCard');
+            const errorText = document.getElementById('pinErrorText');
+            const unlockBtn = document.getElementById('pinUnlockBtn');
+
+            digits[0].focus();
+
+            digits.forEach((input, i) => {
+                input.addEventListener('input', () => {
+                    input.value = input.value.replace(/[^0-9]/g, '');
+                    if (input.value && i < digits.length - 1) {
+                        digits[i + 1].focus();
+                    }
+                    if (digits.every(d => d.value)) {
+                        attemptUnlock();
+                    }
+                });
+
+                input.addEventListener('keydown', (e) => {
+                    if (e.key === 'Backspace' && !input.value && i > 0) {
+                        digits[i - 1].focus();
+                    }
+                });
+
+                input.addEventListener('paste', (e) => {
+                    e.preventDefault();
+                    const pasted = (e.clipboardData.getData('text') || '').replace(/[^0-9]/g, '').slice(0, digits.length);
+                    pasted.split('').forEach((ch, idx) => {
+                        if (digits[idx]) digits[idx].value = ch;
+                    });
+                    if (pasted.length === digits.length) attemptUnlock();
+                });
+            });
+
+            unlockBtn.addEventListener('click', attemptUnlock);
+
+            async function attemptUnlock() {
+                const pin = digits.map(d => d.value).join('');
+                if (pin.length !== digits.length) {
+                    return;
+                }
+                unlockBtn.disabled = true;
+                const hash = await sha256Hex(pin);
+                if (hash === PIN_HASH) {
+                    document.getElementById('pinLockScreen').remove();
+                    document.getElementById('dashboardContent').style.display = 'block';
+                    initDashboard();
+                } else {
+                    errorText.textContent = 'Incorrect PIN, try again.';
+                    card.classList.add('error');
+                    digits.forEach(d => d.value = '');
+                    digits[0].focus();
+                    unlockBtn.disabled = false;
+                    setTimeout(() => card.classList.remove('error'), 350);
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', setupPinLock);
+
+        // ============================================
         // INITIALIZE
         // ============================================
 
-        document.addEventListener('DOMContentLoaded', function() {
+        function initDashboard() {
             setupTabs();
             loadProducts();
             setupSaveButton();
@@ -2141,7 +2332,7 @@ function groupByMonth(dailyStats) {
                     return e.returnValue;
                 }
             });
-        });
+        }
 
         window.addEventListener('unload', function() {
             if (window._supabaseChannel) {
